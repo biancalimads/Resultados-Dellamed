@@ -3,22 +3,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RESULTADOS DELLAMED — BL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
-    --blue-900:#0c1a3a;--blue-800:#0f2356;--blue-700:#1a3a8f;--blue-600:#2563eb;
-    --blue-500:#3b82f6;--blue-400:#60a5fa;--blue-300:#9cc4ff;--blue-100:rgba(59,130,246,.22);--blue-50:rgba(59,130,246,.13);
-    --gray-900:#eef3fc;--gray-800:#dce5f5;--gray-600:#aab8d6;--gray-700:#c4d0e8;--gray-500:#93a3c6;--gray-400:#6f80a6;
-    --gray-300:#2d3f61;--gray-200:#22334f;--gray-100:#17253f;--gray-50:#0b1730;
-    --green:#22e07a;--red:#ff5470;--amber:#fbbf24;--white:#ffffff;
-    --cyan:#22d3ee;--violet:#a78bfa;
-    --page:#080f1f;--surface:#0f1c36;--surface-2:#14233f;
+    /* Identidade Dellamed — navy #002f63 · azul claro #8BB8E8 · vermelho #A6192E */
+    --blue-900:#00193a;--blue-800:#002f63;--blue-700:#0a3d78;--blue-600:#12508f;
+    --blue-500:#1f66b3;--blue-400:#8bb8e8;--blue-300:#a9cef0;--blue-100:rgba(139,184,232,.20);--blue-50:rgba(139,184,232,.12);
+    --gray-900:#eaf1fb;--gray-800:#d5e2f4;--gray-600:#9db0d2;--gray-700:#bccce6;--gray-500:#8194b8;--gray-400:#61759c;
+    --gray-300:#1d456f;--gray-200:#123456;--gray-100:#0e2a4d;--gray-50:#0a2142;
+    --green:#2fca7d;--red:#d94a5f;--amber:#f2b134;--white:#ffffff;
+    --cyan:#4ec8e6;--violet:#8fa9e6;
+    --page:#02132b;--surface:#0a2b55;--surface-2:#10386c;
     --shadow-sm:0 1px 3px rgba(0,0,0,.4);
     --shadow-md:0 6px 18px rgba(0,0,0,.5);
     --shadow-lg:0 16px 40px rgba(0,0,0,.6);
     --radius:10px;
   }
-  body{font-family:'DM Sans',sans-serif;background:var(--page);color:var(--gray-900);font-size:14px;line-height:1.5;}
+  body{font-family:'Montserrat',sans-serif;background:var(--page);color:var(--gray-900);font-size:14px;line-height:1.5;}
 
   /* HEADER */
   .header{background:var(--blue-800);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.25);}
@@ -61,7 +65,7 @@
   .dropdown-search::placeholder{color:var(--gray-400);}
   .dropdown-list{overflow-y:auto;flex:1;}
   .dropdown-item{padding:7px 12px;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:8px;color:var(--gray-700);transition:background .1s;}
-  .dropdown-item:hover{background:rgba(59,130,246,.16);}
+  .dropdown-item:hover{background:rgba(139,184,232,.14);}
   .dropdown-item input[type=checkbox]{accent-color:var(--blue-500);width:13px;height:13px;cursor:pointer;}
   .dropdown-actions{padding:8px 12px;border-top:1px solid var(--gray-200);display:flex;gap:8px;}
   .dropdown-action-btn{font-size:11px;color:var(--blue-400);cursor:pointer;font-weight:600;background:none;border:none;font-family:inherit;padding:0;}
@@ -78,7 +82,7 @@
   .cat-kpi-val{font-size:13px;font-weight:700;color:var(--gray-900);font-family:'DM Mono',monospace;}
   .cat-kpi-deltas{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px;}
   .cat-kpi-tag{font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;display:inline-flex;align-items:center;gap:2px;}
-  .cat-kpi-tag.mom{background:rgba(59,130,246,.08);color:#93c5fd;}
+  .cat-kpi-tag.mom{background:rgba(139,184,232,.10);color:#8bb8e8;}
   .cat-kpi-tag.wow{background:rgba(34,224,122,.08);color:#4ade80;}
   .kpi-label{font-size:11px;font-weight:600;color:var(--gray-500);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;}
   .kpi-value{font-size:24px;font-weight:700;color:var(--gray-900);line-height:1.2;font-family:'DM Mono',monospace;}
@@ -123,9 +127,9 @@
   .table-card{background:var(--surface);border:1px solid var(--gray-200);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);}
   .table-card-title{font-size:13px;font-weight:700;color:var(--gray-800);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
   table{width:100%;border-collapse:collapse;}
-  #tblVendedores,#tblVendaItens{max-height:480px;overflow-y:auto;display:block;}
-  #tblVendedores table,#tblVendaItens table{width:100%;}
-  #tblVendedores table thead th,#tblVendaItens table thead th{position:sticky;top:0;background:var(--surface);z-index:2;box-shadow:0 1px 0 var(--gray-200);}
+  #tblVendedores,#tblVendaItens,#tblModelos{max-height:480px;overflow-y:auto;display:block;}
+  #tblVendedores table,#tblVendaItens table,#tblModelos table{width:100%;}
+  #tblVendedores table thead th,#tblVendaItens table thead th,#tblModelos table thead th{position:sticky;top:0;background:var(--surface);z-index:2;box-shadow:0 1px 0 var(--gray-200);}
   thead th{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gray-500);padding:6px 8px;border-bottom:2px solid var(--gray-200);text-align:left;white-space:nowrap;}
   thead th.r{text-align:right;}
   tbody tr{border-bottom:1px solid var(--gray-100);}
@@ -225,7 +229,7 @@
   :root{--sidebar-w:266px;}
   body{padding-left:var(--sidebar-w);}
   .sidebar{position:fixed;left:0;top:0;width:var(--sidebar-w);height:100vh;
-    background:linear-gradient(180deg,#0c1a3a 0%,#091327 100%);
+    background:linear-gradient(180deg,#00285a 0%,#001a3d 100%);
     border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;
     z-index:300;overflow-y:auto;}
   .sidebar::-webkit-scrollbar{width:6px}
@@ -262,7 +266,7 @@
     padding:9px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.14);
     background:rgba(255,255,255,.05);color:rgba(255,255,255,.72);font-size:12.5px;font-weight:600;
     cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s,color .15s;}
-  .side-clear-btn:hover{background:rgba(220,38,38,.16);border-color:rgba(220,38,38,.5);color:#fff;}
+  .side-clear-btn:hover{background:rgba(166,25,46,.20);border-color:rgba(166,25,46,.6);color:#fff;}
   .side-clear-btn svg{opacity:.85;flex-shrink:0;}
   .side-foot{margin-top:auto;padding:14px 15px 18px;}
   .side-foot-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 13px;}
@@ -293,7 +297,7 @@
     border-radius:12px;padding:14px 6px;margin-bottom:22px;box-shadow:0 1px 3px rgba(12,26,58,.05);overflow-x:auto;}
   .insight-lead{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
     padding:0 20px;border-right:1px solid var(--gray-200);min-width:118px;flex-shrink:0;text-align:center;}
-  .insight-lead-badge{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,rgba(59,130,246,.22),rgba(34,211,238,.14));
+  .insight-lead-badge{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,rgba(139,184,232,.24),rgba(0,47,99,.32));
     display:flex;align-items:center;justify-content:center;color:var(--blue-300);}
   .insight-lead-label{font-size:11.5px;font-weight:700;color:#cfe0ff;line-height:1.25;letter-spacing:.01em;}
   .insight-cards{display:flex;flex:1;gap:0;}
@@ -304,7 +308,7 @@
     display:flex;align-items:center;justify-content:center;}
   .insight-ico.green{background:rgba(34,224,122,.15);color:#4ade80;}
   .insight-ico.amber{background:rgba(251,191,36,.15);color:#fbbf24;}
-  .insight-ico.blue{background:rgba(59,130,246,.16);color:#60a5fa;}
+  .insight-ico.blue{background:rgba(139,184,232,.16);color:#8bb8e8;}
   .insight-ico.red{background:rgba(255,84,112,.15);color:#ff8098;}
   .insight-txt b{display:block;font-size:12.5px;font-weight:700;color:var(--gray-900);margin-bottom:4px;line-height:1.2;}
   .insight-txt p{font-size:11px;color:var(--gray-500);line-height:1.5;margin:0;}
@@ -451,7 +455,7 @@
 
     <!-- TOP ITENS + TOP VENDEDORES -->
     <div class="tables-grid">
-      <div class="table-card"><div class="table-card-title">🏆 Top 10 Itens</div><div id="tblModelos"></div></div>
+      <div class="table-card"><div class="table-card-title">🏆 TOP ITENS</div><div id="tblModelos" style="max-height:420px;overflow-y:auto;"></div></div>
       <div class="table-card"><div class="table-card-title">👤 Maiores Vendedores</div><div id="tblVendedores" style="max-height:420px;overflow-y:auto;"></div></div>
     </div>
 
@@ -2207,12 +2211,30 @@ function renderMonthlyPerformance(){
 }
 
 // ============================================================
-// TOP 10 ITENS
+// Trava a altura da tabela para mostrar SEMPRE as N primeiras linhas
+// (mede as linhas reais; deixa a (N+1)ª espiando como dica de rolagem)
+// ============================================================
+function fitRows(id,n){
+  const el=document.getElementById(id); if(!el) return;
+  const table=el.querySelector('table'); if(!table) return;
+  const rows=table.querySelectorAll('tbody tr');
+  if(rows.length<=n){ el.style.maxHeight='none'; el.style.overflowY='visible'; return; }
+  el.style.overflowY='auto'; el.scrollTop=0;
+  const top=el.getBoundingClientRect().top;
+  const nth=rows[n-1].getBoundingClientRect().bottom - top;      // fim da 10ª linha
+  const peek=rows[n].getBoundingClientRect();
+  if(nth<=0){ el.style.maxHeight='360px'; return; }               // fallback (container oculto)
+  const extra=Math.round((peek.bottom-peek.top)*0.5);             // metade da 11ª "espiando"
+  el.style.maxHeight=(Math.ceil(nth)+extra)+'px';
+}
+
+// ============================================================
+// TOP ITENS
 // ============================================================
 function renderTopItens(dataA,dataB,momData,wowData,hasWeek){
   const byKey=data=>{const m={};data.forEach(r=>{const k=r['Item'];if(!m[k])m[k]={vendas:0,qty:0,vendedores:{}};m[k].vendas+=r['Total de Vendas'];m[k].qty+=r['Quantidade vendida'];const vd=r['Vendedor'];m[k].vendedores[vd]=(m[k].vendedores[vd]||0)+r['Total de Vendas'];});return m;};
   const mapA=byKey(dataA),mapB=byKey(dataB),mapMoM=byKey(momData||[]),mapWoW=byKey(wowData||[]);
-  const top=Object.entries(mapA).sort((a,b)=>b[1].vendas-a[1].vendas).slice(0,10);
+  const top=Object.entries(mapA).sort((a,b)=>b[1].vendas-a[1].vendas);
   const deltaLbl=hasWeek?'WoW':'MoM';
   document.getElementById('tblModelos').innerHTML=top.length===0?'<div class="empty-state">Sem dados</div>':`
     <table><thead><tr><th>Item</th><th>Top Vendedor</th><th class="r">Vendas</th><th class="r">Pçs</th><th class="r">TM</th><th class="r">${deltaLbl}</th></tr></thead>
@@ -2222,9 +2244,11 @@ function renderTopItens(dataA,dataB,momData,wowData,hasWeek){
       const dVal=hasWeek?wow:mom;
       const tv=Object.entries(v.vendedores).sort((a,b)=>b[1]-a[1])[0];
       const tvLbl=tv?tv[0]:'';
-      return `<tr><td><span class="rank-num">${i+1}</span>${k}</td><td style="font-size:11px;color:var(--gray-500)">${tvLbl}</td><td class="r">${fmtR(v.vendas)}</td><td class="r">${fmtN(v.qty)}</td><td class="r">${fmtR(tm(v.vendas,v.qty))}</td><td class="r">${deltaHtml(dVal)}</td></tr>`;
+      const rankEl=(i+1)<=10?`<span class="rank-num">${i+1}</span>`:`<span style="display:inline-block;min-width:22px;color:var(--gray-400);font-size:11px;margin-right:4px">${i+1}</span>`;
+      return `<tr><td>${rankEl}${k}</td><td style="font-size:11px;color:var(--gray-500)">${tvLbl}</td><td class="r">${fmtR(v.vendas)}</td><td class="r">${fmtN(v.qty)}</td><td class="r">${fmtR(tm(v.vendas,v.qty))}</td><td class="r">${deltaHtml(dVal)}</td></tr>`;
     }).join('')}</tbody></table>`;
   makeSortable('tblModelos');
+  fitRows('tblModelos',10);
 }
 
 // ============================================================
@@ -2257,6 +2281,7 @@ function renderTopVendedores(dataA,momData,wowData,hasWeek){
   const tbody=allVend.map(([v,d],i)=>mkRow(v,d,i+1)).join('');
   el.innerHTML=`<table>${thead}<tbody>${tbody}</tbody></table>`;
   makeSortable('tblVendedores');
+  fitRows('tblVendedores',10);
 }
 
 // ============================================================
