@@ -383,7 +383,7 @@
     </div>
     <div class="header-right">
       <div class="data-state" id="dataState" title="Histórico congelado até agosto/2026. Uploads atualizam apenas setembro/2026 e meses seguintes.">Último mês: <b>set/26</b></div>
-      <div class="last-update" id="lastUpdate" data-saved="2026-09-28T13:18:25.510Z">Última atualização: <span>28 Set 2026 — 10:18</span></div>
+      <div class="last-update" id="lastUpdate" data-saved="2026-09-28T13:23:03.257Z">Última atualização: <span>28 Set 2026 — 10:23</span></div>
       <input type="file" id="fileInput" accept=".xlsx,.xls">
       <button class="btn-upload btn-icon" onclick="document.getElementById('fileInput').click()" title="Atualizar Dados" aria-label="Atualizar Dados" style="">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -1996,9 +1996,9 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
     const prevW = idx > 0 ? allWeeksOrd[idx - 1] : null;
     const prevV = prevW ? (vendByWeek[prevW.label] || 0) : 0;
     const days = weekDays(w), prevDays = weekDays(prevW);
-    const perDay = days !== prevDays && days > 0 && prevDays > 0;
-    // Dias diferentes: compara a média diária, senão semana de 1 dia vira +400%
-    const pct = !prevV || !vendasA[i] ? null : (perDay ? delta(vendasA[i] / days, prevV / prevDays) : delta(vendasA[i], prevV));
+    const perDay = false;
+    // Diferença sobre o valor total de cada semana
+    const pct = !prevV || !vendasA[i] ? null : delta(vendasA[i], prevV);
     return { pct, perDay, days, prevDays, empty: !vendasA[i], prevLabel: prevW ? prevW.label : '' };
   });
   const wowPlugin = {
