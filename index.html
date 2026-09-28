@@ -2,7 +2,7 @@
 <html lang="pt-BR"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RESULTADOS DELLAMED — BL</title>
+<title>PERFORMANCE DE VENDAS MARCA DELLAMED</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
@@ -216,6 +216,30 @@
   @keyframes loadSlide{0%{margin-left:-40%}100%{margin-left:100%}}
   .load-pct{font-size:11px;color:var(--gray-400);font-family:'DM Mono',monospace;margin-bottom:4px;}
   .load-meta{font-size:11px;color:var(--gray-400);margin-top:10px;line-height:1.5;}
+  .load-months{font-size:12px;color:var(--gray-600);margin-top:12px;line-height:1.5;text-align:left;}
+  .load-months b{color:var(--gray-900);}
+  .load-months:empty,.load-sheets:empty{display:none;}
+  .load-sheets{list-style:none;margin:12px 0 0;padding:10px 12px;border:1px solid var(--gray-200);border-radius:10px;background:var(--surface-2);
+    display:grid;grid-template-columns:1fr;gap:5px;text-align:left;max-height:220px;overflow-y:auto;}
+  .load-sheets li{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--gray-500);}
+  .load-sheets li .dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--gray-300);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .load-sheets li .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .load-sheets li .ct{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--gray-400);}
+  .load-sheets li.reading{color:var(--gray-900);}
+  .load-sheets li.reading .dot{border-color:var(--blue-400);border-top-color:transparent;animation:spin .8s linear infinite;}
+  .load-sheets li.ok{color:var(--gray-700);}
+  .load-sheets li.ok .dot{background:var(--green);border-color:var(--green);}
+  .load-sheets li.ok .dot::after{content:"";width:5px;height:3px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translate(0,-1px);}
+  .load-sheets li.skip{opacity:.55;}
+  .load-sheets li.skip .nm{text-decoration:line-through;}
+  .load-sheets li.bad{color:var(--red);}
+  .load-sheets li.bad .dot{border-color:var(--red);}
+  .data-state{font-size:12px;color:var(--blue-300);white-space:nowrap;padding:4px 10px;border:1px solid rgba(139,184,232,.35);border-radius:999px;}
+  .data-state:empty{display:none;}
+  .week-clear-btn{margin-left:8px;font-size:11px;font-weight:600;font-family:inherit;color:var(--blue-300);background:var(--blue-50);border:1px solid rgba(139,184,232,.35);border-radius:6px;padding:3px 9px;cursor:pointer;}
+  .week-clear-btn:hover{border-color:var(--blue-400);color:#fff;}
+  .data-state b{color:#fff;font-weight:600;}
+  @media (prefers-reduced-motion:reduce){.load-sheets li.reading .dot{animation:none;border-top-color:var(--blue-400);}}
   .load-actions{display:none;gap:10px;margin-top:20px;justify-content:center;}
   .load-actions.show{display:flex;}
   .load-btn{border:none;border-radius:8px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;
@@ -325,19 +349,21 @@
   }
   @media(max-width:640px){ .insight-card{flex:1 1 100%;} }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" async="" data-loaded="1"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" async="" data-loaded="1"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" async="" data-loaded="1"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" async="" data-loaded="1"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" async="" data-loaded="1"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" async="" data-loaded="1"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" async="" data-loaded="1"></script></head>
+</head>
 <body>
 <div id="loadOverlay" class="">
   <div class="load-card" id="loadCard">
-    <div class="load-logo" id="loadLogo" style="display: flex;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"></path></svg></div>
+    <div class="load-logo" id="loadLogo" style="display: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"></path></svg></div>
     <div class="load-check" id="loadCheck">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
     </div>
     <div class="load-title" id="loadTitle">Dados carregados</div>
     <div class="load-status" id="loadStatus">Revise o dashboard e salve para publicar.</div>
-    <div class="load-bar-wrap"><div class="load-bar" id="loadBar" style="width: 100%;"></div></div>
+    <div class="load-bar-wrap"><div class="load-bar" id="loadBar"></div></div>
     <div class="load-pct" id="loadPct">100%</div>
-    <div class="load-meta" id="loadMeta">6.599 linhas DELLAMED · R$&nbsp;122.427.335<br>Abas usadas: Sheet1 (6599 de 6599)</div>
+    <div class="load-months" id="loadMonths"></div>
+    <ul class="load-sheets" id="loadSheets"></ul>
+    <div class="load-meta" id="loadMeta"></div>
     <div class="load-actions" id="loadActions">
       <button class="load-btn load-btn-save" onclick="saveFromOverlay()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
@@ -352,17 +378,17 @@
     <div class="header-left">
       <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"></path></svg></div>
       <div>
-        <div class="header-title">RESULTADOS DELLAMED — BL</div>
-        <div class="header-subtitle">Dashboard de Performance de Vendas</div>
+        <div class="header-title">PERFORMANCE DE VENDAS MARCA DELLAMED</div>
       </div>
     </div>
     <div class="header-right">
-      <div class="last-update" id="lastUpdate" data-saved="2026-09-28T13:03:55.699Z">Última atualização: <span>28 Set 2026 — 10:03</span></div>
+      <div class="data-state" id="dataState" title="Histórico congelado até agosto/2026. Uploads atualizam apenas setembro/2026 e meses seguintes.">Último mês: <b>set/26</b></div>
+      <div class="last-update" id="lastUpdate" data-saved="2026-09-28T13:18:25.510Z">Última atualização: <span>28 Set 2026 — 10:18</span></div>
       <input type="file" id="fileInput" accept=".xlsx,.xls">
       <button class="btn-upload btn-icon" onclick="document.getElementById('fileInput').click()" title="Atualizar Dados" aria-label="Atualizar Dados" style="">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
       </button>
-      <button class="btn-save btn-icon" onclick="saveDashboard()" title="Salvar Dashboard" aria-label="Salvar Dashboard" style="opacity: 0.6;" disabled=""><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg></button>
+      <button class="btn-save btn-icon" onclick="saveDashboard()" title="Salvar Dashboard" aria-label="Salvar Dashboard" style=""><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg></button>
     </div>
   </div>
 </header>
@@ -451,15 +477,15 @@
 
     <!-- CHART -->
     <div class="chart-card">
-      <div class="table-card-title" id="chartTitle">📊 Performance Semanal</div>
+      <div class="table-card-title" id="chartTitle">📊 Performance Semanal <span style="font-size:10px;font-weight:400;color:var(--gray-400)">% sobre as barras vs semana anterior · clique numa semana para filtrar</span></div>
       <canvas id="weekChart"></canvas>
       <div id="weekCompTable" style="margin-top:16px;display:none"></div>
     </div>
 
     <!-- TOP ITENS + TOP VENDEDORES -->
     <div class="tables-grid">
-      <div class="table-card"><div class="table-card-title">🏆 TOP ITENS</div><div id="tblModelos" style="max-height: 438px; overflow-y: auto;"></div></div>
-      <div class="table-card"><div class="table-card-title">👤 Maiores Vendedores</div><div id="tblVendedores" style="max-height: 453px; overflow-y: auto;"></div></div>
+      <div class="table-card"><div class="table-card-title">🏆 TOP ITENS</div><div id="tblModelos" style="max-height: 436px; overflow-y: auto;"></div></div>
+      <div class="table-card"><div class="table-card-title">👤 Maiores Vendedores</div><div id="tblVendedores" style="max-height: 451px; overflow-y: auto;"></div></div>
     </div>
 
     <!-- VENDA ITENS (unified growth + gap) -->
@@ -692,6 +718,34 @@ async function decodeEmbeddedData(){
   return expandCompactRows(FROZEN_ROWS.concat(CURRENT_ROWS));
 }
 
+const MES_NOMES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function mesLongo(m){ if(!m||m.length<7) return '—'; return MES_NOMES[+m.slice(5,7)-1]+'/'+m.slice(0,4); }
+function mesCurto(m){ if(!m||m.length<7) return '—'; return MES_NOMES[+m.slice(5,7)-1].slice(0,3)+'/'+m.slice(2,4); }
+function ultimoMesCongelado(){ let mx=''; for(const r of FROZEN_ROWS){ if(r[1]>mx) mx=r[1]; } return mx; }
+function renderDataState(){
+  const el=document.getElementById('dataState'); if(!el) return;
+  if(!CURRENT_MONTH){ el.innerHTML=''; return; }
+  const fz=ultimoMesCongelado();
+  el.innerHTML='Último mês: <b>'+mesCurto(CURRENT_MONTH)+'</b>';
+  el.title=fz?('Histórico congelado até '+mesLongo(fz)+'. Uploads atualizam apenas '+mesLongo(CURRENT_MONTH)+' e meses seguintes.'):'';
+}
+function renderSheetList(target,skip){
+  const ul=document.getElementById('loadSheets'); if(!ul) return;
+  const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  ul.innerHTML=target.map(n=>'<li data-sheet="'+esc(n)+'"><span class="dot"></span><span class="nm">'+esc(n)+'</span><span class="ct">aguardando</span></li>').join('')
+    +skip.map(n=>'<li class="skip"><span class="dot"></span><span class="nm">'+esc(n)+'</span><span class="ct">ignorada</span></li>').join('');
+}
+function updateSheet(name,state,n,total){
+  const ul=document.getElementById('loadSheets'); if(!ul) return;
+  const li=[...ul.querySelectorAll('li[data-sheet]')].find(x=>x.dataset.sheet===name); if(!li) return;
+  li.className=state;
+  const ct=li.querySelector('.ct');
+  if(state==='reading') ct.textContent='lendo…';
+  else if(state==='ok') ct.textContent=(n||0).toLocaleString('pt-BR')+' DELLAMED';
+  else if(state==='bad') ct.textContent='colunas ausentes';
+  if(state==='reading') li.scrollIntoView({block:'nearest'});
+}
+
 function setStartupStatus(message){
   const el=document.querySelector('#loading span');
   if(el) el.textContent=message;
@@ -725,6 +779,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 function initDashboard(data) {
   ALL_DATA = data;
+  renderDataState();
   buildFilters(data);
   const now = new Date();
   const curMonthStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-01`;
@@ -763,6 +818,8 @@ function showLoadOverlay(){
   document.getElementById('loadTitle').textContent='Carregando planilha';
   document.getElementById('loadBar').classList.remove('indeterminate');
   document.getElementById('loadMeta').textContent='';
+  document.getElementById('loadSheets').innerHTML='';
+  document.getElementById('loadMonths').innerHTML=CURRENT_MONTH?('Último mês registrado: <b>'+mesLongo(CURRENT_MONTH)+'</b>'+(ultimoMesCongelado()?' · congelado até '+mesLongo(ultimoMesCongelado()):'')):'';
   setLoad(0,'Aguarde…');
   ov.classList.add('show');
 }
@@ -777,6 +834,7 @@ function setLoadMeta(txt){ document.getElementById('loadMeta').textContent=txt; 
 function loadDone(summaryHtml){
   setLoad(100,'Concluído');
   document.getElementById('loadCard').classList.add('done');
+  document.getElementById('loadLogo').style.display='none';
   document.getElementById('loadCheck').classList.add('show');
   document.getElementById('loadTitle').textContent='Dados carregados';
   document.getElementById('loadStatus').textContent='Revise o dashboard e salve para publicar.';
@@ -872,7 +930,8 @@ function excelWorkerMain(){
 
   self.onmessage=event=>{
     try{
-      const {buffer,urls}=event.data;
+      const {buffer,urls,openMonth,maxMonth}=event.data;
+      const minM=openMonth||'', maxM=maxMonth||'9999-12-01';
       let loaded=(typeof self.fflate!=='undefined'),lastError=null;
       if(!loaded) for(const url of urls||[]){ try{ importScripts(url); if(self.fflate){loaded=true;break;} }catch(err){lastError=err;} }
       if(!loaded) throw new Error('Não foi possível carregar o leitor de planilha (fflate). Verifique sua conexão com a internet.'+(lastError?' '+lastError.message:''));
@@ -889,7 +948,8 @@ function excelWorkerMain(){
       const order=[]; wbXml.replace(/<sheet\b([^>]*)\/?>/g,(_,a)=>{const nm=decodeEnt((a.match(/name="([^"]*)"/)||[])[1]||'');const rid=(a.match(/r:id="([^"]+)"/)||[])[1];const tg=relMap[rid]||('worksheets/sheet'+(order.length+1)+'.xml');order.push([nm,tg]);return '';});
       const pathToName={}; for(const [nm,tg] of order) pathToName['xl/'+String(tg).replace(/^\//,'')]=nm;
 
-      send('progress',{pct:60,status:'Lendo textos da planilha…',meta:''});
+      const SKIP=new Set(['MOT','COLCHÕES','COLCHOES','MOTORIZADA'].map(norm));
+      send('progress',{pct:58,status:'Lendo textos da planilha…',meta:''});
       const sst=[];
       { const b0=getSmall('xl/sharedStrings.xml');
         if(b0){ const dec=new TextDecoder('utf-8'); let b=''; const CH=1<<22; const reT=/<t\b[^>]*(?:\/>|>([\s\S]*?)<\/t>)/g;
@@ -898,47 +958,73 @@ function excelWorkerMain(){
         }
       }
 
-      const SKIP=new Set(['MOT','COLCHÕES','COLCHOES','MOTORIZADA'].map(norm));
+      // Índices do texto "DELLAMED" na tabela de textos: permite descartar linhas de outras marcas sem ler a linha inteira.
+      const DELL=new Set(); for(let i=0;i<sst.length;i++){ if(norm(sst[i])==='dellamed') DELL.add(i); }
+      const idxToCol=i=>{let s='';i++;while(i>0){const m=(i-1)%26;s=String.fromCharCode(65+m)+s;i=(i-m-1)/26;}return s;};
+      const quickBrand=(rowStr,L)=>{
+        const needle=' r="'+L; let p=rowStr.indexOf(needle);
+        while(p>=0){const ch=rowStr.charCodeAt(p+needle.length); if(ch>=48&&ch<=57)break; p=rowStr.indexOf(needle,p+1);}
+        if(p<0) return false;
+        const start=rowStr.lastIndexOf('<c',p); const gt=rowStr.indexOf('>',p);
+        if(start<0||gt<0||rowStr[gt-1]==='/') return false;
+        const end=rowStr.indexOf('</c>',gt); if(end<0) return false;
+        const attrs=rowStr.slice(start,gt), content=rowStr.slice(gt+1,end);
+        const t=(attrs.match(/t="([^"]+)"/)||[])[1];
+        if(t==='s'){const vm=content.match(/<v>([^<]*)<\/v>/); return !!vm&&DELL.has(+vm[1]);}
+        let v='';
+        if(t==='inlineStr'){const rt=/<t\b[^>]*(?:\/>|>([\s\S]*?)<\/t>)/g;let tm;while((tm=rt.exec(content)))v+=tm[1]==null?'':tm[1];}
+        else {const vm=content.match(/<v>([\s\S]*?)<\/v>/); if(vm) v=vm[1];}
+        return norm(decodeEnt(v))==='dellamed';
+      };
+      send('sheets',{target:order.filter(o=>!SKIP.has(norm(o[0]))).map(o=>o[0]),skip:order.filter(o=>SKIP.has(norm(o[0]))).map(o=>o[0])});
+
       const nTarget=Math.max(order.filter(o=>!SKIP.has(norm(o[0]))).length,1);
       const reCell=/<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g;
       const rows=[]; const sheetsUsed=[]; const sheetsSkipped=[];
-      let doneSheets=0, totalScanned=0;
+      let doneSheets=0, totalScanned=0, futureSkipped=0;
       const parseRow=(rowStr,st)=>{
+        if(st.hdr!==null){ st.total++; totalScanned++; if(!quickBrand(rowStr,st.mL)) return; }
         const cells={}; reCell.lastIndex=0; let cm;
         while((cm=reCell.exec(rowStr))){const attrs=cm[1]||'';const content=cm[2];const ref=(attrs.match(/r="([A-Z]+)\d+"/)||[])[1];if(!ref)continue;const ci=colToIdx(ref);const t=(attrs.match(/t="([^"]+)"/)||[])[1];let val=null;
           if(content!=null){if(t==='s'){const vm=content.match(/<v>([\s\S]*?)<\/v>/);if(vm)val=sst[+vm[1]];}else if(t==='inlineStr'){let s='';const rt=/<t\b[^>]*(?:\/>|>([\s\S]*?)<\/t>)/g;let tm;while((tm=rt.exec(content)))s+=tm[1]==null?'':tm[1];val=decodeEnt(s);}else if(t==='str'){const vm=content.match(/<v>([\s\S]*?)<\/v>/);if(vm)val=decodeEnt(vm[1]);}else{const vm=content.match(/<v>([\s\S]*?)<\/v>/);if(vm)val=vm[1];}}
           cells[ci]=val;}
-        if(st.hdr===null){const hdr={};for(const k in cells){const h=norm(cells[k]);if(!(h in hdr))hdr[h]=+k;}const col=(...c)=>{for(const x of c){const k=norm(x);if(k in hdr)return hdr[k];}return -1;};st.cols={M:col('MARCA CORRESPONDENTE'),V:col('Total de Vendas','Valor vendido','Faturamento','Receita'),Q:col('Quantidade vendida'),P:col('Preço médio'),D:col('Data'),I:col('Item'),MO:col('Modelo'),VD:col('Vendedor'),C2:col('Categoria nível 02','Categoria nivel 02')};st.hdr=hdr;if(st.cols.M<0||st.cols.V<0||st.cols.D<0)st.bad=true;return;}
-        st.total++; totalScanned++; const c=st.cols;
+        if(st.hdr===null){const hdr={};for(const k in cells){const h=norm(cells[k]);if(!(h in hdr))hdr[h]=+k;}const col=(...c)=>{for(const x of c){const k=norm(x);if(k in hdr)return hdr[k];}return -1;};st.cols={M:col('MARCA CORRESPONDENTE'),V:col('Total de Vendas','Valor vendido','Faturamento','Receita'),Q:col('Quantidade vendida'),P:col('Preço médio'),D:col('Data'),I:col('Item'),MO:col('Modelo'),VD:col('Vendedor'),C2:col('Categoria nível 02','Categoria nivel 02')};st.hdr=hdr;if(st.cols.M<0||st.cols.V<0||st.cols.D<0)st.bad=true;else st.mL=idxToCol(st.cols.M);return;}
+        const c=st.cols;
         if(norm(cells[c.M])!=='dellamed')return;
         const d=fmtDate(cells[c.D]); if(d.length<10)return;
-        rows.push([cells[c.VD]||'Não informado',d.slice(0,7)+'-01',(c.C2>=0&&cells[c.C2])||'Não informado',(c.MO>=0&&cells[c.MO])||'Não informado',(c.I>=0&&cells[c.I])||'Não informado',Math.round(parseNum(cells[c.V])*100)/100,Math.round(parseNum(cells[c.Q])),Math.round(parseNum(cells[c.P])*100)/100,d]);
         st.n++;
+        const mk=d.slice(0,7)+'-01';
+        if(mk>maxM){futureSkipped++;return;}
+        if(mk<minM) return;
+        rows.push([cells[c.VD]||'Não informado',d.slice(0,7)+'-01',(c.C2>=0&&cells[c.C2])||'Não informado',(c.MO>=0&&cells[c.MO])||'Não informado',(c.I>=0&&cells[c.I])||'Não informado',Math.round(parseNum(cells[c.V])*100)/100,Math.round(parseNum(cells[c.Q])),Math.round(parseNum(cells[c.P])*100)/100,d]);
       };
 
       const unz=new F.Unzip(); unz.register(F.UnzipInflate);
       unz.onfile=file=>{
         const nm=pathToName[file.name];
         if(!nm||SKIP.has(norm(nm))){ if(nm) sheetsSkipped.push(nm); return; }
+        send('sheet',{name:nm,state:'reading'});
         const dec=new TextDecoder('utf-8'); const st={hdr:null,cols:null,n:0,total:0,bad:false}; let b='';
-        const flush=()=>{let i;while(!st.bad&&(i=b.indexOf('<row'))>=0){const gt=b.indexOf('>',i);if(gt<0)break;if(b[gt-1]==='/'){b=b.slice(gt+1);continue;}const e=b.indexOf('</row>',gt);if(e<0)break;parseRow(b.slice(i,e),st);b=b.slice(e+6);}if(i<0&&b.length>1<<20)b=b.slice(b.length-64);};
+        const flush=()=>{let pos=0,i=-1;while(!st.bad&&(i=b.indexOf('<row',pos))>=0){const gt=b.indexOf('>',i);if(gt<0)break;if(b[gt-1]==='/'){pos=gt+1;continue;}const e=b.indexOf('</row>',gt);if(e<0)break;parseRow(b.slice(i,e),st);pos=e+6;}if(pos>0)b=b.slice(pos);if(i<0&&b.length>1<<20)b=b.slice(b.length-64);};
         file.ondata=(err,chunk,final)=>{ if(err)throw err; b+=dec.decode(chunk,{stream:!final}); flush();
           if(final){ b+=dec.decode(); flush(); doneSheets++;
             if(st.bad) sheetsSkipped.push(nm+' (colunas ausentes)'); else sheetsUsed.push(nm+' ('+st.n+' de '+st.total+')');
-            send('progress',{pct:60+(doneSheets/nTarget)*32,status:'Lendo abas…',meta:'Aba '+doneSheets+'/'+nTarget+': '+nm+' — '+st.n+' linhas DELLAMED'});
+            send('sheet',{name:nm,state:st.bad?'bad':'ok',n:st.n,total:st.total});
           }
         };
         file.start();
       };
-      const S=1<<23; for(let o=0;o<u8.length;o+=S){ unz.push(u8.subarray(o,Math.min(o+S,u8.length)), o+S>=u8.length); }
+      const S=1<<22; for(let o=0;o<u8.length;o+=S){ const e2=Math.min(o+S,u8.length); unz.push(u8.subarray(o,e2), e2>=u8.length); send('progress',{pct:60+(e2/u8.length)*32,status:'Lendo abas… '+doneSheets+'/'+nTarget+' concluídas'}); }
 
-      if(!rows.length) throw new Error('Nenhuma linha DELLAMED encontrada. Verifique as colunas "MARCA CORRESPONDENTE", "Data" e "Total de Vendas".');
+      if(!rows.length){
+        if(minM && sheetsUsed.length) throw new Error('A planilha não tem linhas DELLAMED a partir de '+minM.slice(5,7)+'/'+minM.slice(0,4)+' (mês aberto no dashboard). Nada foi alterado.');
+        throw new Error('Nenhuma linha DELLAMED encontrada. Verifique as colunas "MARCA CORRESPONDENTE", "Data" e "Total de Vendas".');
+      }
 
-      send('progress',{pct:93,status:'Selecionando o último mês…',meta:''});
-      let maxMonth=''; for(const r of rows){ if(r[1]>maxMonth) maxMonth=r[1]; }
-      const lastRows=rows.filter(r=>r[1]===maxMonth);
-      const dellamedRows=rows.length;
-      send('done',{rows:lastRows,month:maxMonth,meta:{totalRows:totalScanned,dellamedRows,monthRows:lastRows.length,month:maxMonth,sheetsUsed,sheetsSkipped}});
+      send('progress',{pct:93,status:'Identificando o último mês…',meta:''});
+      let lastMonth=''; const monthCounts={};
+      for(const r of rows){ if(r[1]>lastMonth) lastMonth=r[1]; monthCounts[r[1]]=(monthCounts[r[1]]||0)+1; }
+      send('done',{rows,month:lastMonth,meta:{totalRows:totalScanned,monthRows:monthCounts[lastMonth]||0,month:lastMonth,monthCounts,futureSkipped,sheetsUsed,sheetsSkipped}});
     }catch(err){
       send('error',{message:err&&err.message?err.message:String(err)});
     }
@@ -1052,6 +1138,8 @@ async function processWorkbook(ab){
     worker.onmessage=async event=>{
       armWatchdog();
       const msg=event.data||{};
+      if(msg.type==='sheets'){ renderSheetList(msg.target||[],msg.skip||[]); setLoadMeta(''); return; }
+      if(msg.type==='sheet'){ updateSheet(msg.name,msg.state,msg.n,msg.total); return; }
       if(msg.type==='progress'){
         setLoad(msg.pct||60,msg.status||'Processando…');
         if(msg.meta!==undefined) setLoadMeta(msg.meta);
@@ -1067,11 +1155,23 @@ async function processWorkbook(ab){
       try{
         setLoad(95,'Organizando dados…');
         const incoming=msg.rows||[];
-        const newMonth=msg.month||(incoming[0]&&incoming[0][1])||CURRENT_MONTH;
-        const base=FROZEN_ROWS.concat(CURRENT_ROWS).filter(r=>r[1]!==newMonth);
-        FROZEN_ROWS=base;
-        CURRENT_ROWS=incoming;
-        CURRENT_MONTH=newMonth||CURRENT_MONTH;
+        const newMonth=msg.month||'';
+        const prevMonth=CURRENT_MONTH;
+        if(!incoming.length||!newMonth) throw new Error('A planilha não trouxe linhas novas. Nada foi alterado.');
+        if(prevMonth&&newMonth<prevMonth) throw new Error('A planilha termina em '+mesLongo(newMonth)+', antes do mês aberto ('+mesLongo(prevMonth)+'). Nada foi alterado.');
+        // Meses anteriores ao mês aberto nunca são tocados (congelados).
+        // O mês aberto é regravado com os dados desta planilha; se já existe um mês mais novo, ele é fechado e congelado.
+        const incomingMonths=new Set(incoming.map(r=>r[1]));
+        const kept=FROZEN_ROWS.concat(CURRENT_ROWS).filter(r=>!incomingMonths.has(r[1]));
+        FROZEN_ROWS=kept.filter(r=>r[1]<newMonth).concat(incoming.filter(r=>r[1]<newMonth));
+        CURRENT_ROWS=incoming.filter(r=>r[1]===newMonth);
+        CURRENT_MONTH=newMonth;
+        const closed=[...incomingMonths].filter(m=>m<newMonth).sort();
+        const monthsHtml=(closed.length
+          ? closed.map(m=>'<b>'+mesLongo(m)+'</b>').join(', ')+' fechado'+(closed.length>1?'s':'')+' com os dados desta planilha e congelado'+(closed.length>1?'s':'')+'. Mês aberto agora: <b>'+mesLongo(newMonth)+'</b>.'
+          : '<b>'+mesLongo(newMonth)+'</b> atualizado. Meses anteriores seguem congelados.')
+          +((msg.meta&&msg.meta.futureSkipped)?'<br>'+msg.meta.futureSkipped.toLocaleString('pt-BR')+' linhas com data futura foram ignoradas.':'');
+        document.getElementById('loadMonths').innerHTML=monthsHtml;
         const data=await hydrateWorkerRows(FROZEN_ROWS.concat(CURRENT_ROWS));
         setLoad(98,'Atualizando o dashboard…');
         setLoadMeta('Aplicando filtros e recalculando os indicadores.');
@@ -1089,13 +1189,10 @@ async function processWorkbook(ab){
         initDashboard(data);
 
         const meta=msg.meta||{};
-        const revTotal=data.reduce((s,r)=>s+(r['Total de Vendas']||0),0);
-        const revFmt=revTotal.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
-        const rowsFmt=(meta.dellamedRows||data.length).toLocaleString('pt-BR');
-        const sheetText=(meta.sheetsUsed||[]).join(', ');
-        const skipText=(meta.sheetsSkipped||[]).join(', ');
+        const revMonth=CURRENT_ROWS.reduce((s,r)=>s+(Number(r[5])||0),0);
+        const revFmt=revMonth.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
         try{console.log('[upload] meta:',JSON.stringify(meta,null,2));}catch(_){}
-        document.getElementById('loadMeta').innerHTML=rowsFmt+' linhas DELLAMED · '+revFmt+(sheetText?'<br>Abas usadas: '+sheetText:'')+(skipText?'<br>Ignoradas: '+skipText:'');
+        document.getElementById('loadMeta').innerHTML=mesLongo(CURRENT_MONTH)+': '+CURRENT_ROWS.length.toLocaleString('pt-BR')+' linhas · '+revFmt+'<br>Base total: '+data.length.toLocaleString('pt-BR')+' linhas';
         loadDone();
         uploadBusy=false;
         setUploadBusy(false);
@@ -1110,7 +1207,10 @@ async function processWorkbook(ab){
     };
 
     try{
+      const now=new Date();
       worker.postMessage({
+        openMonth:CURRENT_MONTH||'',
+        maxMonth:now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-01',
         buffer:ab,
         urls:[
           'https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.js',
@@ -1195,6 +1295,12 @@ async function saveDashboard() {
     root.querySelector('#loadCard')?.classList.remove('done');
     root.querySelector('#loadCheck')?.classList.remove('show');
     root.querySelector('#loadActions')?.classList.remove('show');
+
+    // Remove bibliotecas injetadas em tempo de execução (senão acumulam uma cópia a cada salvamento)
+    root.querySelectorAll('script[data-loaded]').forEach(el=>el.remove());
+    root.querySelectorAll('.btn-save,.btn-upload').forEach(b=>{b.removeAttribute('disabled');b.style.opacity='';b.style.cursor='';});
+    ['loadMeta','loadSheets','loadMonths'].forEach(id=>{const el=root.querySelector('#'+id); if(el) el.innerHTML='';});
+    root.querySelector('#loadBar')?.removeAttribute('style');
 
     root.querySelectorAll('.multi-dropdown').forEach(el=>{el.innerHTML='';});
     root.querySelectorAll('[id^="tbl"]').forEach(el=>{el.innerHTML='';});
@@ -1405,7 +1511,7 @@ function updateBtnLabel(id,state,options){
   const real=options.filter(o=>o.value!=='');
   if(state.length===0) btn.textContent=id==='msMonthB'?'Nenhum':(id==='msWeekB'?'Nenhuma':(id==='msWeek'?'Todas as semanas':'Todos'));
   else if(state.length===real.length) btn.textContent='Todos';
-  else{const labels=state.map(v=>{const o=options.find(x=>x.value===v);return o?o.label.split(' ')[0]:v;});btn.textContent=labels.slice(0,2).join(', ')+(labels.length>2?` +${labels.length-2}`:'');}
+  else{const labels=state.map(v=>{const o=options.find(x=>x.value===v);const l=o?o.label:v;return /^Sem \d+/.test(l)?l.match(/^Sem \d+/)[0]:l.split(' ')[0];});btn.textContent=labels.slice(0,2).join(', ')+(labels.length>2?` +${labels.length-2}`:'');}
   btn.title=state.join(', ');
 }
 
@@ -1873,18 +1979,68 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
   const tmA     = displayWeeks.map(w => mapA[w.label].qty ? mapA[w.label].vendas / mapA[w.label].qty : 0);
   const shortLbl = compLabel ? compLabel.split(' — ')[0] : 'Ant.';
 
+  // % vs semana anterior (cronológica, atravessa a virada do mês), com os mesmos filtros de vendedor/categoria/item
+  const allWeeksOrd = getAllWeeksOrdered();
+  const allWeekLabels = allWeeksOrd.map(w => w.label);
+  // Dias efetivos: semanas cortadas na virada do mês ou ainda em andamento têm menos dias
+  let lastDataDay = ''; for (const r of ALL_DATA) { if (r['Data'] > lastDataDay) lastDataDay = r['Data']; }
+  const lastData = lastDataDay ? new Date(lastDataDay + 'T00:00:00') : null;
+  const weekDays = w => { if (!w) return 0; const end = lastData && lastData < w.end ? lastData : w.end; return Math.max(0, Math.round((end - w.start) / 86400000) + 1); };
+  const vendByWeek = {};
+  filterData(ALL_DATA, [], [], filterState.vendedor, filterState.cat, filterState.item).forEach(r => {
+    const wl = getWeekLabel(r['Data'], r['Mês ano']);
+    vendByWeek[wl] = (vendByWeek[wl] || 0) + r['Total de Vendas'];
+  });
+  const wowInfo = displayWeeks.map((w, i) => {
+    const idx = allWeekLabels.indexOf(w.label);
+    const prevW = idx > 0 ? allWeeksOrd[idx - 1] : null;
+    const prevV = prevW ? (vendByWeek[prevW.label] || 0) : 0;
+    const days = weekDays(w), prevDays = weekDays(prevW);
+    const perDay = days !== prevDays && days > 0 && prevDays > 0;
+    // Dias diferentes: compara a média diária, senão semana de 1 dia vira +400%
+    const pct = !prevV || !vendasA[i] ? null : (perDay ? delta(vendasA[i] / days, prevV / prevDays) : delta(vendasA[i], prevV));
+    return { pct, perDay, days, prevDays, empty: !vendasA[i], prevLabel: prevW ? prevW.label : '' };
+  });
+  const wowPlugin = {
+    id: 'wowAboveBars',
+    afterDatasetsDraw(chart){
+      const dsIndex = chart.data.datasets.findIndex(d => d._isA);
+      if (dsIndex < 0) return;
+      const meta = chart.getDatasetMeta(dsIndex);
+      if (meta.hidden) return;
+      const {ctx, chartArea} = chart;
+      ctx.save(); ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+      const fam = (Chart.defaults.font && Chart.defaults.font.family) || 'sans-serif';
+      const pill = (text, x, yBottom, font, color, bg) => {
+        ctx.font = font; const w = ctx.measureText(text).width + 12, h = 17, y0 = yBottom - h;
+        ctx.fillStyle = bg; ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(x - w/2, y0, w, h, 5); else ctx.rect(x - w/2, y0, w, h);
+        ctx.fill(); ctx.fillStyle = color; ctx.fillText(text, x, yBottom - 3);
+        return y0;
+      };
+      meta.data.forEach((el, i) => {
+        const info = wowInfo[i]; if (!info || info.empty) return;
+        let y = Math.max(chartArea.top + (info.perDay ? 36 : 19), el.y - 5);
+        if (info.perDay) y = pill('média/dia · ' + info.days + 'd vs ' + info.prevDays + 'd', el.x, y, '500 9px ' + fam, '#a9b8d4', 'rgba(8,24,52,.88)') - 2;
+        const txt = info.pct === null ? '— sem semana anterior' : (info.pct > 0 ? '+' : '') + info.pct.toLocaleString('pt-BR', {minimumFractionDigits:1, maximumFractionDigits:1}) + '%';
+        pill(txt, el.x, y, '700 11px ' + fam, info.pct === null ? '#9ca3af' : (info.pct >= 0 ? '#22e07a' : '#f87171'), 'rgba(8,24,52,.88)');
+      });
+      ctx.restore();
+    }
+  };
+
   // ---- Chart: clean bars only (no line clutter when comparing) ----
   let datasets;
   if (hasComp) {
     // Comparing: show only vendas bars A + B side by side, clean
     datasets = [
       {type:'bar', label:`Vendas ${shortLbl}`, data:[...compVendas], backgroundColor:'rgba(148,163,184,.7)', yAxisID:'y', barPercentage:.8, categoryPercentage:.75},
-      {type:'bar', label:'Vendas A (R$)',       data:vendasA,        backgroundColor:'rgba(59,130,246,.85)',   yAxisID:'y', barPercentage:.8, categoryPercentage:.75},
+      {type:'bar', label:'Vendas A (R$)',       data:vendasA,        backgroundColor:vendasA.map((_,i)=>filterState.week.includes(displayWeeks[i].label)&&displayWeeks.length>1?'rgba(139,184,232,.95)':'rgba(59,130,246,.85)'), yAxisID:'y', barPercentage:.8, categoryPercentage:.75, _isA:true},
     ];
   } else {
     // Sem comparativo: exibe vendas (barras) + peças + TM (linhas)
     datasets = [
-      {type:'bar',  label:'Vendas (R$)', data:vendasA, backgroundColor:'rgba(59,130,246,.78)', yAxisID:'y',  barPercentage:.7},
+      {type:'bar',  label:'Vendas (R$)', data:vendasA, backgroundColor:'rgba(59,130,246,.78)', hoverBackgroundColor:'rgba(139,184,232,.95)', yAxisID:'y',  barPercentage:.7, _isA:true},
       {type:'line', label:'Peças',       data:qtyA,    borderColor:'#22e07a', backgroundColor:'transparent', tension:.35, yAxisID:'y2', pointRadius:4, pointBackgroundColor:'#22e07a'},
       {type:'line', label:'TM (R$)',     data:tmA,     borderColor:'#fbbf24', backgroundColor:'transparent', tension:.35, yAxisID:'y3', pointRadius:4, pointBackgroundColor:'#fbbf24', borderDash:[5,3]},
     ];
@@ -1893,12 +2049,29 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
   if (weekChart) weekChart.destroy();
   weekChart = new Chart(document.getElementById('weekChart').getContext('2d'), {
     data:{labels, datasets},
+    plugins:[wowPlugin],
     options:{
       responsive:true,
+      layout:{padding:{top:8}},
       interaction:{mode:'index', intersect:false},
-      plugins:{legend:{position:'top', labels:{font:{size:11}, boxWidth:12}}},
+      onHover:(evt, els) => { evt.native && (evt.native.target.style.cursor = els.length ? 'pointer' : 'default'); },
+      onClick:(evt) => {
+        const els = weekChart.getElementsAtEventForMode(evt, 'index', {intersect:false}, true);
+        if (!els.length) return;
+        const w = displayWeeks[els[0].index]; if (!w) return;
+        setTimeout(() => selectWeekFromChart(w.label), 0); // fora do evento do Chart.js, que é destruído no redesenho
+      },
+      plugins:{
+        legend:{position:'top', labels:{font:{size:11}, boxWidth:12}},
+        tooltip:{callbacks:{footer:items => {
+          const info = items.length ? wowInfo[items[0].dataIndex] : null;
+          if (!info) return '';
+          const t = info.pct === null ? 'sem dado da semana anterior' : (info.pct > 0 ? '+' : '') + info.pct.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1}) + '% vs ' + info.prevLabel + (info.perDay ? ' (média diária: ' + info.days + 'd vs ' + info.prevDays + 'd)' : '');
+          return [t, filterState.week.length === 1 && filterState.week[0] === displayWeeks[items[0].dataIndex].label ? 'Clique para ver todas as semanas' : 'Clique para filtrar esta semana'];
+        }}}
+      },
       scales:{
-        y:  {type:'linear', position:'left',  ticks:{callback:v=>'R$'+v.toLocaleString('pt-BR'), font:{size:10}}, grid:{color:'rgba(255,255,255,.06)'}},
+        y:  {type:'linear', position:'left', grace:'14%', ticks:{callback:v=>'R$'+v.toLocaleString('pt-BR'), font:{size:10}}, grid:{color:'rgba(255,255,255,.06)'}},
         y2: {type:'linear', position:'right', grid:{display:false}, ticks:{font:{size:10}}, display: !hasComp},
         y3: {type:'linear', position:'right', grid:{display:false}, display:false}
       }
@@ -1912,11 +2085,11 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
 
   if (!hasComp) {
     compTableEl.style.display = 'none';
-    if (chartTitle) chartTitle.innerHTML = '📊 Performance Semanal';
+    if (chartTitle) chartTitle.innerHTML = '📊 Performance Semanal ' + weekChartHint();
     return;
   }
 
-  if (chartTitle) chartTitle.innerHTML = `📊 Performance Semanal <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(${compLabel || 'comparativo'})</span>`;
+  if (chartTitle) chartTitle.innerHTML = `📊 Performance Semanal <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(${compLabel || 'comparativo'})</span> ` + weekChartHint();
 
   // Build rows: one per display week
   const rows = displayWeeks.map((w, i) => {
@@ -1968,6 +2141,20 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
       <tbody>${rows}</tbody>
     </table>
     </div>`;
+}
+
+function weekChartHint(){
+  if (filterState.week.length) return '<button class="week-clear-btn" onclick="selectWeekFromChart(null)">Ver todas as semanas</button>';
+  return '<span style="font-size:10px;font-weight:400;color:var(--gray-400)">% sobre as barras vs semana anterior · clique numa semana para filtrar</span>';
+}
+function selectWeekFromChart(label){
+  const isOnly = label && filterState.week.length === 1 && filterState.week[0] === label;
+  filterState.week.length = 0;
+  if (label && !isOnly) filterState.week.push(label);
+  const months = filterState.monthA.length ? filterState.monthA : [...new Set(ALL_DATA.map(r=>r['Mês ano']))].sort();
+  const weekOpts = getWeeksForMonths(months).map(w=>({value:w.label,label:w.label}));
+  buildMultiSelect('msWeek', weekOpts, filterState.week, onFiltersChange);
+  applyFilters();
 }
 
 // ============================================================
