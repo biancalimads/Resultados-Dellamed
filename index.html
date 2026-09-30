@@ -2,6 +2,9 @@
 <html lang="pt-BR"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>PERFORMANCE DE VENDAS MARCA DELLAMED</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -698,12 +701,46 @@ function bytesToBase64(bytes){
   return btoa(binary);
 }
 
-async function decompressBase64(base64){
-  if(typeof DecompressionStream==='undefined'){
-    throw new Error('Seu navegador está desatualizado. Abra este arquivo na versão atual do Google Chrome ou Microsoft Edge.');
-  }
-  const stream=new Blob([base64ToBytes(base64)]).stream().pipeThrough(new DecompressionStream('gzip'));
+// Rejeita a promessa se ela não terminar no tempo definido (evita tela travada)
+function withTimeout(promise, ms, label){
+  let timer;
+  return Promise.race([
+    promise,
+    new Promise((_,reject)=>{ timer=setTimeout(()=>reject(new Error('Tempo esgotado: '+label)),ms); })
+  ]).finally(()=>clearTimeout(timer));
+}
+
+async function decompressNative(bytes){
+  const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
   return new Response(stream).text();
+}
+
+async function decompressFflate(bytes){
+  const F=await ensureLibrary('fflate',[
+    'https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/fflate/0.8.2/umd/index.js',
+    'https://unpkg.com/fflate@0.8.2/umd/index.js'
+  ]);
+  return F.strFromU8(F.gunzipSync(bytes));
+}
+
+// Tenta o descompactador nativo do navegador; se falhar ou travar
+// (extensão interferindo, navegador com problema), usa o fflate.
+async function decompressBase64(base64){
+  const bytes=base64ToBytes(base64);
+  if(typeof DecompressionStream!=='undefined'){
+    try{
+      return await withTimeout(decompressNative(bytes),10000,'descompactação nativa');
+    }catch(err){
+      console.warn('Descompactação nativa falhou, usando fflate:',err.message);
+      setStartupStatus('Descompactando dados (modo alternativo)…');
+    }
+  }
+  try{
+    return await withTimeout(decompressFflate(bytes),20000,'descompactação alternativa');
+  }catch(err){
+    throw new Error('Não foi possível descompactar os dados. '+err.message);
+  }
 }
 
 async function compressToBase64(text){
@@ -789,19 +826,53 @@ window.addEventListener('DOMContentLoaded', async () => {
   const savedTs = el.dataset.saved;
   if (savedTs && savedTs !== '') renderTimestamp(new Date(savedTs));
 
+  let startupStep='Descompactando dados';
+  let startupDone=false;
+  // Vigia: se nada terminar em 40s, mostra o erro em vez de girar para sempre
+  const watchdog=setTimeout(()=>{
+    if(!startupDone) showStartupError(new Error('O carregamento parou na etapa "'+startupStep+'".'));
+  },40000);
+
   try{
+    const chartPromise = ensureChart(); // carrega em paralelo
+    chartPromise.catch(()=>{});
     setStartupStatus('Descompactando dados…');
-    const [decoded] = await Promise.all([decodeEmbeddedData(), ensureChart()]);
+    const decoded = await decodeEmbeddedData();
+    startupStep='Carregando gráficos';
+    setStartupStatus('Carregando gráficos…');
+    await chartPromise;
     ALL_DATA = decoded;
+    startupStep='Montando dashboard';
     setStartupStatus('Montando dashboard…');
     await yieldUI();
     initDashboard(ALL_DATA);
+    startupDone=true;
+    clearTimeout(watchdog);
   }catch(err){
-    console.error(err);
-    const loading=document.getElementById('loading');
-    loading.innerHTML=`<div style="max-width:620px;text-align:center;padding:28px;color:var(--red)"><strong>Não foi possível abrir o dashboard.</strong><br><span style="color:var(--gray-500)">${err.message}</span></div>`;
+    startupDone=true;
+    clearTimeout(watchdog);
+    showStartupError(err);
   }
 });
+
+function reloadWithoutCache(){
+  const u=new URL(location.href);
+  u.searchParams.set('v',Date.now());
+  location.replace(u.toString());
+}
+
+function showStartupError(err){
+  console.error(err);
+  const loading=document.getElementById('loading');
+  if(!loading || loading.style.display==='none') return;
+  const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  loading.innerHTML=`<div style="max-width:620px;text-align:center;padding:28px;color:var(--red)">
+    <strong>Não foi possível abrir o dashboard.</strong><br>
+    <span style="color:var(--gray-500)">${esc(err.message)}</span><br><br>
+    <span style="color:var(--gray-500);font-size:12px">Se abrir na guia anônima, desative extensões (bloqueador de anúncios, tradutor, antivírus) ou limpe "Imagens e arquivos em cache".</span><br><br>
+    <button onclick="reloadWithoutCache()" style="padding:10px 18px;border:0;border-radius:8px;background:#002f63;color:#fff;font-weight:600;cursor:pointer">Recarregar sem cache</button>
+  </div>`;
+}
 
 function initDashboard(data) {
   ALL_DATA = data;
