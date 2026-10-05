@@ -125,6 +125,10 @@
   .monthly-performance-note{font-size:11px;color:var(--gray-500);line-height:1.45;text-align:right;max-width:620px;}
   .monthly-chart-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:0;}
   .monthly-chart-panel{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:9px;padding:14px 14px 10px;min-width:0;}
+  .monthly-avg{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--gray-500);white-space:nowrap;}
+  .monthly-avg b{color:#fff;font-size:13px;font-family:'DM Mono',monospace;margin-left:4px;}
+  .monthly-avg:empty{display:none;}
+  @media(max-width:900px){.monthly-chart-title{flex-wrap:wrap;}.monthly-avg{margin-left:0;white-space:normal;}}
   .monthly-chart-title{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gray-600);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
   .monthly-chart-wrap{position:relative;height:320px;width:100%;}
   .monthly-chart-wrap canvas{width:100%!important;height:320px!important;max-height:none!important;}
@@ -587,7 +591,7 @@
     </div>
     <div class="header-right">
       <div class="data-state" id="dataState" title="Histórico congelado até agosto/2026. Uploads atualizam apenas setembro/2026 e meses seguintes.">Último mês: <b>set/26</b></div>
-      <div class="last-update" id="lastUpdate" data-saved="2026-10-05T14:13:09.082Z">Última atualização: <span>05 Out 2026 — 11:13</span></div>
+      <div class="last-update" id="lastUpdate" data-saved="2026-10-05T14:30:21.701Z">Última atualização: <span>05 Out 2026 — 11:30</span></div>
       <input type="file" id="fileInput" accept=".xlsx,.xls">
       <button class="btn-upload btn-icon" onclick="document.getElementById('fileInput').click()" title="Atualizar Dados" aria-label="Atualizar Dados" style="">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -636,6 +640,7 @@
       <div class="tm-filter-grid">
         <div class="filter-group"><div class="filter-label">ANO</div><div class="multi-select-container" id="pmYear"><div class="multi-select-btn" onclick="toggleDropdown('pmYear')">Todos</div><div class="multi-dropdown" id="dropdown-pmYear"></div></div></div>
         <div class="filter-group"><div class="filter-label">MÊS</div><div class="multi-select-container" id="pmMonth"><div class="multi-select-btn" onclick="toggleDropdown('pmMonth')">Todos</div><div class="multi-dropdown" id="dropdown-pmMonth"></div></div></div>
+        <div class="filter-group"><div class="filter-label">CATEGORIA</div><div class="multi-select-container" id="pmCat"><div class="multi-select-btn" onclick="toggleDropdown('pmCat')">Todos</div><div class="multi-dropdown" id="dropdown-pmCat"></div></div></div>
         <div class="filter-group"><div class="filter-label">VENDEDOR</div><div class="multi-select-container" id="pmVend"><div class="multi-select-btn" onclick="toggleDropdown('pmVend')">Todos</div><div class="multi-dropdown" id="dropdown-pmVend"></div></div></div>
         <div class="filter-group"><div class="filter-label">ITEM</div><div class="multi-select-container" id="pmItem"><div class="multi-select-btn" onclick="toggleDropdown('pmItem')">Todos</div><div class="multi-dropdown" id="dropdown-pmItem"></div></div></div>
       </div>
@@ -729,7 +734,7 @@
       </div>
       <div class="monthly-chart-grid">
         <div class="monthly-chart-panel">
-          <div class="monthly-chart-title">💰 Total de Vendas Mensal</div>
+          <div class="monthly-chart-title">💰 Total de Vendas Mensal<span class="monthly-avg" id="monthlySalesAvg"></span></div>
           <div class="monthly-chart-wrap"><canvas id="monthlySalesChart"></canvas></div>
         </div>
         <div class="monthly-chart-panel">
@@ -1847,7 +1852,7 @@ function limparFiltrosAtivos(){
   const tab=active?active.id.replace('tab-',''):'resultados';
   let groups, render;
   if(tab==='performancemensal'){
-    groups=[['pmYear',monthlyFilterState.year],['pmMonth',monthlyFilterState.month],['pmVend',monthlyFilterState.vend],['pmItem',monthlyFilterState.item]];
+    groups=[['pmYear',monthlyFilterState.year],['pmMonth',monthlyFilterState.month],['pmCat',monthlyFilterState.cat],['pmVend',monthlyFilterState.vend],['pmItem',monthlyFilterState.item]];
     render=()=>renderMonthlyPerformance();
   } else if(tab==='quarter'){
     groups=[['qYear',qFilterState.year],['qVend',qFilterState.vend],['qItem',qFilterState.item]];
@@ -2632,7 +2637,7 @@ function selectWeekFromChart(label){
 // MONTHLY PERFORMANCE TAB — filtros independentes + MoM nas barras
 // ============================================================
 let monthlyFiltersBuilt = false;
-const monthlyFilterState = {year:[], month:[], vend:[], item:[]};
+const monthlyFilterState = {year:[], month:[], cat:[], vend:[], item:[]};
 
 function buildMonthlyFilters(){
   if (!document.getElementById('pmYear') || monthlyFiltersBuilt) return;
@@ -2641,12 +2646,14 @@ function buildMonthlyFilters(){
   const monthNumbers = [...new Set(allMonths.map(m => String(m).slice(5,7)))].sort();
   const vends = [...new Set(ALL_DATA.map(r => r['Vendedor']).filter(Boolean))].sort();
   const items = [...new Set(ALL_DATA.map(r => r['Item']).filter(Boolean))].sort();
+  const cats = [...new Set(ALL_DATA.map(r => r['Categoria nível 02']).filter(Boolean))].sort();
 
   const keepValid = (state, valid) => {
     for (let i = state.length - 1; i >= 0; i--) if (!valid.includes(state[i])) state.splice(i,1);
   };
   keepValid(monthlyFilterState.year, years);
   keepValid(monthlyFilterState.month, monthNumbers);
+  keepValid(monthlyFilterState.cat, cats);
   keepValid(monthlyFilterState.vend, vends);
   keepValid(monthlyFilterState.item, items);
 
@@ -2655,6 +2662,7 @@ function buildMonthlyFilters(){
   const monthNames = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
   buildMultiSelect('pmYear', years.map(y => ({value:y,label:y})), monthlyFilterState.year, renderMonthlyPerformance);
   buildMultiSelect('pmMonth', monthNumbers.map(m => ({value:m,label:monthNames[Number(m)-1]})), monthlyFilterState.month, renderMonthlyPerformance);
+  buildMultiSelect('pmCat', cats.map(c => ({value:c,label:c})), monthlyFilterState.cat, renderMonthlyPerformance);
   buildMultiSelect('pmVend', vends.map(v => ({value:v,label:v})), monthlyFilterState.vend, renderMonthlyPerformance);
   buildMultiSelect('pmItem', items.map(i => ({value:i,label:i})), monthlyFilterState.item, renderMonthlyPerformance);
   monthlyFiltersBuilt = true;
@@ -2681,6 +2689,7 @@ function renderMonthlyPerformance(){
   });
 
   const baseFiltered = ALL_DATA.filter(r => {
+    if (monthlyFilterState.cat.length && !monthlyFilterState.cat.includes(r['Categoria nível 02'])) return false;
     if (monthlyFilterState.vend.length && !monthlyFilterState.vend.includes(r['Vendedor'])) return false;
     if (monthlyFilterState.item.length && !monthlyFilterState.item.includes(r['Item'])) return false;
     return true;
@@ -2808,7 +2817,7 @@ function renderMonthlyPerformance(){
     }
   };
 
-  const buildChart = (canvasId, datasets, valueFormatter, tickFormatter, tooltipFormatter) => {
+  const buildChart = (canvasId, datasets, valueFormatter, tickFormatter, tooltipFormatter, extraPlugins=[]) => {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
     const chart = new Chart(canvas.getContext('2d'), {
@@ -2834,17 +2843,38 @@ function renderMonthlyPerformance(){
           }
         }
       },
-      plugins:[visibleValuePlugin(valueFormatter)]
+      plugins:[visibleValuePlugin(valueFormatter), ...extraPlugins]
     });
     monthlyCharts.push(chart);
   };
+
+  // Média do total de vendas: soma dos meses exibidos ÷ quantidade de meses
+  const sumVendas = rows.reduce((s,r)=>s+r.vendas,0);
+  const avgVendas = rows.length ? sumVendas/rows.length : 0;
+  const avgEl = document.getElementById('monthlySalesAvg');
+  if (avgEl) {
+    const catTxt = monthlyFilterState.cat.length ? (monthlyFilterState.cat.length===1 ? monthlyFilterState.cat[0] : monthlyFilterState.cat.length+' categorias') + ' · ' : '';
+    avgEl.innerHTML = rows.length
+      ? `${insEsc(catTxt)}Média mensal<b>${fmtR(avgVendas)}</b> <span style="font-weight:400;color:var(--gray-400)">(${compactMoney(sumVendas)} ÷ ${rows.length} ${rows.length===1?'mês':'meses'}${rows.some(r=>r.isPartial)?', inclui mês parcial':''})</span>`
+      : '';
+  }
+  const avgLinePlugin = {id:'monthlyAvgLine',afterDatasetsDraw(chart){
+    if(!rows.length) return;
+    const {ctx,chartArea,scales} = chart; const y = scales.y.getPixelForValue(avgVendas);
+    if(y<chartArea.top||y>chartArea.bottom) return;
+    ctx.save(); ctx.strokeStyle='rgba(251,191,36,.85)'; ctx.lineWidth=1.5; ctx.setLineDash([6,5]);
+    ctx.beginPath(); ctx.moveTo(chartArea.left,y); ctx.lineTo(chartArea.right,y); ctx.stroke();
+    ctx.setLineDash([]); ctx.font='700 10px '+((Chart.defaults.font&&Chart.defaults.font.family)||'sans-serif'); ctx.fillStyle='#fbbf24'; ctx.textAlign='left'; ctx.textBaseline='bottom';
+    ctx.fillText('média '+compactMoney(avgVendas), chartArea.left+4, y-3); ctx.restore();
+  }};
 
   buildChart(
     'monthlySalesChart',
     [{label:'Vendas',data:rows.map(r=>r.vendas),backgroundColor:'rgba(59,130,246,.82)',borderRadius:6,maxBarThickness:92,barPercentage:.88,categoryPercentage:.9}],
     (v,dataset,index) => barLabel(compactMoney(v), rows[index].momVendas),
     v => compactMoney(v),
-    v => fmtR(v)
+    v => fmtR(v),
+    [avgLinePlugin]
   );
 
   buildChart(
