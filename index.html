@@ -137,6 +137,13 @@
   table{width:100%;border-collapse:collapse;}
   #tblVendedores,#tblVendaItens,#tblModelos{max-height:480px;overflow-y:auto;display:block;}
   #tblVendedores table,#tblVendaItens table,#tblModelos table{width:100%;}
+  #tblVendedores td.r,#tblModelos td.r{white-space:nowrap;}
+  #tblVendedores,#tblModelos{overflow-x:auto;}
+  .tables-grid>.table-card{min-width:0;}
+  #tblVendedores td:last-child,#tblModelos td:last-child,#tblVendedores td:first-child,#tblModelos td:first-child{white-space:normal;overflow-wrap:anywhere;max-width:170px;line-height:1.35;}
+  #tblVendedores td:first-child,#tblModelos td:first-child{min-width:112px;}
+  #tblVendedores th,#tblModelos th{padding-left:6px;padding-right:6px;}
+  #tblVendedores td,#tblModelos td{padding-left:6px;padding-right:6px;}
   #tblVendedores table thead th,#tblVendaItens table thead th,#tblModelos table thead th{position:sticky;top:0;background:var(--surface);z-index:2;box-shadow:0 1px 0 var(--gray-200);}
   thead th{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gray-500);padding:6px 8px;border-bottom:2px solid var(--gray-200);text-align:left;white-space:nowrap;}
   thead th.r{text-align:right;}
@@ -580,7 +587,7 @@
     </div>
     <div class="header-right">
       <div class="data-state" id="dataState" title="Histórico congelado até agosto/2026. Uploads atualizam apenas setembro/2026 e meses seguintes.">Último mês: <b>set/26</b></div>
-      <div class="last-update" id="lastUpdate" data-saved="2026-10-05T14:07:52.167Z">Última atualização: <span>05 Out 2026 — 11:07</span></div>
+      <div class="last-update" id="lastUpdate" data-saved="2026-10-05T14:13:09.082Z">Última atualização: <span>05 Out 2026 — 11:13</span></div>
       <input type="file" id="fileInput" accept=".xlsx,.xls">
       <button class="btn-upload btn-icon" onclick="document.getElementById('fileInput').click()" title="Atualizar Dados" aria-label="Atualizar Dados" style="">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -645,9 +652,9 @@
     <div class="side-filter" data-tab="quarter">    <div class="filter-bar">
       <div class="filter-bar-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg> Filtros — Resultado Quarter</div>
       <div class="tm-filter-grid">
-        <div class="filter-group"><div class="filter-label">ANO</div><div class="multi-select-container" id="qYear"><div class="multi-select-btn" onclick="toggleDropdown('qYear')" title="2026">Todos</div><div class="multi-dropdown" id="dropdown-qYear"></div></div></div>
-        <div class="filter-group"><div class="filter-label">VENDEDOR</div><div class="multi-select-container" id="qVend"><div class="multi-select-btn" onclick="toggleDropdown('qVend')" title="">Todos</div><div class="multi-dropdown" id="dropdown-qVend"></div></div></div>
-        <div class="filter-group"><div class="filter-label">ITEM</div><div class="multi-select-container" id="qItem"><div class="multi-select-btn" onclick="toggleDropdown('qItem')" title="">Todos</div><div class="multi-dropdown" id="dropdown-qItem"></div></div></div>
+        <div class="filter-group"><div class="filter-label">ANO</div><div class="multi-select-container" id="qYear"><div class="multi-select-btn" onclick="toggleDropdown('qYear')">Todos</div><div class="multi-dropdown" id="dropdown-qYear"></div></div></div>
+        <div class="filter-group"><div class="filter-label">VENDEDOR</div><div class="multi-select-container" id="qVend"><div class="multi-select-btn" onclick="toggleDropdown('qVend')">Todos</div><div class="multi-dropdown" id="dropdown-qVend"></div></div></div>
+        <div class="filter-group"><div class="filter-label">ITEM</div><div class="multi-select-container" id="qItem"><div class="multi-select-btn" onclick="toggleDropdown('qItem')">Todos</div><div class="multi-dropdown" id="dropdown-qItem"></div></div></div>
       </div>
     </div></div>
     <button class="side-clear-btn" onclick="limparFiltrosAtivos()" aria-label="Limpar todos os filtros">
@@ -693,8 +700,8 @@
 
     <!-- TOP ITENS + TOP VENDEDORES -->
     <div class="tables-grid">
-      <div class="table-card"><div class="table-card-title">🏆 TOP ITENS</div><div id="tblModelos" style="max-height: 378px; overflow-y: auto;"></div></div>
-      <div class="table-card"><div class="table-card-title">👤 Maiores Vendedores</div><div id="tblVendedores" style="max-height: 378px; overflow-y: auto;"></div></div>
+      <div class="table-card"><div class="table-card-title">🏆 TOP ITENS</div><div id="tblModelos" style="max-height: 362px; overflow-y: auto;"></div></div>
+      <div class="table-card"><div class="table-card-title">👤 Maiores Vendedores</div><div id="tblVendedores" style="max-height: 362px; overflow-y: auto;"></div></div>
     </div>
 
     <!-- VENDA ITENS (unified growth + gap) -->
@@ -740,19 +747,7 @@
   <!-- TAB: RESULTADO QUARTER -->
   <div id="tab-quarter" class="tab-panel">
     <div class="section-title">Quarter geral · todas as categorias</div>
-    <div class="q-cards" id="qCards"><div class="q-card"><div class="q-card-top"><div class="q-name">Q1 2026</div><div class="q-months">jan–mar</div></div>
-      <div class="q-val">R$ 35.343.668,57</div>
-      <div class="q-qoq">sem quarter anterior</div>
-      <div class="q-sub"><div>Peças<b>103.000</b><small><span class="delta-neu">—</span></small></div><div>Ticket médio<b>R$ 343,14</b><small><span class="delta-neu">—</span></small></div></div>
-    </div><div class="q-card"><div class="q-card-top"><div class="q-name">Q2 2026</div><div class="q-months">abr–jun</div></div>
-      <div class="q-val">R$ 42.707.472,48</div>
-      <div class="q-qoq"><span class="delta-up">+20,8%</span> vs Q1 2026</div>
-      <div class="q-sub"><div>Peças<b>124.335</b><small><span class="delta-up">+20,7%</span></small></div><div>Ticket médio<b>R$ 343,49</b><small><span class="delta-up">+0,1%</span></small></div></div>
-    </div><div class="q-card last"><div class="q-card-top"><div class="q-name">Q3 2026</div><div class="q-months">jul–set</div></div>
-      <div class="q-val">R$ 46.341.118,39</div>
-      <div class="q-qoq"><span class="delta-up">+8,5%</span> vs Q2 2026</div>
-      <div class="q-sub"><div>Peças<b>140.893</b><small><span class="delta-up">+13,3%</span></small></div><div>Ticket médio<b>R$ 328,91</b><small><span class="delta-down">-4,2%</span></small></div></div>
-    </div><div class="q-card empty"><div class="q-card-top"><div class="q-name">Q4 2026</div><div class="q-months">out–dez</div></div><div class="q-val">—</div><div class="q-qoq">Sem dados ainda</div></div></div>
+    <div class="q-cards" id="qCards"></div>
     <div class="chart-card">
       <div class="table-card-title">📊 Vendas por quarter <span style="font-size:10px;font-weight:400;color:var(--gray-400)">% sobre as barras vs quarter anterior</span></div>
       <div class="q-chart-wrap"><canvas id="qTotalChart"></canvas></div>
@@ -760,18 +755,18 @@
     <div class="section-title" style="margin-top:22px">Quarter por categoria</div>
     <div class="table-card">
       <div class="q-table-head">
-        <div class="table-card-title" style="margin:0" id="qCatTitle">Vendas por categoria e quarter</div>
+        <div class="table-card-title" style="margin:0" id="qCatTitle">Categorias por quarter</div>
         <div class="q-seg" id="qMetricSeg">
           <button class="active" data-m="vendas" onclick="setQuarterMetric('vendas')">Vendas</button>
           <button data-m="qty" onclick="setQuarterMetric('qty')">Peças</button>
           <button data-m="tm" onclick="setQuarterMetric('tm')">Ticket médio</button>
         </div>
       </div>
-      <div class="q-table-wrap" id="qCatTable"><table class="q-table"><thead><tr><th>Categoria</th><th class="r">Q1 2026</th><th class="r">Q2 2026</th><th class="r">Q3 2026</th><th class="r">Part. Q3 2026</th></tr></thead><tbody><tr><td class="cat">Mobilidade</td><td class="r">R$ 28.350.264<small>&nbsp;</small></td><td class="r">R$ 34.319.808<small><span class="delta-up">+21,1%</span></small></td><td class="r">R$ 36.704.983<small><span class="delta-up">+6,9%</span></small></td><td class="r">79,2%</td></tr><tr><td class="cat">Equipamento Médico</td><td class="r">R$ 4.858.737<small>&nbsp;</small></td><td class="r">R$ 6.058.589<small><span class="delta-up">+24,7%</span></small></td><td class="r">R$ 6.424.032<small><span class="delta-up">+6,0%</span></small></td><td class="r">13,9%</td></tr><tr><td class="cat">Cuidado da Saúde</td><td class="r">R$ 1.372.841<small>&nbsp;</small></td><td class="r">R$ 1.120.196<small><span class="delta-down">-18,4%</span></small></td><td class="r">R$ 1.850.938<small><span class="delta-up">+65,2%</span></small></td><td class="r">4%</td></tr><tr><td class="cat">Ortopedia</td><td class="r">R$ 224.923<small>&nbsp;</small></td><td class="r">R$ 388.654<small><span class="delta-up">+72,8%</span></small></td><td class="r">R$ 726.804<small><span class="delta-up">+87,0%</span></small></td><td class="r">1,6%</td></tr><tr><td class="cat">Massagem</td><td class="r">R$ 476.856<small>&nbsp;</small></td><td class="r">R$ 743.248<small><span class="delta-up">+55,9%</span></small></td><td class="r">R$ 556.427<small><span class="delta-down">-25,1%</span></small></td><td class="r">1,2%</td></tr><tr><td class="cat">Fitness e Musculação</td><td class="r">R$ 37.112<small>&nbsp;</small></td><td class="r">R$ 42.471<small><span class="delta-up">+14,4%</span></small></td><td class="r">R$ 56.583<small><span class="delta-up">+33,2%</span></small></td><td class="r">0,1%</td></tr><tr><td class="cat">Alimentação e Amamentação</td><td class="r">R$ 22.934<small>&nbsp;</small></td><td class="r">R$ 34.507<small><span class="delta-up">+50,5%</span></small></td><td class="r">R$ 21.351<small><span class="delta-down">-38,1%</span></small></td><td class="r">&lt;0,1%</td></tr><tr class="q-total"><td>Total geral</td><td class="r">R$ 35.343.669<small>&nbsp;</small></td><td class="r">R$ 42.707.472<small><span class="delta-up">+20,8%</span></small></td><td class="r">R$ 46.341.118<small><span class="delta-up">+8,5%</span></small></td><td class="r">100%</td></tr></tbody></table></div>
-      <div class="q-note" id="qNote">% abaixo de cada valor: variação contra o quarter anterior. Participação calculada sobre as vendas (R$).</div>
+      <div class="q-table-wrap" id="qCatTable"></div>
+      <div class="q-note" id="qNote"></div>
     </div>
     <div class="chart-card" style="margin-top:20px">
-      <div class="table-card-title" id="qCatChartTitle">📊 Variação de vendas · Q3 2026 vs Q2 2026 por categoria</div>
+      <div class="table-card-title" id="qCatChartTitle">📊 Categorias por quarter</div>
       <div class="q-chart-wrap tall"><canvas id="qCatChart"></canvas></div>
     </div>
   </div><!-- /tab-quarter -->
@@ -2909,7 +2904,7 @@ function renderTopItens(dataA,dataB,momData,wowData,hasWeek){
   const top=Object.entries(mapA).sort((a,b)=>b[1].vendas-a[1].vendas);
   const deltaLbl=hasWeek?'WoW':'MoM';
   document.getElementById('tblModelos').innerHTML=top.length===0?'<div class="empty-state">Sem dados</div>':`
-    <table><thead><tr><th>Item</th><th>Top Vendedor</th><th class="r">Vendas</th><th class="r">Pçs</th><th class="r">TM</th><th class="r">${deltaLbl}</th></tr></thead>
+    <table><thead><tr><th>Item</th><th class="r">Vendas</th><th class="r">Pçs</th><th class="r">TM</th><th class="r">${deltaLbl}</th><th>Top Vendedor</th></tr></thead>
     <tbody>${top.map(([k,v],i)=>{
       const mom=mapMoM[k]?delta(v.vendas,mapMoM[k].vendas):null;
       const wow=hasWeek&&mapWoW[k]?delta(v.vendas,mapWoW[k].vendas):null;
@@ -2917,7 +2912,7 @@ function renderTopItens(dataA,dataB,momData,wowData,hasWeek){
       const tv=Object.entries(v.vendedores).sort((a,b)=>b[1]-a[1])[0];
       const tvLbl=tv?tv[0]:'';
       const rankEl=(i+1)<=10?`<span class="rank-num">${i+1}</span>`:`<span style="display:inline-block;min-width:22px;color:var(--gray-400);font-size:11px;margin-right:4px">${i+1}</span>`;
-      return `<tr><td>${rankEl}${k}</td><td style="font-size:11px;color:var(--gray-500)">${tvLbl}</td><td class="r">${fmtR(v.vendas)}</td><td class="r">${fmtN(v.qty)}</td><td class="r">${fmtR(tm(v.vendas,v.qty))}</td><td class="r">${deltaHtml(dVal)}</td></tr>`;
+      return `<tr><td>${rankEl}${k}</td><td class="r">${fmtR(v.vendas)}</td><td class="r">${fmtN(v.qty)}</td><td class="r">${fmtR(tm(v.vendas,v.qty))}</td><td class="r">${deltaHtml(dVal)}</td><td style="font-size:11px;color:var(--gray-500)">${tvLbl}</td></tr>`;
     }).join('')}</tbody></table>`;
   makeSortable('tblModelos');
   fitRows('tblModelos',10);
@@ -2942,7 +2937,7 @@ function renderTopVendedores(dataA,momData,wowData,hasWeek){
     const wow=hasWeek&&mapWoW[v]?delta(d.vendas,mapWoW[v].vendas):null;
     const deltaVal = hasWeek ? wow : mom;
     const rankEl=rank<=10?`<span class="rank-num">${rank}</span>`:`<span style="display:inline-block;min-width:22px;color:var(--gray-400);font-size:11px;margin-right:4px">${rank}</span>`;
-    return `<tr><td>${rankEl}${v}</td><td style="font-size:11px;color:var(--gray-500)" title="${ti?insEsc(ti[0])+' — '+fmtR(ti[1].v)+' ('+tiShare.toLocaleString('pt-BR',{maximumFractionDigits:1})+'% das vendas) · '+fmtN(ti[1].q)+' pçs':''}">${ti?ti[0]:''}</td><td class="r">${fmtR(d.vendas)}</td><td class="r">${fmtN(d.qty)}</td><td class="r">${fmtR(tm(d.vendas,d.qty))}</td><td class="r">${deltaHtml(deltaVal)}</td></tr>`;
+    return `<tr><td>${rankEl}${v}</td><td class="r">${fmtR(d.vendas)}</td><td class="r">${fmtN(d.qty)}</td><td class="r">${fmtR(tm(d.vendas,d.qty))}</td><td class="r">${deltaHtml(deltaVal)}</td><td style="font-size:11px;color:var(--gray-500)" title="${ti?insEsc(ti[0])+' — '+fmtR(ti[1].v)+' ('+tiShare.toLocaleString('pt-BR',{maximumFractionDigits:1})+'% das vendas) · '+fmtN(ti[1].q)+' pçs':''}">${ti?ti[0]:''}</td></tr>`;
   };
 
   const el=document.getElementById('tblVendedores');
@@ -2950,7 +2945,7 @@ function renderTopVendedores(dataA,momData,wowData,hasWeek){
   if(!allVend.length){ el.innerHTML='<div class="empty-state">Sem dados</div>'; return; }
 
   // Single table, all vendors, scroll container wraps everything
-  const thead=`<thead><tr><th>Vendedor</th><th>Top Item</th><th class="r">Vendas</th><th class="r">Pçs</th><th class="r">TM</th><th class="r">${deltaThLabelV}</th></tr></thead>`;
+  const thead=`<thead><tr><th>Vendedor</th><th class="r">Vendas</th><th class="r">Pçs</th><th class="r">TM</th><th class="r">${deltaThLabelV}</th><th>Top Item</th></tr></thead>`;
   const tbody=allVend.map(([v,d],i)=>mkRow(v,d,i+1)).join('');
   el.innerHTML=`<table>${thead}<tbody>${tbody}</tbody></table>`;
   makeSortable('tblVendedores');
