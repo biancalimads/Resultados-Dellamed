@@ -264,6 +264,35 @@
   .pin-loading-txt{font-size:11px;color:var(--blue-300);margin-top:10px;font-family:'DM Mono',monospace;display:none;}
   .pin-loading-txt.show{display:block;}
   .data-state:empty{display:none;}
+  .q-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-bottom:20px;}
+  .q-card{background:var(--surface);border:1px solid var(--gray-200);border-top:3px solid var(--blue-500);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .q-card.empty{opacity:.5;border-top-color:var(--gray-300);}
+  .q-card.last{border-top-color:var(--blue-300);box-shadow:0 0 0 1px rgba(139,184,232,.25),var(--shadow-sm);}
+  .q-card-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px;}
+  .q-name{font-size:15px;font-weight:700;color:var(--gray-900);}
+  .q-months{font-size:11px;color:var(--gray-400);}
+  .q-badge{font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:rgba(251,191,36,.15);color:#fbbf24;margin-left:6px;}
+  .q-val{font-size:22px;font-weight:700;color:var(--gray-900);font-family:'DM Mono',monospace;line-height:1.2;}
+  .q-qoq{font-size:11px;color:var(--gray-400);margin-top:3px;min-height:15px;}
+  .q-sub{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid var(--gray-100);}
+  .q-sub div{font-size:10px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:.04em;}
+  .q-sub b{display:block;font-size:13px;color:var(--gray-800);font-family:'DM Mono',monospace;text-transform:none;letter-spacing:0;margin-top:2px;}
+  .q-sub small{font-size:10px;text-transform:none;letter-spacing:0;}
+  .q-chart-wrap{position:relative;height:300px;}
+  .q-chart-wrap.tall{height:290px;}
+  .q-table-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+  .q-seg{display:inline-flex;border:1px solid var(--gray-200);border-radius:8px;overflow:hidden;}
+  .q-seg button{font:inherit;font-size:11.5px;font-weight:600;padding:6px 12px;background:transparent;border:none;color:var(--gray-500);cursor:pointer;}
+  .q-seg button+button{border-left:1px solid var(--gray-200);}
+  .q-seg button.active{background:var(--blue-600);color:#fff;}
+  .q-table-wrap{overflow-x:auto;}
+  .q-table td{padding:9px 8px;font-size:12px;vertical-align:top;}
+  .q-table td.r{text-align:right;font-family:'DM Mono',monospace;white-space:nowrap;}
+  .q-table td small{display:block;font-size:10px;margin-top:2px;}
+  .q-table tr.q-total td{font-weight:700;border-top:2px solid var(--gray-200);background:var(--surface-2);}
+  .q-table td.cat{font-weight:600;color:var(--gray-800);}
+  .q-note{font-size:11px;color:var(--gray-400);margin-top:10px;line-height:1.5;}
+  .q-note:empty{display:none;}
   .vend-summary{background:var(--surface);border:1px solid var(--gray-200);border-left:3px solid var(--blue-400);border-radius:12px;padding:18px 22px;margin:-6px 0 22px;}
   .vend-summary:empty{display:none;}
   .vs-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px;margin-bottom:14px;cursor:pointer;user-select:none;}
@@ -551,7 +580,7 @@
     </div>
     <div class="header-right">
       <div class="data-state" id="dataState" title="Histórico congelado até agosto/2026. Uploads atualizam apenas setembro/2026 e meses seguintes.">Último mês: <b>set/26</b></div>
-      <div class="last-update" id="lastUpdate" data-saved="2026-10-05T00:29:54.623Z">Última atualização: <span>04 Out 2026 — 21:29</span></div>
+      <div class="last-update" id="lastUpdate" data-saved="2026-10-05T14:07:52.167Z">Última atualização: <span>05 Out 2026 — 11:07</span></div>
       <input type="file" id="fileInput" accept=".xlsx,.xls">
       <button class="btn-upload btn-icon" onclick="document.getElementById('fileInput').click()" title="Atualizar Dados" aria-label="Atualizar Dados" style="">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -570,6 +599,7 @@
     <button class="tab-btn active" onclick="switchTab('resultados')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Resultados Dellamed</button>
     <button class="tab-btn" onclick="switchTab('performancemensal')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Performance Mensal</button>
     <button class="tab-btn" onclick="switchTab('ticketmedio')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 01-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path><path d="M18 12a2 2 0 000 4h4v-4z"></path></svg> Ticket Médio Mensal</button>
+    <button class="tab-btn" onclick="switchTab('quarter')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"></rect><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"></rect><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"></rect><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"></rect></svg> Resultado Quarter</button>
   </nav>
   <div class="side-filters">
     <div class="side-filters-label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg> Filtros</div>
@@ -610,6 +640,14 @@
         <div class="filter-group"><div class="filter-label">Categoria</div><div class="multi-select-container" id="tmCat"><div class="multi-select-btn" onclick="toggleDropdown('tmCat')" title="">Todos</div><div class="multi-dropdown" id="dropdown-tmCat"></div></div></div>
         <div class="filter-group"><div class="filter-label">Vendedor</div><div class="multi-select-container" id="tmVend"><div class="multi-select-btn" onclick="toggleDropdown('tmVend')" title="">Todos</div><div class="multi-dropdown" id="dropdown-tmVend"></div></div></div>
         <div class="filter-group"><div class="filter-label">Item</div><div class="multi-select-container" id="tmItem"><div class="multi-select-btn" onclick="toggleDropdown('tmItem')" title="">Todos</div><div class="multi-dropdown" id="dropdown-tmItem"></div></div></div>
+      </div>
+    </div></div>
+    <div class="side-filter" data-tab="quarter">    <div class="filter-bar">
+      <div class="filter-bar-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg> Filtros — Resultado Quarter</div>
+      <div class="tm-filter-grid">
+        <div class="filter-group"><div class="filter-label">ANO</div><div class="multi-select-container" id="qYear"><div class="multi-select-btn" onclick="toggleDropdown('qYear')" title="2026">Todos</div><div class="multi-dropdown" id="dropdown-qYear"></div></div></div>
+        <div class="filter-group"><div class="filter-label">VENDEDOR</div><div class="multi-select-container" id="qVend"><div class="multi-select-btn" onclick="toggleDropdown('qVend')" title="">Todos</div><div class="multi-dropdown" id="dropdown-qVend"></div></div></div>
+        <div class="filter-group"><div class="filter-label">ITEM</div><div class="multi-select-container" id="qItem"><div class="multi-select-btn" onclick="toggleDropdown('qItem')" title="">Todos</div><div class="multi-dropdown" id="dropdown-qItem"></div></div></div>
       </div>
     </div></div>
     <button class="side-clear-btn" onclick="limparFiltrosAtivos()" aria-label="Limpar todos os filtros">
@@ -655,8 +693,8 @@
 
     <!-- TOP ITENS + TOP VENDEDORES -->
     <div class="tables-grid">
-      <div class="table-card"><div class="table-card-title">🏆 TOP ITENS</div><div id="tblModelos" style="max-height: 518px; overflow-y: auto;"></div></div>
-      <div class="table-card"><div class="table-card-title">👤 Maiores Vendedores</div><div id="tblVendedores" style="max-height: 466px; overflow-y: auto;"></div></div>
+      <div class="table-card"><div class="table-card-title">🏆 TOP ITENS</div><div id="tblModelos" style="max-height: 378px; overflow-y: auto;"></div></div>
+      <div class="table-card"><div class="table-card-title">👤 Maiores Vendedores</div><div id="tblVendedores" style="max-height: 378px; overflow-y: auto;"></div></div>
     </div>
 
     <!-- VENDA ITENS (unified growth + gap) -->
@@ -698,6 +736,45 @@
       </div>
     </div>
   </div><!-- /tab-performancemensal -->
+
+  <!-- TAB: RESULTADO QUARTER -->
+  <div id="tab-quarter" class="tab-panel">
+    <div class="section-title">Quarter geral · todas as categorias</div>
+    <div class="q-cards" id="qCards"><div class="q-card"><div class="q-card-top"><div class="q-name">Q1 2026</div><div class="q-months">jan–mar</div></div>
+      <div class="q-val">R$ 35.343.668,57</div>
+      <div class="q-qoq">sem quarter anterior</div>
+      <div class="q-sub"><div>Peças<b>103.000</b><small><span class="delta-neu">—</span></small></div><div>Ticket médio<b>R$ 343,14</b><small><span class="delta-neu">—</span></small></div></div>
+    </div><div class="q-card"><div class="q-card-top"><div class="q-name">Q2 2026</div><div class="q-months">abr–jun</div></div>
+      <div class="q-val">R$ 42.707.472,48</div>
+      <div class="q-qoq"><span class="delta-up">+20,8%</span> vs Q1 2026</div>
+      <div class="q-sub"><div>Peças<b>124.335</b><small><span class="delta-up">+20,7%</span></small></div><div>Ticket médio<b>R$ 343,49</b><small><span class="delta-up">+0,1%</span></small></div></div>
+    </div><div class="q-card last"><div class="q-card-top"><div class="q-name">Q3 2026</div><div class="q-months">jul–set</div></div>
+      <div class="q-val">R$ 46.341.118,39</div>
+      <div class="q-qoq"><span class="delta-up">+8,5%</span> vs Q2 2026</div>
+      <div class="q-sub"><div>Peças<b>140.893</b><small><span class="delta-up">+13,3%</span></small></div><div>Ticket médio<b>R$ 328,91</b><small><span class="delta-down">-4,2%</span></small></div></div>
+    </div><div class="q-card empty"><div class="q-card-top"><div class="q-name">Q4 2026</div><div class="q-months">out–dez</div></div><div class="q-val">—</div><div class="q-qoq">Sem dados ainda</div></div></div>
+    <div class="chart-card">
+      <div class="table-card-title">📊 Vendas por quarter <span style="font-size:10px;font-weight:400;color:var(--gray-400)">% sobre as barras vs quarter anterior</span></div>
+      <div class="q-chart-wrap"><canvas id="qTotalChart"></canvas></div>
+    </div>
+    <div class="section-title" style="margin-top:22px">Quarter por categoria</div>
+    <div class="table-card">
+      <div class="q-table-head">
+        <div class="table-card-title" style="margin:0" id="qCatTitle">Vendas por categoria e quarter</div>
+        <div class="q-seg" id="qMetricSeg">
+          <button class="active" data-m="vendas" onclick="setQuarterMetric('vendas')">Vendas</button>
+          <button data-m="qty" onclick="setQuarterMetric('qty')">Peças</button>
+          <button data-m="tm" onclick="setQuarterMetric('tm')">Ticket médio</button>
+        </div>
+      </div>
+      <div class="q-table-wrap" id="qCatTable"><table class="q-table"><thead><tr><th>Categoria</th><th class="r">Q1 2026</th><th class="r">Q2 2026</th><th class="r">Q3 2026</th><th class="r">Part. Q3 2026</th></tr></thead><tbody><tr><td class="cat">Mobilidade</td><td class="r">R$ 28.350.264<small>&nbsp;</small></td><td class="r">R$ 34.319.808<small><span class="delta-up">+21,1%</span></small></td><td class="r">R$ 36.704.983<small><span class="delta-up">+6,9%</span></small></td><td class="r">79,2%</td></tr><tr><td class="cat">Equipamento Médico</td><td class="r">R$ 4.858.737<small>&nbsp;</small></td><td class="r">R$ 6.058.589<small><span class="delta-up">+24,7%</span></small></td><td class="r">R$ 6.424.032<small><span class="delta-up">+6,0%</span></small></td><td class="r">13,9%</td></tr><tr><td class="cat">Cuidado da Saúde</td><td class="r">R$ 1.372.841<small>&nbsp;</small></td><td class="r">R$ 1.120.196<small><span class="delta-down">-18,4%</span></small></td><td class="r">R$ 1.850.938<small><span class="delta-up">+65,2%</span></small></td><td class="r">4%</td></tr><tr><td class="cat">Ortopedia</td><td class="r">R$ 224.923<small>&nbsp;</small></td><td class="r">R$ 388.654<small><span class="delta-up">+72,8%</span></small></td><td class="r">R$ 726.804<small><span class="delta-up">+87,0%</span></small></td><td class="r">1,6%</td></tr><tr><td class="cat">Massagem</td><td class="r">R$ 476.856<small>&nbsp;</small></td><td class="r">R$ 743.248<small><span class="delta-up">+55,9%</span></small></td><td class="r">R$ 556.427<small><span class="delta-down">-25,1%</span></small></td><td class="r">1,2%</td></tr><tr><td class="cat">Fitness e Musculação</td><td class="r">R$ 37.112<small>&nbsp;</small></td><td class="r">R$ 42.471<small><span class="delta-up">+14,4%</span></small></td><td class="r">R$ 56.583<small><span class="delta-up">+33,2%</span></small></td><td class="r">0,1%</td></tr><tr><td class="cat">Alimentação e Amamentação</td><td class="r">R$ 22.934<small>&nbsp;</small></td><td class="r">R$ 34.507<small><span class="delta-up">+50,5%</span></small></td><td class="r">R$ 21.351<small><span class="delta-down">-38,1%</span></small></td><td class="r">&lt;0,1%</td></tr><tr class="q-total"><td>Total geral</td><td class="r">R$ 35.343.669<small>&nbsp;</small></td><td class="r">R$ 42.707.472<small><span class="delta-up">+20,8%</span></small></td><td class="r">R$ 46.341.118<small><span class="delta-up">+8,5%</span></small></td><td class="r">100%</td></tr></tbody></table></div>
+      <div class="q-note" id="qNote">% abaixo de cada valor: variação contra o quarter anterior. Participação calculada sobre as vendas (R$).</div>
+    </div>
+    <div class="chart-card" style="margin-top:20px">
+      <div class="table-card-title" id="qCatChartTitle">📊 Variação de vendas · Q3 2026 vs Q2 2026 por categoria</div>
+      <div class="q-chart-wrap tall"><canvas id="qCatChart"></canvas></div>
+    </div>
+  </div><!-- /tab-quarter -->
 
   <!-- TAB: TICKET MÉDIO -->
   <div id="tab-ticketmedio" class="tab-panel">
@@ -894,13 +971,14 @@ async function compressToBase64(text){
   return bytesToBase64(new Uint8Array(buffer));
 }
 
+const _cleanName=v=>{ if(v==null) return v; const t=String(v).replace(/\s+/g,' ').trim(); return t||null; };
 function expandCompactRows(rows){
   return rows.map(r=>({
-    'Vendedor':r[0] ?? 'Não informado',
+    'Vendedor':_cleanName(r[0]) ?? 'Não informado',
     'Mês ano':r[1] ?? '',
-    'Categoria nível 02':r[2] ?? 'Não informado',
-    'Modelo':r[3] ?? 'Não informado',
-    'Item':r[4] ?? 'Não informado',
+    'Categoria nível 02':_cleanName(r[2]) ?? 'Não informado',
+    'Modelo':_cleanName(r[3]) ?? 'Não informado',
+    'Item':_cleanName(r[4]) ?? 'Não informado',
     'Total de Vendas':Number(r[5]) || 0,
     'Quantidade vendida':Number(r[6]) || 0,
     'Preço médio':Number(r[7]) || 0,
@@ -1322,11 +1400,11 @@ async function hydrateWorkerRows(compactRows){
     for(let i=start;i<end;i++){
       const r=compactRows[i];
       data[i]={
-        'Vendedor':r[0]??'Não informado',
+        'Vendedor':_cleanName(r[0])??'Não informado',
         'Mês ano':r[1]??'',
-        'Categoria nível 02':r[2]??'Não informado',
-        'Modelo':r[3]??'Não informado',
-        'Item':r[4]??'Não informado',
+        'Categoria nível 02':_cleanName(r[2])??'Não informado',
+        'Modelo':_cleanName(r[3])??'Não informado',
+        'Item':_cleanName(r[4])??'Não informado',
         'Total de Vendas':Number(r[5])||0,
         'Quantidade vendida':Number(r[6])||0,
         'Preço médio':Number(r[7])||0,
@@ -1531,6 +1609,7 @@ async function saveDashboard() {
     root.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
     root.querySelector('#tab-resultados')?.classList.add('active');
     root.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+    root.querySelectorAll('.side-filter').forEach(f=>f.classList.toggle('active',f.dataset.tab==='resultados'));
 
     const overlay=root.querySelector('#loadOverlay');
     overlay?.classList.remove('show');
@@ -1775,6 +1854,9 @@ function limparFiltrosAtivos(){
   if(tab==='performancemensal'){
     groups=[['pmYear',monthlyFilterState.year],['pmMonth',monthlyFilterState.month],['pmVend',monthlyFilterState.vend],['pmItem',monthlyFilterState.item]];
     render=()=>renderMonthlyPerformance();
+  } else if(tab==='quarter'){
+    groups=[['qYear',qFilterState.year],['qVend',qFilterState.vend],['qItem',qFilterState.item]];
+    render=()=>renderQuarterTab();
   } else if(tab==='ticketmedio'){
     groups=[['tmMonth',tmFilterState.month],['tmCat',tmFilterState.cat],['tmVend',tmFilterState.vend],['tmItem',tmFilterState.item]];
     render=()=>renderTMTab();
@@ -2847,19 +2929,20 @@ function renderTopItens(dataA,dataB,momData,wowData,hasWeek){
 function renderTopVendedores(dataA,momData,wowData,hasWeek){
   const byKey=data=>{const m={};(data||[]).forEach(r=>{const v=r['Vendedor'];if(!m[v])m[v]={vendas:0,qty:0};m[v].vendas+=r['Total de Vendas'];m[v].qty+=r['Quantidade vendida'];});return m;};
   const byVend={};
-  dataA.forEach(r=>{const v=r['Vendedor'];if(!byVend[v])byVend[v]={vendas:0,qty:0,items:{}};byVend[v].vendas+=r['Total de Vendas'];byVend[v].qty+=r['Quantidade vendida'];const itm=r['Item'];byVend[v].items[itm]=(byVend[v].items[itm]||0)+r['Quantidade vendida'];});
+  dataA.forEach(r=>{const v=r['Vendedor'];if(!byVend[v])byVend[v]={vendas:0,qty:0,items:{}};byVend[v].vendas+=r['Total de Vendas'];byVend[v].qty+=r['Quantidade vendida'];const itm=r['Item'];const it=byVend[v].items[itm]||(byVend[v].items[itm]={v:0,q:0});it.v+=r['Total de Vendas'];it.q+=r['Quantidade vendida'];});
   const mapMoM=byKey(momData),mapWoW=byKey(wowData);
   const allVend=Object.entries(byVend).sort((a,b)=>b[1].vendas-a[1].vendas);
   // When week filter active: show WoW only. When no week: show MoM only.
   const deltaThLabelV = hasWeek ? 'WoW' : 'MoM';
 
   const mkRow=(v,d,rank)=>{
-    const ti=Object.entries(d.items).sort((a,b)=>b[1]-a[1])[0];
+    const ti=Object.entries(d.items).sort((a,b)=>b[1].v-a[1].v||b[1].q-a[1].q)[0];
+    const tiShare=ti&&d.vendas?ti[1].v/d.vendas*100:0;
     const mom=mapMoM[v]?delta(d.vendas,mapMoM[v].vendas):null;
     const wow=hasWeek&&mapWoW[v]?delta(d.vendas,mapWoW[v].vendas):null;
     const deltaVal = hasWeek ? wow : mom;
     const rankEl=rank<=10?`<span class="rank-num">${rank}</span>`:`<span style="display:inline-block;min-width:22px;color:var(--gray-400);font-size:11px;margin-right:4px">${rank}</span>`;
-    return `<tr><td>${rankEl}${v}</td><td style="font-size:11px;color:var(--gray-500)">${ti?ti[0]:''}</td><td class="r">${fmtR(d.vendas)}</td><td class="r">${fmtN(d.qty)}</td><td class="r">${fmtR(tm(d.vendas,d.qty))}</td><td class="r">${deltaHtml(deltaVal)}</td></tr>`;
+    return `<tr><td>${rankEl}${v}</td><td style="font-size:11px;color:var(--gray-500)" title="${ti?insEsc(ti[0])+' — '+fmtR(ti[1].v)+' ('+tiShare.toLocaleString('pt-BR',{maximumFractionDigits:1})+'% das vendas) · '+fmtN(ti[1].q)+' pçs':''}">${ti?ti[0]:''}</td><td class="r">${fmtR(d.vendas)}</td><td class="r">${fmtN(d.qty)}</td><td class="r">${fmtR(tm(d.vendas,d.qty))}</td><td class="r">${deltaHtml(deltaVal)}</td></tr>`;
   };
 
   const el=document.getElementById('tblVendedores');
@@ -2941,6 +3024,158 @@ function switchTab(tab) {
   if (tab === 'ticketmedio') {
     requestAnimationFrame(() => renderTMTab());
   }
+  if (tab === 'quarter') {
+    requestAnimationFrame(() => renderQuarterTab());
+  }
+}
+
+// ============================================================
+// RESULTADO QUARTER
+// ============================================================
+const qFilterState = {year:[], vend:[], item:[]};
+let qFiltersBuilt = false, qMetric = 'vendas', qTotalChart = null, qCatChart = null;
+const Q_MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+const Q_COLORS = ['#1f66b3','#3b82f6','#8bb8e8','#22d3ee','#6366f1','#a78bfa','#f472b6','#fbbf24'];
+function quarterOf(month){ const y=month.slice(0,4), m=+month.slice(5,7); return y+'-Q'+(Math.floor((m-1)/3)+1); }
+function quarterLabel(qk, withYear){ const [y,q]=qk.split('-'); return withYear?q+' '+y:q; }
+function quarterMonths(qk){ const [y,q]=qk.split('-Q'); const s=(+q-1)*3; return [0,1,2].map(i=>y+'-'+String(s+i+1).padStart(2,'0')+'-01'); }
+function prevQuarter(qk){ let [y,q]=qk.split('-Q').map(Number); q--; if(q<1){q=4;y--;} return y+'-Q'+q; }
+
+function buildQuarterFilters(){
+  if (qFiltersBuilt) return;
+  const years=[...new Set(ALL_DATA.map(r=>String(r['Mês ano']).slice(0,4)))].sort();
+  if (!qFilterState.year.length && years.length) qFilterState.year.push(years[years.length-1]);
+  const vends=[...new Set(ALL_DATA.map(r=>r['Vendedor']))].sort();
+  const items=[...new Set(ALL_DATA.map(r=>r['Item']))].sort();
+  buildMultiSelect('qYear', years.map(y=>({value:y,label:y})), qFilterState.year, renderQuarterTab);
+  buildMultiSelect('qVend', vends.map(v=>({value:v,label:v})), qFilterState.vend, renderQuarterTab);
+  buildMultiSelect('qItem', items.map(v=>({value:v,label:v})), qFilterState.item, renderQuarterTab);
+  qFiltersBuilt = true;
+}
+function setQuarterMetric(m){
+  qMetric=m;
+  document.querySelectorAll('#qMetricSeg button').forEach(b=>b.classList.toggle('active',b.dataset.m===m));
+  renderQuarterTab();
+}
+
+function renderQuarterTab(){
+  if (!document.getElementById('qCards')) return;
+  buildQuarterFilters();
+  const esc=insEsc;
+  const pctTxt=v=>(v>0?'+':'')+v.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
+  const pctHtml=v=>v===null||!isFinite(v)?'<span class="delta-neu">—</span>':`<span class="${v>=0?'delta-up':'delta-down'}">${pctTxt(v)}</span>`;
+  const R0=v=>'R$ '+Math.round(v).toLocaleString('pt-BR');
+
+  // Base filtrada (vendedor/item), todos os anos — QoQ do Q1 usa o Q4 do ano anterior
+  const base=ALL_DATA.filter(r=>(!qFilterState.vend.length||qFilterState.vend.includes(r['Vendedor']))&&(!qFilterState.item.length||qFilterState.item.includes(r['Item'])));
+  const Q={}, QC={}, cats=new Set();
+  base.forEach(r=>{
+    const qk=quarterOf(r['Mês ano']), c=r['Categoria nível 02']||'(sem categoria)'; cats.add(c);
+    (Q[qk]||(Q[qk]={vendas:0,qty:0}));
+    Q[qk].vendas+=r['Total de Vendas']; Q[qk].qty+=r['Quantidade vendida'];
+    const k=qk+'|'+c; (QC[k]||(QC[k]={vendas:0,qty:0}));
+    QC[k].vendas+=r['Total de Vendas']; QC[k].qty+=r['Quantidade vendida'];
+  });
+
+  // Cobertura de dados (independe de filtros): meses presentes e último dia do último mês
+  const monthsAll=[...new Set(ALL_DATA.map(r=>r['Mês ano']))].sort();
+  const lastMonth=monthsAll[monthsAll.length-1]||'';
+  let lastDay=0; ALL_DATA.forEach(r=>{ if(r['Mês ano']===lastMonth){ const d=+String(r['Data']).slice(8,10); if(d>lastDay) lastDay=d; } });
+  const daysInLast=lastMonth?new Date(+lastMonth.slice(0,4),+lastMonth.slice(5,7),0).getDate():0;
+  const coverage=qk=>{
+    const ms=quarterMonths(qk), have=ms.filter(m=>monthsAll.includes(m));
+    if(!have.length) return {state:'empty',txt:'sem dados'};
+    const lastInc = have.includes(lastMonth) && (daysInLast-lastDay)>=3;
+    if(have.length<3||lastInc){
+      const n=have.length; const extra=lastInc?` · ${Q_MESES[+lastMonth.slice(5,7)-1]} até dia ${lastDay}`:'';
+      return {state:'partial',txt:`${n} de 3 meses${extra}`};
+    }
+    return {state:'full',txt:''};
+  };
+
+  const years=(qFilterState.year.length?qFilterState.year:[...new Set(monthsAll.map(m=>m.slice(0,4)))]).slice().sort();
+  const quarters=[]; years.forEach(y=>[1,2,3,4].forEach(q=>quarters.push(y+'-Q'+q)));
+  const multiYear=years.length>1;
+  const withData=quarters.filter(qk=>coverage(qk).state!=='empty');
+  const lastQ=withData[withData.length-1];
+  const val=(o,m)=>!o?0:(m==='tm'?(o.qty?o.vendas/o.qty:0):o[m]);
+  const qoq=(qk,m,get)=>{ const a=get(qk), b=get(prevQuarter(qk)); const va=val(a,m), vb=val(b,m); return (a&&b&&vb&&va)?delta(va,vb):null; };
+
+  // 1) Cards por quarter
+  document.getElementById('qCards').innerHTML=quarters.map(qk=>{
+    const cv=coverage(qk), o=Q[qk];
+    const ms=quarterMonths(qk).map(m=>Q_MESES[+m.slice(5,7)-1]);
+    const head=`<div class="q-card-top"><div class="q-name">${quarterLabel(qk,multiYear||true)}${cv.state==='partial'?'<span class="q-badge">parcial</span>':''}</div><div class="q-months">${ms[0]}–${ms[2]}</div></div>`;
+    if(cv.state==='empty'||!o) return `<div class="q-card empty">${head}<div class="q-val">—</div><div class="q-qoq">${cv.state==='empty'?'Sem dados ainda':'Sem vendas com os filtros'}</div></div>`;
+    const g=k=>Q[k];
+    const dV=qoq(qk,'vendas',g), dQ=qoq(qk,'qty',g), dT=qoq(qk,'tm',g);
+    return `<div class="q-card${qk===lastQ?' last':''}">${head}
+      <div class="q-val">${fmtR(o.vendas)}</div>
+      <div class="q-qoq">${dV===null?'sem quarter anterior':pctHtml(dV)+' vs '+quarterLabel(prevQuarter(qk),true)}${cv.txt?' · '+cv.txt:''}</div>
+      <div class="q-sub"><div>Peças<b>${fmtN(o.qty)}</b><small>${pctHtml(dQ)}</small></div><div>Ticket médio<b>${fmtR(val(o,'tm'))}</b><small>${pctHtml(dT)}</small></div></div>
+    </div>`;
+  }).join('');
+
+  // 2) Gráfico total por quarter com QoQ
+  const chartQs=withData;
+  const totVals=chartQs.map(qk=>Q[qk]?Q[qk].vendas:0);
+  const totPct=chartQs.map(qk=>qoq(qk,'vendas',k=>Q[k]));
+  const pillPlugin=(getPct)=>({id:'qPills',afterDatasetsDraw(chart){
+    const {ctx,chartArea}=chart; const fam=(Chart.defaults.font&&Chart.defaults.font.family)||'sans-serif';
+    ctx.save(); ctx.textAlign='center'; ctx.textBaseline='bottom';
+    chart.data.datasets.forEach((ds,di)=>{ const meta=chart.getDatasetMeta(di); if(meta.hidden) return;
+      meta.data.forEach((el,i)=>{ const p=getPct(di,i); if(p===null||p===undefined||!isFinite(p)) return;
+        const t=pctTxt(p); ctx.font='700 10.5px '+fam; const w=ctx.measureText(t).width+10, h=16, y=Math.max(chartArea.top+h,el.y-4);
+        ctx.fillStyle='rgba(8,24,52,.88)'; ctx.beginPath(); ctx.roundRect?ctx.roundRect(el.x-w/2,y-h,w,h,5):ctx.rect(el.x-w/2,y-h,w,h); ctx.fill();
+        ctx.fillStyle=p>=0?'#22e07a':'#f87171'; ctx.fillText(t,el.x,y-3); });
+    }); ctx.restore(); }});
+  if(qTotalChart) qTotalChart.destroy();
+  qTotalChart=new Chart(document.getElementById('qTotalChart'),{
+    type:'bar',
+    data:{labels:chartQs.map(qk=>quarterLabel(qk,true)+(coverage(qk).state==='partial'?' *':'')),
+      datasets:[{label:'Vendas (R$)',data:totVals,backgroundColor:chartQs.map(qk=>qk===lastQ?'rgba(139,184,232,.9)':'rgba(59,130,246,.85)'),borderRadius:6,maxBarThickness:110}]},
+    plugins:[pillPlugin((di,i)=>totPct[i])],
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:6}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+fmtR(c.raw),afterLabel:c=>{const q=chartQs[c.dataIndex];const o=Q[q];return o?['Peças: '+fmtN(o.qty),'Ticket médio: '+fmtR(val(o,'tm'))]:'';}}}},
+      scales:{y:{grace:'12%',ticks:{callback:v=>'R$'+(v/1e6).toLocaleString('pt-BR',{maximumFractionDigits:1})+' mi',font:{size:10}},grid:{color:'rgba(255,255,255,.06)'}},x:{grid:{display:false}}}}
+  });
+
+  // 3) Tabela por categoria
+  const mLabel={vendas:'Vendas',qty:'Peças',tm:'Ticket médio'}[qMetric];
+  const fmtM=v=>qMetric==='qty'?fmtN(v):(qMetric==='tm'?fmtR(v):R0(v));
+  const catList=[...cats].sort((a,b)=>val(QC[lastQ+'|'+b],'vendas')-val(QC[lastQ+'|'+a],'vendas'));
+  const prevOfLast=lastQ?prevQuarter(lastQ):'';
+  const totLast=lastQ&&Q[lastQ]?Q[lastQ].vendas:0;
+  document.getElementById('qCatTitle').textContent=mLabel+' por categoria e quarter';
+  const head=`<thead><tr><th>Categoria</th>${withData.map(qk=>`<th class="r">${quarterLabel(qk,true)}${coverage(qk).state==='partial'?' *':''}</th>`).join('')}<th class="r">Part. ${lastQ?quarterLabel(lastQ,true):''}</th></tr></thead>`;
+  const cell=(o,qk,getter)=>{ if(!o) return '<td class="r">—</td>'; const p=qoq(qk,qMetric,getter); return `<td class="r">${fmtM(val(o,qMetric))}<small>${p===null?'&nbsp;':pctHtml(p)}</small></td>`; };
+  const rows=catList.map(c=>{
+    const g=k=>QC[k+'|'+c];
+    const sh=totLast?val(g(lastQ),'vendas')/totLast*100:0;
+    return `<tr><td class="cat">${esc(c)}</td>${withData.map(qk=>cell(g(qk),qk,g)).join('')}<td class="r">${sh>0&&sh<0.1?'&lt;0,1':insN1(sh)}%</td></tr>`;
+  }).join('');
+  const gT=k=>Q[k];
+  const totalRow=`<tr class="q-total"><td>Total geral</td>${withData.map(qk=>cell(Q[qk],qk,gT)).join('')}<td class="r">100%</td></tr>`;
+  document.getElementById('qCatTable').innerHTML=withData.length?`<table class="q-table">${head}<tbody>${rows}${totalRow}</tbody></table>`:'<p style="font-size:12px;color:var(--gray-400)">Sem dados para os filtros selecionados.</p>';
+  const partials=withData.filter(qk=>coverage(qk).state==='partial');
+  document.getElementById('qNote').innerHTML='% abaixo de cada valor: variação contra o quarter anterior. Participação calculada sobre as vendas (R$).'+
+    (partials.length?'<br>* Quarter parcial ('+partials.map(qk=>quarterLabel(qk,true)+': '+coverage(qk).txt).join('; ')+'). A comparação com um quarter completo tende a mostrar queda.':'');
+
+  // 4) Variação do último quarter vs anterior, por categoria (legível mesmo com Mobilidade dominando o volume)
+  const varRows=lastQ?catList.map(c=>[c,qoq(lastQ,qMetric,k=>QC[k+'|'+c])]).filter(x=>x[1]!==null).sort((a,b)=>b[1]-a[1]):[];
+  document.getElementById('qCatChartTitle').textContent='📊 Variação de '+mLabel.toLowerCase()+(lastQ?' · '+quarterLabel(lastQ,true)+' vs '+quarterLabel(prevQuarter(lastQ),true):'')+' por categoria';
+  const tot=lastQ?qoq(lastQ,qMetric,k=>Q[k]):null;
+  if(qCatChart) qCatChart.destroy();
+  qCatChart=new Chart(document.getElementById('qCatChart'),{
+    type:'bar',
+    data:{labels:varRows.map(x=>x[0]),datasets:[{label:'Variação',data:varRows.map(x=>x[1]),backgroundColor:varRows.map(x=>x[1]>=0?'rgba(34,224,122,.75)':'rgba(248,113,113,.8)'),borderRadius:4,maxBarThickness:26}]},
+    plugins:[{id:'qVarLbl',afterDatasetsDraw(chart){const {ctx}=chart;const fam=(Chart.defaults.font&&Chart.defaults.font.family)||'sans-serif';ctx.save();ctx.font='700 11px '+fam;ctx.textBaseline='middle';
+      chart.getDatasetMeta(0).data.forEach((el,i)=>{const v=varRows[i][1];ctx.fillStyle=v>=0?'#22e07a':'#f87171';ctx.textAlign=v>=0?'left':'right';ctx.fillText(pctTxt(v),el.x+(v>=0?6:-6),el.y);});ctx.restore();}},
+      {id:'qVarTot',afterDraw(chart){ if(tot===null) return; const {ctx,chartArea,scales}=chart; const x=scales.x.getPixelForValue(tot); ctx.save(); ctx.strokeStyle='rgba(139,184,232,.8)'; ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(x,chartArea.top); ctx.lineTo(x,chartArea.bottom); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle='#8bb8e8'; ctx.font='600 10px '+((Chart.defaults.font&&Chart.defaults.font.family)||'sans-serif'); ctx.textAlign='center'; ctx.fillText('Total '+pctTxt(tot),x,chartArea.top-6); ctx.restore(); }}],
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{left:8,right:60,top:16}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{const cat=varRows[c.dataIndex][0];const a=val(QC[lastQ+'|'+cat],qMetric),b=val(QC[prevQuarter(lastQ)+'|'+cat],qMetric);return [' '+pctTxt(c.raw),' '+quarterLabel(lastQ,true)+': '+fmtM(a),' '+quarterLabel(prevQuarter(lastQ),true)+': '+fmtM(b)];}}}},
+      scales:{x:{grace:'15%',ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(255,255,255,.06)'}},y:{grid:{display:false},ticks:{font:{size:11.5}}}}}
+  });
 }
 
 // ============================================================
