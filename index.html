@@ -275,6 +275,11 @@
   .pin-loading-txt{font-size:11px;color:var(--blue-300);margin-top:10px;font-family:'DM Mono',monospace;display:none;}
   .pin-loading-txt.show{display:block;}
   .data-state:empty{display:none;}
+  .sku-base{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;font-size:12px;color:var(--gray-500);margin:0 0 14px;padding:9px 12px;border:1px solid var(--gray-200);border-radius:8px;background:var(--surface-2);}
+  .sku-base:empty{display:none;}
+  .sku-base b{font-family:'DM Mono',monospace;font-size:14px;color:var(--gray-900);margin:0 3px;}
+  .sku-base .sku-per{color:var(--gray-400);font-size:11px;}
+  .sku-base .sku-sep{width:1px;height:16px;background:var(--gray-200);}
   .q-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-bottom:20px;}
   .q-card{background:var(--surface);border:1px solid var(--gray-200);border-top:3px solid var(--blue-500);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow-sm);}
   .q-card.empty{opacity:.5;border-top-color:var(--gray-300);}
@@ -711,7 +716,8 @@
 
     <!-- VENDA ITENS (unified growth + gap) -->
     <div class="table-card" style="margin-bottom:20px">
-      <div class="table-card-title" id="itemGrowthTitle">📊 Venda Itens <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(MoM — mês anterior)</span></div>
+      <div class="table-card-title" id="itemGrowthTitle" style="margin-bottom:6px">📊 Venda Itens <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(MoM — mês anterior)</span></div>
+      <div class="sku-base" id="itemSkuBase"></div>
       <div id="tblVendaItens"></div>
     </div>
 
@@ -2992,6 +2998,34 @@ function renderItemGrowth(dataA,compData,compLabel,_unused){
 
   const el=document.getElementById('tblVendaItens');
   if(!el) return;
+
+  // Base de SKUs: itens distintos com venda no período A vs período de comparação (mesmos filtros e mesmo corte de dias da tabela)
+  const skuEl=document.getElementById('itemSkuBase');
+  if(skuEl){
+    const skuA=new Set(dataA.filter(r=>r['Total de Vendas']>0).map(r=>r['Item']));
+    const skuB=new Set((compData||[]).filter(r=>r['Total de Vendas']>0).map(r=>r['Item']));
+    const MN=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+    const perLbl=data=>{
+      if(!data.length) return '';
+      let mn='9999',mx='0000',months=new Set();
+      data.forEach(r=>{const d=r['Data']||'';if(d){if(d<mn)mn=d;if(d>mx)mx=d;}months.add(r['Mês ano']);});
+      const ms=[...months].sort();
+      const name=ms.length===1?MN[+ms[0].slice(5,7)-1]+'/'+ms[0].slice(2,4):MN[+ms[0].slice(5,7)-1]+'–'+MN[+ms[ms.length-1].slice(5,7)-1]+'/'+ms[ms.length-1].slice(2,4);
+      return ms.length===1&&mn<'9999'?`${name} (${mn.slice(8,10)}–${mx.slice(8,10)})`:name;
+    };
+    const nA=skuA.size,nB=skuB.size;
+    if(!nA&&!nB){ skuEl.innerHTML=''; }
+    else{
+      let html=`<span>SKUs vendidos <span class="sku-per">${perLbl(dataA)}</span><b>${fmtN(nA)}</b></span>`;
+      if(compData&&compData.length){
+        const novos=[...skuA].filter(k=>!skuB.has(k)).length, sem=[...skuB].filter(k=>!skuA.has(k)).length;
+        html+=`<span>vs <span class="sku-per">${perLbl(compData)}</span><b>${fmtN(nB)}</b>${deltaHtml(nB?delta(nA,nB):null)}</span>`
+          +`<span class="sku-sep"></span><span title="Itens com venda no período atual que não venderam no anterior">Novos<b style="color:var(--green)">${fmtN(novos)}</b></span>`
+          +`<span title="Itens que venderam no período anterior e não venderam no atual">Sem venda agora<b style="color:var(--red)">${fmtN(sem)}</b></span>`;
+      }
+      skuEl.innerHTML=html;
+    }
+  }
 
   if(!compData.length){
     el.innerHTML='<div class="empty-state">Sem período anterior disponível</div>';
