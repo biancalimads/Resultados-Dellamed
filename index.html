@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head>
+<html lang="pt-BR" data-theme="light"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -440,6 +440,65 @@
   }
   @media(max-width:640px){ .insight-card{flex:1 1 100%;} }
 </style>
+
+<style id="lightTheme">
+/* ===== TEMA CLARO (seletor no cabeçalho) ===== */
+html[data-theme="light"]{
+  --blue-100:rgba(0,47,99,.10);--blue-50:rgba(0,47,99,.05);--blue-400:#1f66b3;--blue-300:#1f66b3;
+  --gray-900:#0f1e33;--gray-800:#1e2f48;--gray-700:#334760;--gray-600:#52657f;--gray-500:#6b7d96;--gray-400:#8a9bb2;
+  --gray-300:#d5deea;--gray-200:#e3e9f1;--gray-100:#eef2f7;--gray-50:#f5f7fb;
+  --green:#15965a;--red:#c0392b;--amber:#b7791f;--cyan:#0e7490;--violet:#4f63c9;
+  --page:#eef2f7;--surface:#ffffff;--surface-2:#f4f7fb;
+  --shadow-sm:0 1px 3px rgba(15,30,51,.08);--shadow-md:0 6px 18px rgba(15,30,51,.10);--shadow-lg:0 16px 40px rgba(15,30,51,.14);
+}
+/* cabeçalho e menu lateral também no tema claro */
+html[data-theme="light"] .header{background:#ffffff;border-bottom:1px solid #e3e9f1;box-shadow:0 1px 8px rgba(15,30,51,.06)}
+html[data-theme="light"] .header-title{color:#0f1e33}
+html[data-theme="light"] .header-subtitle,html[data-theme="light"] .last-update{color:#52657f}
+html[data-theme="light"] .last-update span{color:#0f1e33}
+html[data-theme="light"] .data-state{color:#1f66b3;border-color:rgba(0,47,99,.22)}
+html[data-theme="light"] .data-state b{color:#0f1e33}
+html[data-theme="light"] .btn-upload{background:#f5f7fb;border-color:#d5deea;color:#334760}
+html[data-theme="light"] .btn-upload:hover{background:#e3e9f1}
+html[data-theme="light"] .sidebar{background:#ffffff;border-right:1px solid #e3e9f1}
+html[data-theme="light"] .sidebar::-webkit-scrollbar-thumb{background:rgba(15,30,51,.15)}
+html[data-theme="light"] .side-brand{border-bottom-color:#e3e9f1}
+html[data-theme="light"] .side-brand-logo{filter:brightness(0) saturate(100%) invert(12%) sepia(64%) saturate(3497%) hue-rotate(201deg) brightness(93%) contrast(103%)}
+html[data-theme="light"] .side-brand-sub,html[data-theme="light"] .side-brand-txt span{color:#52657f}
+html[data-theme="light"] .side-brand-txt b{color:#0f1e33}
+html[data-theme="light"] .side-nav-label,html[data-theme="light"] .side-filters-label{color:#8a9bb2}
+html[data-theme="light"] .side-nav .tab-btn{color:#334760}
+html[data-theme="light"] .side-nav .tab-btn:hover{background:rgba(0,47,99,.06);color:#0f1e33}
+html[data-theme="light"] .side-nav .tab-btn.active{background:#002f63;color:#fff;box-shadow:0 2px 10px rgba(0,47,99,.25)}
+html[data-theme="light"] .side-filters{border-top-color:#e3e9f1}
+html[data-theme="light"] .side-filter .filter-label{color:#52657f}
+html[data-theme="light"] .side-filter .multi-select-btn{background:#ffffff;border-color:#d5deea;color:#0f1e33}
+html[data-theme="light"] .side-filter .multi-select-btn::after{color:#8a9bb2}
+html[data-theme="light"] .side-clear-btn{background:#f5f7fb;border-color:#d5deea;color:#334760}
+html[data-theme="light"] .side-clear-btn:hover{color:#fff}
+html[data-theme="light"] .side-foot-card{background:#f5f7fb;border-color:#e3e9f1}
+html[data-theme="light"] .side-foot-card>b{color:#0f1e33}
+html[data-theme="light"] .side-foot-card>b svg,html[data-theme="light"] .side-foot-card p{color:#52657f}
+html[data-theme="light"] .side-foot-card p b{color:#0f3c6e}
+html[data-theme="light"] .insight-lead-label{color:#0f3c6e}
+html[data-theme="light"] .monthly-avg b{color:#0f1e33}
+.theme-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
+.theme-switch .ts-btn{width:30px;height:26px;border:none;border-radius:999px;background:transparent;color:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s,color .15s}
+.theme-switch .ts-btn:hover{color:#fff}
+.theme-switch .ts-btn.active{background:#1f66b3;color:#fff}
+html[data-theme="light"] .theme-switch{background:#f5f7fb;border-color:#d5deea}
+html[data-theme="light"] .theme-switch .ts-btn{color:#6b7d96}
+html[data-theme="light"] .theme-switch .ts-btn:hover{color:#0f1e33}
+html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#fff}
+/* tela de acesso (PIN): sempre clara */
+#pinGate{background:radial-gradient(1100px 760px at 50% -8%, rgba(31,102,179,.12), transparent 60%), linear-gradient(180deg,#f5f7fb 0%,#e9eef5 100%)!important}
+#pinGate .pin-logo{filter:brightness(0) saturate(100%) invert(12%) sepia(64%) saturate(3497%) hue-rotate(201deg) brightness(93%) contrast(103%)}
+#pinGate .pin-brand-sub,#pinGate .pin-sub,#pinGate .pin-loading-txt{color:#52657f!important}
+#pinGate .pin-title{color:#0f1e33!important}
+#pinGate .pin-box{background:#ffffff!important;border-color:#cdd8e6!important;color:#0f1e33!important}
+#pinGate .pin-box:focus{border-color:#1f66b3!important;background:#f3f8ff!important}
+#pinGate .pin-bar-wrap{background:#dbe3ee!important}
+</style>
 </head>
 <body style="">
 <div id="pinGate" class="">
@@ -590,8 +649,12 @@
       </div>
     </div>
     <div class="header-right">
+      <div class="theme-switch" role="group" aria-label="Tema">
+        <button type="button" class="ts-btn" data-mode="dark" onclick="setPerfTheme('dark')" aria-label="Tema escuro"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+        <button type="button" class="ts-btn active" data-mode="light" onclick="setPerfTheme('light')" aria-label="Tema claro"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg></button>
+      </div>
       <div class="data-state" id="dataState" title="Histórico congelado até agosto/2026. Uploads atualizam apenas setembro/2026 e meses seguintes.">Último mês: <b>set/26</b></div>
-      <div class="last-update" id="lastUpdate" data-saved="2026-10-15T16:31:55.939Z">Última atualização: <span>15 Out 2026 — 13:31</span></div>
+      <div class="last-update" id="lastUpdate" data-saved="2026-10-16T12:23:42.396Z">Última atualização: <span>16 Out 2026 — 09:23</span></div>
       <input type="file" id="fileInput" accept=".xlsx,.xls">
       <button class="btn-upload btn-icon" onclick="document.getElementById('fileInput').click()" title="Atualizar Dados" aria-label="Atualizar Dados" style="">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -621,7 +684,7 @@
       </div>
       <div class="filter-grid" style="grid-template-columns:repeat(6,1fr)">
         <div class="filter-group"><div class="filter-label">MÊS REFERÊNCIA <span class="period-tag">A</span></div>
-          <div class="multi-select-container" id="msMonthA"><div class="multi-select-btn" onclick="toggleDropdown('msMonthA')" title="2026-08-01, 2026-07-01, 2026-06-01, 2026-05-01, 2026-04-01, 2026-03-01, 2026-02-01, 2026-01-01">agosto, julho +6</div><div class="multi-dropdown" id="dropdown-msMonthA"></div></div></div>
+          <div class="multi-select-container" id="msMonthA"><div class="multi-select-btn" onclick="toggleDropdown('msMonthA')" title="2026-09-01">setembro</div><div class="multi-dropdown" id="dropdown-msMonthA"></div></div></div>
         <div class="filter-group"><div class="filter-label">MÊS COMPARATIVO <span class="period-tag b">B</span></div>
           <div class="multi-select-container" id="msMonthB"><div class="multi-select-btn" onclick="toggleDropdown('msMonthB')" title="">Nenhum</div><div class="multi-dropdown" id="dropdown-msMonthB"></div></div></div>
         <div class="filter-group"><div class="filter-label">SEMANA REFERÊNCIA <span class="period-tag">C</span></div>
@@ -690,7 +753,7 @@
     <div class="vend-summary" id="vendSummary"></div>
 
     <!-- INSIGHTS -->
-    <div class="insight-strip" id="insightStrip"><div class="insight-lead"><div class="insight-lead-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.3L19 10l-5.1 1.7L12 17l-1.9-5.3L5 10l5.1-1.7z"></path><path d="M5 19l.6 1.7L7 21l-1.4.3L5 23l-.6-1.7L3 21l1.4-.3z"></path></svg></div><div class="insight-lead-label">Destaques<br>do Período</div></div><div class="insight-cards"><div class="insight-card"><div class="insight-ico blue"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></div><div class="insight-txt"><b>Receita do Período</b><p>Receita total de R$ 87.757.547,70 em 41.027 anúncios.</p></div></div><div class="insight-card"><div class="insight-ico blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div><div class="insight-txt"><b>Ticket Médio</b><p>Ticket médio de R$ 485,94 no período.</p></div></div><div class="insight-card"><div class="insight-ico amber"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 118 2.83"></path><path d="M22 12A10 10 0 0012 2v10z"></path></svg></div><div class="insight-txt"><b>Categoria em Destaque</b><p>Mobilidade representa 100% da receita do período.</p></div></div><div class="insight-card"><div class="insight-ico blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="insight-txt"><b>Vendedor Líder</b><p>ACMEDI lidera com 17,6% das vendas do período.</p></div></div></div></div>
+    <div class="insight-strip" id="insightStrip"><div class="insight-lead"><div class="insight-lead-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.3L19 10l-5.1 1.7L12 17l-1.9-5.3L5 10l5.1-1.7z"></path><path d="M5 19l.6 1.7L7 21l-1.4.3L5 23l-.6-1.7L3 21l1.4-.3z"></path></svg></div><div class="insight-lead-label">Destaques<br>do Período</div></div><div class="insight-cards"><div class="insight-card"><div class="insight-ico red"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg></div><div class="insight-txt"><b>Retração de Receita</b><p>Receita de R$ 14.302.334,50, -11,4% vs o mês anterior.</p></div></div><div class="insight-card"><div class="insight-ico green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div><div class="insight-txt"><b>Ticket Médio em Alta</b><p>Ticket médio de R$ 359,82 (+20,7% vs o mês anterior).</p></div></div><div class="insight-card"><div class="insight-ico amber"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 118 2.83"></path><path d="M22 12A10 10 0 0012 2v10z"></path></svg></div><div class="insight-txt"><b>Categoria em Destaque</b><p>Mobilidade representa 81,2% da receita do período.</p></div></div><div class="insight-card"><div class="insight-ico red"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div><div class="insight-txt"><b>Atenção</b><p>Receita -11,4% frente o mês anterior. Vale investigar o que puxou a queda.</p></div></div></div></div>
 
     <!-- CATS -->
     <div class="section-title">Categorias Nível 2 <span style="font-size:10px;font-weight:400;text-transform:none;color:var(--gray-400)">(clique para detalhar)</span></div>
@@ -705,8 +768,8 @@
 
     <!-- TOP ITENS + TOP VENDEDORES -->
     <div class="tables-grid">
-      <div class="table-card"><div class="table-card-title">🏆 TOP ITENS</div><div id="tblModelos" style="max-height: 384px; overflow-y: auto;"></div></div>
-      <div class="table-card"><div class="table-card-title">👤 Maiores Vendedores</div><div id="tblVendedores" style="max-height: 376px; overflow-y: auto;"></div></div>
+      <div class="table-card"><div class="table-card-title">🏆 TOP ITENS</div><div id="tblModelos" style="max-height: 360px; overflow-y: auto;"></div></div>
+      <div class="table-card"><div class="table-card-title">👤 Maiores Vendedores</div><div id="tblVendedores" style="max-height: 360px; overflow-y: auto;"></div></div>
     </div>
 
     <!-- VENDA ITENS (unified growth + gap) -->
@@ -2781,7 +2844,7 @@ function renderMonthlyPerformance(){
           lines.forEach((line, lineIndex) => {
             const item = typeof line === 'string' ? {text:line} : line;
             ctx.font = `${item.weight || 600} ${item.size || fontSize}px DM Sans`;
-            ctx.fillStyle = item.color || '#c4d0e8';
+            ctx.fillStyle = (window.__perfLabelColor?window.__perfLabelColor(item.color || '#c4d0e8'):(item.color || '#c4d0e8'));
             ctx.fillText(item.text, element.x, y + lineIndex * lineGap);
           });
         });
@@ -3654,4 +3717,55 @@ function showFaixaDetail(idx) {
 
 
 
+
+<script>
+// ===== Seletor de tema (claro / escuro) =====
+(function(){
+  const LIGHT_TEXT={'#9fb0d0':'#475569','#c4d0e8':'#334155','#eaf1fb':'#0f1e33'};
+  function isLight(){return document.documentElement.getAttribute('data-theme')==='light'}
+  function remapColor(c,kind){
+    if(!isLight()||typeof c!=='string')return c;
+    const k=c.trim().toLowerCase().replace(/\s+/g,'');
+    if(kind==='grid'){const m=k.match(/^rgba\(255,255,255,([\d.]+)\)$/);if(m)return 'rgba(15,30,51,'+Math.min(.14,(+m[1])*1.4).toFixed(3)+')';}
+    if(LIGHT_TEXT[k])return LIGHT_TEXT[k];
+    const m=k.match(/^rgba?\((\d+),(\d+),(\d+)/);
+    if(kind==='text'&&m&&+m[1]>190&&+m[2]>200&&+m[3]>215&&!(+m[1]===255&&+m[2]===255&&+m[3]===255))return '#334155';
+    return c;
+  }
+  window.__perfRemap=remapColor;
+  // rótulos desenhados acima das barras (fora delas): branco vira escuro no tema claro
+  window.__perfLabelColor=function(c){if(!isLight())return c;const k=String(c||'').trim().toLowerCase();if(k==='#ffffff'||k==='#fff'||k==='white')return '#0f1e33';return remapColor(c,'text')};
+  function wrap(c,kind){if(typeof c==='function'){if(c.__thw)return c;const f=function(){return remapColor(c.apply(this,arguments),kind)};f.__thw=true;return f}return remapColor(c,kind)}
+  const plugin={id:'perfThemeColors',beforeUpdate(chart){
+    if(!isLight())return;
+    const o=(chart.config&&chart.config.options)||{};
+    try{Object.values(o.scales||{}).forEach(sc=>{if(!sc)return;if(sc.grid&&'color' in sc.grid)sc.grid.color=wrap(sc.grid.color,'grid');['ticks','title'].forEach(k=>{if(sc[k]&&'color' in sc[k])sc[k].color=wrap(sc[k].color,'text')})})}catch(e){}
+    try{const L=o.plugins&&o.plugins.legend&&o.plugins.legend.labels;if(L&&'color' in L)L.color=wrap(L.color,'text')}catch(e){}
+    try{const D=o.plugins&&o.plugins.datalabels;if(D&&'color' in D)D.color=wrap(D.color,'text')}catch(e){}
+  }};
+  function applyDefaults(){
+    if(typeof Chart==='undefined')return;
+    try{if(!Chart.__perfThemePlugin){Chart.register(plugin);Chart.__perfThemePlugin=true}}catch(e){}
+    if(isLight()){Chart.defaults.color='#475569';Chart.defaults.borderColor='rgba(15,30,51,.10)';}
+    else{Chart.defaults.color='#9fb0d0';Chart.defaults.borderColor='rgba(255,255,255,.08)';}
+  }
+  window.setPerfTheme=function(mode){
+    mode=mode==='light'?'light':'dark';
+    if(mode==='light')document.documentElement.setAttribute('data-theme','light');
+    else document.documentElement.removeAttribute('data-theme');
+    markActive();
+    applyDefaults();
+    try{if(typeof applyFilters==='function'&&typeof ALL_DATA!=='undefined'&&ALL_DATA.length)applyFilters()}catch(e){console.warn(e)}
+    try{Object.values((typeof Chart!=='undefined'&&Chart.instances)||{}).forEach(c=>{try{c.update('none')}catch(_e){}})}catch(e){}
+  };
+  window.togglePerfTheme=function(){setPerfTheme(isLight()?'dark':'light')};
+  function markActive(){document.querySelectorAll('.theme-switch .ts-btn').forEach(b=>b.classList.toggle('active',(b.dataset.mode==='light')===isLight()))}
+  window.__perfMarkTheme=markActive;
+  // sempre abre no tema claro
+  document.documentElement.setAttribute('data-theme','light');
+  markActive();
+  const t=setInterval(()=>{if(typeof Chart!=='undefined'){clearInterval(t);applyDefaults();try{Object.values(Chart.instances||{}).forEach(c=>{try{c.update('none')}catch(_e){}})}catch(e){}}},300);
+  setTimeout(()=>clearInterval(t),60000);
+})();
+</script>
 </body></html>
