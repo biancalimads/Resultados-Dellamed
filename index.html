@@ -131,6 +131,14 @@
   @media(max-width:900px){.monthly-chart-title{flex-wrap:wrap;}.monthly-avg{margin-left:0;white-space:normal;}}
   .monthly-chart-title{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gray-600);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
   .monthly-chart-wrap{position:relative;height:320px;width:100%;}
+  .mp-table th{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gray-500);padding:8px;border-bottom:1px solid var(--gray-200);text-align:left;white-space:nowrap;}
+  .mp-table th.r{text-align:right;}
+  .mp-table td{border-bottom:1px solid var(--gray-200);}
+  .mp-table td.mom{font-size:11px;}
+  .mp-table .up{color:#22e07a;font-weight:700;}
+  .mp-table .down{color:#f87171;font-weight:700;}
+  .mp-table .na{color:var(--gray-400);}
+  .mp-table tr.mp-avg td{color:var(--gray-500);font-style:italic;}
   .monthly-chart-wrap canvas{width:100%!important;height:320px!important;max-height:none!important;}
   @media(max-width:900px){.monthly-performance-head{flex-direction:column;}.monthly-performance-note{text-align:left;max-width:none;}.monthly-chart-wrap,.monthly-chart-wrap canvas{height:280px!important;}}
 
@@ -654,7 +662,7 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
         <button type="button" class="ts-btn active" data-mode="light" onclick="setPerfTheme('light')" aria-label="Tema claro"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg></button>
       </div>
       <div class="data-state" id="dataState" title="Histórico congelado até setembro/2026. Uploads atualizam apenas outubro/2026 e meses seguintes.">Último mês: <b>out/26</b></div>
-      <div class="last-update" id="lastUpdate" data-saved="2026-11-04T11:04:48.221Z">Última atualização: <span>04 Nov 2026 — 08:04</span></div>
+      <div class="last-update" id="lastUpdate" data-saved="2026-11-04T11:18:58.049Z">Última atualização: <span>04 Nov 2026 — 08:18</span></div>
       <input type="file" id="fileInput" accept=".xlsx,.xls">
       <button class="btn-upload btn-icon" onclick="document.getElementById('fileInput').click()" title="Atualizar Dados" aria-label="Atualizar Dados" style="">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -705,13 +713,13 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
         <div class="filter-group"><div class="filter-label">MÊS</div><div class="multi-select-container" id="pmMonth"><div class="multi-select-btn" onclick="toggleDropdown('pmMonth')" title="">Todos</div><div class="multi-dropdown" id="dropdown-pmMonth"></div></div></div>
         <div class="filter-group"><div class="filter-label">CATEGORIA</div><div class="multi-select-container" id="pmCat"><div class="multi-select-btn" onclick="toggleDropdown('pmCat')" title="">Todos</div><div class="multi-dropdown" id="dropdown-pmCat"></div></div></div>
         <div class="filter-group"><div class="filter-label">VENDEDOR</div><div class="multi-select-container" id="pmVend"><div class="multi-select-btn" onclick="toggleDropdown('pmVend')" title="">Todos</div><div class="multi-dropdown" id="dropdown-pmVend"></div></div></div>
-        <div class="filter-group"><div class="filter-label">ITEM</div><div class="multi-select-container" id="pmItem"><div class="multi-select-btn" onclick="toggleDropdown('pmItem')" title="ALMOFADA AIR BASIC">ALMOFADA</div><div class="multi-dropdown" id="dropdown-pmItem"></div></div></div>
+        <div class="filter-group"><div class="filter-label">ITEM</div><div class="multi-select-container" id="pmItem"><div class="multi-select-btn" onclick="toggleDropdown('pmItem')" title="">Todos</div><div class="multi-dropdown" id="dropdown-pmItem"></div></div></div>
       </div>
     </div></div>
     <div class="side-filter" data-tab="ticketmedio">    <div class="filter-bar">
       <div class="filter-bar-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg> Filtros — Ticket Médio</div>
       <div class="tm-filter-grid">
-        <div class="filter-group"><div class="filter-label">MÊS REFERÊNCIA</div><div class="multi-select-container" id="tmMonth"><div class="multi-select-btn" onclick="toggleDropdown('tmMonth')" title="2026-05-01">maio</div><div class="multi-dropdown" id="dropdown-tmMonth"></div></div></div>
+        <div class="filter-group"><div class="filter-label">MÊS REFERÊNCIA</div><div class="multi-select-container" id="tmMonth"><div class="multi-select-btn" onclick="toggleDropdown('tmMonth')" title="2026-10-01">outubro</div><div class="multi-dropdown" id="dropdown-tmMonth"></div></div></div>
         <div class="filter-group"><div class="filter-label">Categoria</div><div class="multi-select-container" id="tmCat"><div class="multi-select-btn" onclick="toggleDropdown('tmCat')" title="">Todos</div><div class="multi-dropdown" id="dropdown-tmCat"></div></div></div>
         <div class="filter-group"><div class="filter-label">Vendedor</div><div class="multi-select-container" id="tmVend"><div class="multi-select-btn" onclick="toggleDropdown('tmVend')" title="">Todos</div><div class="multi-dropdown" id="dropdown-tmVend"></div></div></div>
         <div class="filter-group"><div class="filter-label">Item</div><div class="multi-select-container" id="tmItem"><div class="multi-select-btn" onclick="toggleDropdown('tmItem')" title="">Todos</div><div class="multi-dropdown" id="dropdown-tmItem"></div></div></div>
@@ -720,9 +728,9 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
     <div class="side-filter" data-tab="quarter">    <div class="filter-bar">
       <div class="filter-bar-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg> Filtros — Resultado Quarter</div>
       <div class="tm-filter-grid">
-        <div class="filter-group"><div class="filter-label">ANO</div><div class="multi-select-container" id="qYear"><div class="multi-select-btn" onclick="toggleDropdown('qYear')">Todos</div><div class="multi-dropdown" id="dropdown-qYear"></div></div></div>
-        <div class="filter-group"><div class="filter-label">VENDEDOR</div><div class="multi-select-container" id="qVend"><div class="multi-select-btn" onclick="toggleDropdown('qVend')">Todos</div><div class="multi-dropdown" id="dropdown-qVend"></div></div></div>
-        <div class="filter-group"><div class="filter-label">ITEM</div><div class="multi-select-container" id="qItem"><div class="multi-select-btn" onclick="toggleDropdown('qItem')">Todos</div><div class="multi-dropdown" id="dropdown-qItem"></div></div></div>
+        <div class="filter-group"><div class="filter-label">ANO</div><div class="multi-select-container" id="qYear"><div class="multi-select-btn" onclick="toggleDropdown('qYear')" title="2026">Todos</div><div class="multi-dropdown" id="dropdown-qYear"></div></div></div>
+        <div class="filter-group"><div class="filter-label">VENDEDOR</div><div class="multi-select-container" id="qVend"><div class="multi-select-btn" onclick="toggleDropdown('qVend')" title="">Todos</div><div class="multi-dropdown" id="dropdown-qVend"></div></div></div>
+        <div class="filter-group"><div class="filter-label">ITEM</div><div class="multi-select-container" id="qItem"><div class="multi-select-btn" onclick="toggleDropdown('qItem')" title="">Todos</div><div class="multi-dropdown" id="dropdown-qItem"></div></div></div>
       </div>
     </div></div>
     <button class="side-clear-btn" onclick="limparFiltrosAtivos()" aria-label="Limpar todos os filtros">
@@ -797,7 +805,7 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
       </div>
       <div class="monthly-chart-grid">
         <div class="monthly-chart-panel">
-          <div class="monthly-chart-title">💰 Total de Vendas Mensal<span class="monthly-avg" id="monthlySalesAvg">Média mensal<b>R$ 11.811,35</b> <span style="font-weight:400;color:var(--gray-400)">(R$ 118,1 mil ÷ 10 meses)</span></span></div>
+          <div class="monthly-chart-title">💰 Total de Vendas Mensal<span class="monthly-avg" id="monthlySalesAvg">Média mensal<b>R$ 13.929.033,75</b> <span style="font-weight:400;color:var(--gray-400)">(R$ 139,3 mi ÷ 10 meses)</span></span></div>
           <div class="monthly-chart-wrap"><canvas id="monthlySalesChart"></canvas></div>
         </div>
         <div class="monthly-chart-panel">
@@ -808,6 +816,63 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
           <div class="monthly-chart-title">🎫 Ticket Médio</div>
           <div class="monthly-chart-wrap"><canvas id="monthlyTicketChart"></canvas></div>
         </div>
+        <div class="monthly-chart-panel">
+          <div class="monthly-chart-title">📋 Tabela Mensal · Vendas, Peças e Ticket Médio</div>
+          <div class="q-table-wrap" id="monthlyPerfTable"><table class="q-table mp-table">
+        <thead><tr><th>Mês</th><th class="r">Vendas</th><th class="r">MoM</th><th class="r">Peças</th><th class="r">MoM</th><th class="r">Ticket Médio</th><th class="r">MoM</th></tr></thead>
+        <tbody><tr>
+          <td class="cat">Janeiro de 2026</td>
+          <td class="r">R$ 10.927.951,74</td><td class="r mom"><span class="na">—</span></td>
+          <td class="r">33.412</td><td class="r mom"><span class="na">—</span></td>
+          <td class="r">R$ 327,07</td><td class="r mom"><span class="na">—</span></td>
+        </tr><tr>
+          <td class="cat">Fevereiro de 2026</td>
+          <td class="r">R$ 10.931.520,35</td><td class="r mom"><span class="up">+0,0%</span></td>
+          <td class="r">31.292</td><td class="r mom"><span class="down">-6,3%</span></td>
+          <td class="r">R$ 349,34</td><td class="r mom"><span class="up">+6,8%</span></td>
+        </tr><tr>
+          <td class="cat">Março de 2026</td>
+          <td class="r">R$ 13.484.196,48</td><td class="r mom"><span class="up">+23,4%</span></td>
+          <td class="r">38.296</td><td class="r mom"><span class="up">+22,4%</span></td>
+          <td class="r">R$ 352,10</td><td class="r mom"><span class="up">+0,8%</span></td>
+        </tr><tr>
+          <td class="cat">Abril de 2026</td>
+          <td class="r">R$ 13.396.169,62</td><td class="r mom"><span class="down">-0,7%</span></td>
+          <td class="r">38.808</td><td class="r mom"><span class="up">+1,3%</span></td>
+          <td class="r">R$ 345,19</td><td class="r mom"><span class="down">-2,0%</span></td>
+        </tr><tr>
+          <td class="cat">Maio de 2026</td>
+          <td class="r">R$ 14.937.750,82</td><td class="r mom"><span class="up">+11,5%</span></td>
+          <td class="r">43.552</td><td class="r mom"><span class="up">+12,2%</span></td>
+          <td class="r">R$ 342,99</td><td class="r mom"><span class="down">-0,6%</span></td>
+        </tr><tr>
+          <td class="cat">Junho de 2026</td>
+          <td class="r">R$ 14.373.552,04</td><td class="r mom"><span class="down">-3,8%</span></td>
+          <td class="r">41.975</td><td class="r mom"><span class="down">-3,6%</span></td>
+          <td class="r">R$ 342,43</td><td class="r mom"><span class="down">-0,2%</span></td>
+        </tr><tr>
+          <td class="cat">Julho de 2026</td>
+          <td class="r">R$ 15.903.461,52</td><td class="r mom"><span class="up">+10,6%</span></td>
+          <td class="r">47.032</td><td class="r mom"><span class="up">+12,0%</span></td>
+          <td class="r">R$ 338,14</td><td class="r mom"><span class="down">-1,3%</span></td>
+        </tr><tr>
+          <td class="cat">Agosto de 2026</td>
+          <td class="r">R$ 16.135.322,37</td><td class="r mom"><span class="up">+1,5%</span></td>
+          <td class="r">54.112</td><td class="r mom"><span class="up">+15,1%</span></td>
+          <td class="r">R$ 298,18</td><td class="r mom"><span class="down">-11,8%</span></td>
+        </tr><tr>
+          <td class="cat">Setembro de 2026</td>
+          <td class="r">R$ 14.302.334,50</td><td class="r mom"><span class="down">-11,4%</span></td>
+          <td class="r">39.749</td><td class="r mom"><span class="down">-26,5%</span></td>
+          <td class="r">R$ 359,82</td><td class="r mom"><span class="up">+20,7%</span></td>
+        </tr><tr>
+          <td class="cat">Outubro de 2026</td>
+          <td class="r">R$ 14.898.078,04</td><td class="r mom"><span class="up">+4,2%</span></td>
+          <td class="r">40.642</td><td class="r mom"><span class="up">+2,2%</span></td>
+          <td class="r">R$ 366,57</td><td class="r mom"><span class="up">+1,9%</span></td>
+        </tr><tr class="mp-avg"><td>Média mensal</td><td class="r">R$ 13.929.033,75</td><td></td><td class="r">40.887</td><td></td><td></td><td></td></tr><tr class="q-total"><td>Total (10 meses)</td><td class="r">R$ 139.290.337,48</td><td></td><td class="r">408.870</td><td></td><td class="r">R$ 340,67</td><td></td></tr></tbody></table>
+        <div style="font-size:10.5px;color:var(--gray-400);margin-top:8px">Ticket médio do total = vendas ÷ peças do período (não é a média dos tickets mensais).</div></div>
+        </div>
       </div>
     </div>
   </div><!-- /tab-performancemensal -->
@@ -815,7 +880,23 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
   <!-- TAB: RESULTADO QUARTER -->
   <div id="tab-quarter" class="tab-panel">
     <div class="section-title">Quarter geral · todas as categorias</div>
-    <div class="q-cards" id="qCards"></div>
+    <div class="q-cards" id="qCards"><div class="q-card"><div class="q-card-top"><div class="q-name">Q1 2026</div><div class="q-months">jan–mar</div></div>
+      <div class="q-val">R$ 35.343.668,57</div>
+      <div class="q-qoq">sem quarter anterior</div>
+      <div class="q-sub"><div>Peças<b>103.000</b><small><span class="delta-neu">—</span></small></div><div>Ticket médio<b>R$ 343,14</b><small><span class="delta-neu">—</span></small></div></div>
+    </div><div class="q-card"><div class="q-card-top"><div class="q-name">Q2 2026</div><div class="q-months">abr–jun</div></div>
+      <div class="q-val">R$ 42.707.472,48</div>
+      <div class="q-qoq"><span class="delta-up">+20,8%</span> vs Q1 2026</div>
+      <div class="q-sub"><div>Peças<b>124.335</b><small><span class="delta-up">+20,7%</span></small></div><div>Ticket médio<b>R$ 343,49</b><small><span class="delta-up">+0,1%</span></small></div></div>
+    </div><div class="q-card"><div class="q-card-top"><div class="q-name">Q3 2026</div><div class="q-months">jul–set</div></div>
+      <div class="q-val">R$ 46.341.118,39</div>
+      <div class="q-qoq"><span class="delta-up">+8,5%</span> vs Q2 2026</div>
+      <div class="q-sub"><div>Peças<b>140.893</b><small><span class="delta-up">+13,3%</span></small></div><div>Ticket médio<b>R$ 328,91</b><small><span class="delta-down">-4,2%</span></small></div></div>
+    </div><div class="q-card last"><div class="q-card-top"><div class="q-name">Q4 2026<span class="q-badge">parcial</span></div><div class="q-months">out–dez</div></div>
+      <div class="q-val">R$ 14.898.078,04</div>
+      <div class="q-qoq"><span class="delta-down">-67,9%</span> vs Q3 2026 · 1 de 3 meses</div>
+      <div class="q-sub"><div>Peças<b>40.642</b><small><span class="delta-down">-71,2%</span></small></div><div>Ticket médio<b>R$ 366,57</b><small><span class="delta-up">+11,4%</span></small></div></div>
+    </div></div>
     <div class="chart-card">
       <div class="table-card-title">📊 Vendas por quarter <span style="font-size:10px;font-weight:400;color:var(--gray-400)">% sobre as barras vs quarter anterior</span></div>
       <div class="q-chart-wrap"><canvas id="qTotalChart"></canvas></div>
@@ -823,18 +904,18 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
     <div class="section-title" style="margin-top:22px">Quarter por categoria</div>
     <div class="table-card">
       <div class="q-table-head">
-        <div class="table-card-title" style="margin:0" id="qCatTitle">Categorias por quarter</div>
+        <div class="table-card-title" style="margin:0" id="qCatTitle">Vendas por categoria e quarter</div>
         <div class="q-seg" id="qMetricSeg">
           <button class="active" data-m="vendas" onclick="setQuarterMetric('vendas')">Vendas</button>
           <button data-m="qty" onclick="setQuarterMetric('qty')">Peças</button>
           <button data-m="tm" onclick="setQuarterMetric('tm')">Ticket médio</button>
         </div>
       </div>
-      <div class="q-table-wrap" id="qCatTable"></div>
-      <div class="q-note" id="qNote"></div>
+      <div class="q-table-wrap" id="qCatTable"><table class="q-table"><thead><tr><th>Categoria</th><th class="r">Q1 2026</th><th class="r">Q2 2026</th><th class="r">Q3 2026</th><th class="r">Q4 2026 *</th><th class="r">Part. Q4 2026</th></tr></thead><tbody><tr><td class="cat">Mobilidade</td><td class="r">R$ 28.350.264<small>&nbsp;</small></td><td class="r">R$ 34.319.808<small><span class="delta-up">+21,1%</span></small></td><td class="r">R$ 36.704.983<small><span class="delta-up">+6,9%</span></small></td><td class="r">R$ 12.010.401<small><span class="delta-down">-67,3%</span></small></td><td class="r">80,6%</td></tr><tr><td class="cat">Equipamento Médico</td><td class="r">R$ 4.858.737<small>&nbsp;</small></td><td class="r">R$ 6.058.589<small><span class="delta-up">+24,7%</span></small></td><td class="r">R$ 6.424.032<small><span class="delta-up">+6,0%</span></small></td><td class="r">R$ 2.228.966<small><span class="delta-down">-65,3%</span></small></td><td class="r">15%</td></tr><tr><td class="cat">Ortopedia</td><td class="r">R$ 224.923<small>&nbsp;</small></td><td class="r">R$ 388.654<small><span class="delta-up">+72,8%</span></small></td><td class="r">R$ 726.804<small><span class="delta-up">+87,0%</span></small></td><td class="r">R$ 252.077<small><span class="delta-down">-65,3%</span></small></td><td class="r">1,7%</td></tr><tr><td class="cat">Cuidado da Saúde</td><td class="r">R$ 1.372.841<small>&nbsp;</small></td><td class="r">R$ 1.120.196<small><span class="delta-down">-18,4%</span></small></td><td class="r">R$ 1.850.938<small><span class="delta-up">+65,2%</span></small></td><td class="r">R$ 218.098<small><span class="delta-down">-88,2%</span></small></td><td class="r">1,5%</td></tr><tr><td class="cat">Massagem</td><td class="r">R$ 476.856<small>&nbsp;</small></td><td class="r">R$ 743.248<small><span class="delta-up">+55,9%</span></small></td><td class="r">R$ 556.427<small><span class="delta-down">-25,1%</span></small></td><td class="r">R$ 164.017<small><span class="delta-down">-70,5%</span></small></td><td class="r">1,1%</td></tr><tr><td class="cat">Fitness e Musculação</td><td class="r">R$ 37.112<small>&nbsp;</small></td><td class="r">R$ 42.471<small><span class="delta-up">+14,4%</span></small></td><td class="r">R$ 56.583<small><span class="delta-up">+33,2%</span></small></td><td class="r">R$ 18.927<small><span class="delta-down">-66,6%</span></small></td><td class="r">0,1%</td></tr><tr><td class="cat">Alimentação e Amamentação</td><td class="r">R$ 22.934<small>&nbsp;</small></td><td class="r">R$ 34.507<small><span class="delta-up">+50,5%</span></small></td><td class="r">R$ 21.351<small><span class="delta-down">-38,1%</span></small></td><td class="r">R$ 5.593<small><span class="delta-down">-73,8%</span></small></td><td class="r">&lt;0,1%</td></tr><tr class="q-total"><td>Total geral</td><td class="r">R$ 35.343.669<small>&nbsp;</small></td><td class="r">R$ 42.707.472<small><span class="delta-up">+20,8%</span></small></td><td class="r">R$ 46.341.118<small><span class="delta-up">+8,5%</span></small></td><td class="r">R$ 14.898.078<small><span class="delta-down">-67,9%</span></small></td><td class="r">100%</td></tr></tbody></table></div>
+      <div class="q-note" id="qNote">% abaixo de cada valor: variação contra o quarter anterior. Participação calculada sobre as vendas (R$).<br>* Quarter parcial (Q4 2026: 1 de 3 meses). A comparação com um quarter completo tende a mostrar queda.</div>
     </div>
     <div class="chart-card" style="margin-top:20px">
-      <div class="table-card-title" id="qCatChartTitle">📊 Categorias por quarter</div>
+      <div class="table-card-title" id="qCatChartTitle">📊 Variação de vendas · Q4 2026 vs Q3 2026 por categoria</div>
       <div class="q-chart-wrap tall"><canvas id="qCatChart"></canvas></div>
     </div>
   </div><!-- /tab-quarter -->
@@ -2955,6 +3036,34 @@ function renderMonthlyPerformance(){
     v => 'R$ ' + v.toLocaleString('pt-BR',{maximumFractionDigits:0}),
     v => fmtR(v)
   );
+
+  // Tabela mensal — usa as mesmas linhas dos gráficos (respeita ANO, MÊS, CATEGORIA, VENDEDOR e ITEM)
+  const tblEl = document.getElementById('monthlyPerfTable');
+  if (tblEl) {
+    if (!rows.length) {
+      tblEl.innerHTML = '<p style="font-size:12px;color:var(--gray-400)">Sem dados para os filtros selecionados.</p>';
+    } else {
+      const momCell = v => {
+        if (v === null || v === undefined || !isFinite(v)) return '<td class="r mom"><span class="na">—</span></td>';
+        return `<td class="r mom"><span class="${v >= 0 ? 'up' : 'down'}">${v > 0 ? '+' : ''}${v.toFixed(1).replace('.', ',')}%</span></td>`;
+      };
+      const totV = rows.reduce((s,r)=>s+r.vendas,0);
+      const totQ = rows.reduce((s,r)=>s+r.qty,0);
+      const n = rows.length;
+      const body = rows.map(r => `<tr>
+          <td class="cat">${insEsc(r.fullLabel.charAt(0).toUpperCase() + r.fullLabel.slice(1))}${r.isPartial ? ` <small style="display:inline;color:var(--gray-400)">* até dia ${r.maxDay}</small>` : ''}</td>
+          <td class="r">${fmtR(r.vendas)}</td>${momCell(r.momVendas)}
+          <td class="r">${fmtN(r.qty)}</td>${momCell(r.momQty)}
+          <td class="r">${r.qty ? fmtR(r.ticket) : '—'}</td>${momCell(r.momTicket)}
+        </tr>`).join('');
+      const avgRow = n > 1 ? `<tr class="mp-avg"><td>Média mensal</td><td class="r">${fmtR(totV/n)}</td><td></td><td class="r">${fmtN(Math.round(totQ/n))}</td><td></td><td></td><td></td></tr>` : '';
+      const totalRow = `<tr class="q-total"><td>Total (${n} ${n===1?'mês':'meses'})</td><td class="r">${fmtR(totV)}</td><td></td><td class="r">${fmtN(totQ)}</td><td></td><td class="r">${totQ ? fmtR(tm(totV,totQ)) : '—'}</td><td></td></tr>`;
+      tblEl.innerHTML = `<table class="q-table mp-table">
+        <thead><tr><th>Mês</th><th class="r">Vendas</th><th class="r">MoM</th><th class="r">Peças</th><th class="r">MoM</th><th class="r">Ticket Médio</th><th class="r">MoM</th></tr></thead>
+        <tbody>${body}${avgRow}${totalRow}</tbody></table>
+        <div style="font-size:10.5px;color:var(--gray-400);margin-top:8px">Ticket médio do total = vendas ÷ peças do período (não é a média dos tickets mensais).${rows.some(r=>r.isPartial)?' * Mês parcial: MoM compara até o mesmo dia do mês anterior.':''}</div>`;
+    }
+  }
 
   const note = document.getElementById('monthlyPerformanceNote');
   if (note) {
