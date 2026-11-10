@@ -117,6 +117,24 @@
   /* CHART */
   .chart-card{background:var(--surface);border:1px solid var(--gray-200);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);margin-bottom:20px;}
   .chart-card canvas{max-height:280px;}
+  .daily-grid{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:24px;align-items:start;}
+  .daily-grid .table-card-title{flex-wrap:wrap;row-gap:6px;}
+  .daily-grid .table-card-title > span{flex:1 1 220px;}
+  .daily-grid .week-clear-btn{white-space:nowrap;margin-left:0;}
+  .daily-dow-wrap{border-left:1px solid var(--gray-200);padding-left:20px;}
+  .daily-dow-wrap td,.daily-dow-wrap th{padding:7px 6px;}
+  .daily-dow-wrap tr.dow-best td{font-weight:700;}
+  .daily-dow-wrap tr.dow-row{cursor:pointer;transition:background .12s,opacity .12s;}
+  .daily-dow-wrap tr.dow-row:hover td{background:rgba(59,130,246,.08);}
+  .daily-dow-wrap tr.dow-sel td{background:rgba(59,130,246,.16)!important;}
+  .daily-dow-wrap tr.dow-sel td:first-child{box-shadow:inset 3px 0 0 #3b82f6;}
+  .daily-dow-wrap tr.dow-dim{opacity:.5;}
+  .daily-dow-wrap .dow-n{font-size:10px;color:var(--gray-400);font-weight:400;}
+  .daily-dow-wrap .dow-bar{height:4px;border-radius:2px;background:rgba(59,130,246,.75);margin-top:4px;}
+  .daily-dow-wrap tfoot td{border-top:2px solid var(--gray-200);font-weight:700;font-size:11px;}
+  .daily-dow-wrap tfoot td.r{text-align:right;font-family:'DM Mono',monospace;white-space:nowrap;}
+  .daily-dow-wrap tbody td.r{white-space:nowrap;}
+  @media(max-width:1100px){.daily-grid{grid-template-columns:1fr;}.daily-dow-wrap{border-left:none;padding-left:0;border-top:1px solid var(--gray-200);padding-top:16px;}}
 
 
   /* MONTHLY PERFORMANCE */
@@ -683,7 +701,7 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
         <button type="button" class="ts-btn active" data-mode="light" onclick="setPerfTheme('light')" aria-label="Tema claro"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg></button>
       </div>
       <div class="data-state" id="dataState" title="Meses anteriores ficam congelados. Se o arquivo trouxer de novo um mês anterior, esse mês é recarregado com os dados do arquivo.">Último mês: <b>nov/26</b></div>
-      <div class="last-update" id="lastUpdate" data-saved="2026-11-09T19:00:40.739Z">Última atualização: <span>09 Nov 2026 — 16:00</span></div>
+      <div class="last-update" id="lastUpdate" data-saved="2026-11-10T19:41:04.420Z">Última atualização: <span>10 Nov 2026 — 16:41</span></div>
       <input type="file" id="fileInput" accept=".xlsx,.xls">
       <button class="btn-upload btn-icon" onclick="document.getElementById('fileInput').click()" title="Atualizar Dados" aria-label="Atualizar Dados" style="">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -802,6 +820,20 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
       <div class="table-card-title" id="chartTitle">📊 Performance Semanal <span style="font-size:10px;font-weight:400;color:var(--gray-400)">% vs semana anterior e média de vendas/dia (dias efetivos de cada semana) sobre as barras · clique numa semana para filtrar</span></div>
       <canvas id="weekChart"></canvas>
       <div id="weekCompTable" style="margin-top: 16px; display: none;"></div>
+    </div>
+
+    <!-- VENDAS DIÁRIAS -->
+    <div class="chart-card">
+      <div class="daily-grid">
+        <div class="daily-chart-wrap">
+          <div class="table-card-title" id="dailyChartTitle">📅 Vendas Diárias <span style="font-size:10px;font-weight:400;color:var(--gray-400)">8 dias · média R$ 468.757,38/dia (linha tracejada) · fim de semana com ponto vazado · clique num dia para filtrar</span></div>
+          <canvas id="dailyChart"></canvas>
+        </div>
+        <div class="daily-dow-wrap">
+          <div class="table-card-title" id="dowTableTitle">🗓️ Por dia da semana <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(destaque pela média/dia · clique para filtrar)</span></div>
+          <div id="tblDiaSemana"></div>
+        </div>
+      </div>
     </div>
 
     <!-- TOP ITENS + TOP VENDEDORES -->
@@ -1036,6 +1068,62 @@ let FROZEN_ROWS = [];
 let CURRENT_ROWS = [];
 let CURRENT_MONTH = '';
 let weekChart = null;
+let dailyChart = null;
+// Filtro de período vindo dos gráficos Vendas Diárias / Por dia da semana (mutuamente exclusivos)
+const periodFilter = {days:[], dows:[]};
+const DOW_NAMES = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+function ymdKey(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function dowOf(ymd){ return new Date(ymd+'T00:00:00').getDay(); }
+function periodActive(){ return periodFilter.days.length>0 || periodFilter.dows.length>0; }
+// Período A: só os dias / dias da semana selecionados
+function applyPeriodA(arr){
+  if (periodFilter.days.length) { const set=new Set(periodFilter.days); return arr.filter(r=>set.has(r['Data'])); }
+  if (periodFilter.dows.length) return arr.filter(r=>r['Data']&&periodFilter.dows.includes(dowOf(r['Data'])));
+  return arr;
+}
+// Datas D-7 (mesmo dia da semana anterior)
+function periodPrevDays(){ return periodFilter.days.map(k=>{const d=new Date(k+'T00:00:00'); d.setDate(d.getDate()-7); return ymdKey(d);}); }
+// Datas de comparação (recalculadas em applyFilters):
+//  dia(s) → D-7 (mesmo dia da semana anterior)
+//  dia da semana → as N ocorrências anteriores desse dia (N = nº de ocorrências no período A), para comparar quantidades iguais
+let periodCompDates = [];
+function buildPeriodCompDates(visKeys){
+  if (periodFilter.days.length) { periodCompDates = periodPrevDays(); return; }
+  if (periodFilter.dows.length) {
+    const out = [];
+    periodFilter.dows.forEach(dw => {
+      const occ = visKeys.filter(k => dowOf(k) === dw).sort();
+      if (!occ.length) return;
+      const first = new Date(occ[0]+'T00:00:00');
+      for (let i = 1; i <= occ.length; i++) { const d = new Date(first); d.setDate(d.getDate() - 7*i); out.push(ymdKey(d)); }
+    });
+    periodCompDates = out; return;
+  }
+  periodCompDates = [];
+}
+function applyPeriodComp(arr, vends){
+  if (!periodActive()) return arr;
+  const set = new Set(periodCompDates);
+  return filterData(ALL_DATA,[],[],vends,filterState.cat,filterState.item).filter(r=>set.has(r['Data']));
+}
+function periodLabelTxt(){
+  if (periodFilter.days.length) return periodFilter.days.map(k=>k.slice(8,10)+'/'+k.slice(5,7)).join(', ');
+  if (periodFilter.dows.length) return periodFilter.dows.map(d=>DOW_NAMES[d]).join(', ');
+  return '';
+}
+function selectDayFromChart(key){
+  const only = key && periodFilter.days.length===1 && periodFilter.days[0]===key;
+  periodFilter.days.length=0; periodFilter.dows.length=0;
+  if (key && !only) periodFilter.days.push(key);
+  applyFilters();
+}
+function selectDowFromTable(dow){
+  const only = dow!==null && periodFilter.dows.length===1 && periodFilter.dows[0]===dow;
+  periodFilter.days.length=0; periodFilter.dows.length=0;
+  if (dow!==null && !only) periodFilter.dows.push(dow);
+  applyFilters();
+}
+function clearPeriodFilter(){ periodFilter.days.length=0; periodFilter.dows.length=0; applyFilters(); }
 let monthlyCharts = [];
 const CAT_ICON_PATHS = {
   'Mobilidade':'<circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-6.88-6"/>',
@@ -1670,6 +1758,7 @@ async function hydrateWorkerRows(compactRows){
 
 function destroyDashboardCharts(){
   try{if(weekChart){weekChart.destroy();weekChart=null;}}catch(_){ }
+  try{if(dailyChart){dailyChart.destroy();dailyChart=null;}}catch(_){ }
   try{monthlyCharts.forEach(c=>c&&c.destroy&&c.destroy());monthlyCharts=[];}catch(_){monthlyCharts=[];}
   try{if(typeof tmDayChart!=='undefined'&&tmDayChart){tmDayChart.destroy();tmDayChart=null;}}catch(_){ }
   try{if(typeof tmRangeChart!=='undefined'&&tmRangeChart){tmRangeChart.destroy();tmRangeChart=null;}}catch(_){ }
@@ -2143,6 +2232,7 @@ function limparFiltrosAtivos(){
     render=()=>renderTMTab();
   } else {
     if(filterState.cat) filterState.cat.length=0;
+    periodFilter.days.length=0; periodFilter.dows.length=0;
     groups=[['msMonthA',filterState.monthA],['msMonthB',filterState.monthB],['msWeek',filterState.week],['msWeekB',filterState.weekB],['msVendedor',filterState.vendedor],['msItem',filterState.item]];
     render=()=>applyFilters();
   }
@@ -2193,12 +2283,20 @@ function applyFilters(){
   const weeksSelected=filterState.week;
   const weeksB=filterState.weekB.filter(w=>w!=='');
 
-  const dataA=filterData(ALL_DATA,monthsA,weeksSelected,filterState.vendedor,filterState.cat,filterState.item);
-  const dataB=monthsB.length
+  const dataAFull=filterData(ALL_DATA,monthsA,weeksSelected,filterState.vendedor,filterState.cat,filterState.item);
+  // descarta dias selecionados que saíram do período visível (troca de mês/semana)
+  if(periodActive()){
+    let lastDay=''; for(const r of ALL_DATA){ if(r['Data']>lastDay) lastDay=r['Data']; }
+    const vis=new Set(); getWeeksForMonths(monthsA).filter(w=>!weeksSelected.length||weeksSelected.includes(w.label)).forEach(w=>{for(let d=new Date(w.start);d<=w.end;d.setDate(d.getDate()+1)){const k=ymdKey(d); if(!lastDay||k<=lastDay) vis.add(k);}});
+    for(let i=periodFilter.days.length-1;i>=0;i--) if(!vis.has(periodFilter.days[i])) periodFilter.days.splice(i,1);
+    buildPeriodCompDates([...vis]);
+  } else periodCompDates=[];
+  const dataA=applyPeriodA(dataAFull);
+  const dataB=applyPeriodComp(monthsB.length
     ?filterData(ALL_DATA,monthsB,[],filterState.vendedor,filterState.cat,filterState.item)
     :weeksB.length
       ?filterData(ALL_DATA,monthsA,weeksB,filterState.vendedor,filterState.cat,filterState.item)
-      :[];
+      :[], filterState.vendedor);
 
   // Auto-previous period
   let autoPrevData=[],autoPrevLabel='';
@@ -2217,6 +2315,7 @@ function applyFilters(){
     autoPrevData=dataB;
     autoPrevLabel=weeksB.length?'Sem. B selecionada':'Período B';
   }
+  autoPrevData=applyPeriodComp(autoPrevData, filterState.vendedor);
 
   // Chart comparison: only shown when user explicitly selects comparativo
   // Auto MoM/WoW is used for growth tables only — not shown in chart unless manual B
@@ -2232,9 +2331,10 @@ function applyFilters(){
     chartCompLabel=prevWeeks.length?'Sem. anterior':'';
   }
   // MoM auto (no week filter, no manual B) → chart shows only period A, no comparison bars
+  if(periodActive() && chartCompData.length) chartCompData=applyPeriodComp(chartCompData, filterState.vendedor);
 
   // MoM equivalent-days data (used everywhere for auto MoM comparison)
-  const momData = getMomDataEquivalentDays(monthsA, filterState.vendedor, filterState.cat, filterState.item);
+  const momData = applyPeriodComp(getMomDataEquivalentDays(monthsA, filterState.vendedor, filterState.cat, filterState.item), filterState.vendedor);
 
   // WoW data (when week filter active)
   let wowData = [];
@@ -2242,6 +2342,7 @@ function applyFilters(){
     const prevW = getPrevWeekLabels(weeksSelected);
     wowData = prevW.length ? filterData(ALL_DATA,monthsA,prevW,filterState.vendedor,filterState.cat,filterState.item) : [];
   }
+  if(periodActive()) wowData = applyPeriodComp(wowData, filterState.vendedor);
 
   // Venda Itens comparison:
   // - Manual B selected → use dataB
@@ -2268,10 +2369,19 @@ function applyFilters(){
     kpiComp  = momData;
     kpiLabel = 'MoM';
   }
+  if(periodFilter.days.length){
+    // dia específico: compara com o mesmo dia da semana anterior (D-7)
+    kpiComp = momData; kpiLabel = 'D-7';
+    growthPrevData = momData; growthPrevLabel = 'D-7 — mesmo dia da semana anterior';
+  } else if(periodFilter.dows.length){
+    const n = periodCompDates.length;
+    kpiComp = momData; kpiLabel = periodFilter.dows.length===1 ? n + ' ' + ['dom','seg','ter','qua','qui','sex','sáb'][periodFilter.dows[0]] + '. ant.' : n + ' dias ant.';
+    growthPrevData = momData; growthPrevLabel = n + (n===1?' dia equivalente anterior':' dias equivalentes anteriores') + ' (mesmo dia da semana)';
+  }
   renderKPIs(dataA, kpiComp, kpiLabel);
   // Universo DELLAMED (mesmos filtros, sem vendedor) para participação e ticket de referência
   if(filterState.vendedor.length){
-    const uniA=filterData(ALL_DATA,monthsA,weeksSelected,[],filterState.cat,filterState.item);
+    const uniA=applyPeriodA(filterData(ALL_DATA,monthsA,weeksSelected,[],filterState.cat,filterState.item));
     let uniC;
     if(hasManualB){
       uniC=monthsB.length?filterData(ALL_DATA,monthsB,[],[],filterState.cat,filterState.item):filterData(ALL_DATA,monthsA,weeksB,[],filterState.cat,filterState.item);
@@ -2280,6 +2390,7 @@ function applyFilters(){
     } else {
       uniC=getMomDataEquivalentDays(monthsA,[],filterState.cat,filterState.item);
     }
+    uniC=applyPeriodComp(uniC,[]);
     renderVendSummary(dataA,kpiComp,kpiLabel,uniA,uniC,monthsA,weeksSelected);
   } else {
     const vs=document.getElementById('vendSummary'); if(vs) vs.innerHTML='';
@@ -2288,6 +2399,7 @@ function applyFilters(){
   renderInsights(dataA, kpiComp, kpiLabel);
   renderCatCards(dataA, kpiComp, kpiLabel);
   renderWeekChart(dataA,monthsA,weeksSelected,chartCompData,chartCompLabel,weeksB);
+  renderDailyChart(dataAFull,monthsA,weeksSelected);
   renderTopItens(dataA,dataB,momData,wowData,weeksSelected.length>0);
   renderTopVendedores(dataA,momData,wowData,weeksSelected.length>0);
   renderItemGrowth(dataA,growthPrevData,growthPrevLabel,[]);
@@ -2740,9 +2852,15 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
   // Dias efetivos: semanas cortadas na virada do mês ou ainda em andamento têm menos dias
   let lastDataDay = ''; for (const r of ALL_DATA) { if (r['Data'] > lastDataDay) lastDataDay = r['Data']; }
   const lastData = lastDataDay ? new Date(lastDataDay + 'T00:00:00') : null;
-  const weekDays = w => { if (!w) return 0; const end = lastData && lastData < w.end ? lastData : w.end; return Math.max(0, Math.round((end - w.start) / 86400000) + 1); };
+  const pDaySet = new Set([...periodFilter.days, ...periodPrevDays()]);
+  const dayMatches = d => periodFilter.days.length ? pDaySet.has(ymdKey(d)) : (periodFilter.dows.length ? periodFilter.dows.includes(d.getDay()) : true);
+  const weekDays = w => {
+    if (!w) return 0; const end = lastData && lastData < w.end ? lastData : w.end;
+    if (!periodActive()) return Math.max(0, Math.round((end - w.start) / 86400000) + 1);
+    let n = 0; for (let d = new Date(w.start); d <= end; d.setDate(d.getDate()+1)) if (dayMatches(d)) n++; return n;
+  };
   const vendByWeek = {};
-  filterData(ALL_DATA, [], [], filterState.vendedor, filterState.cat, filterState.item).forEach(r => {
+  filterData(ALL_DATA, [], [], filterState.vendedor, filterState.cat, filterState.item).filter(r => !periodActive() || (r['Data'] && dayMatches(new Date(r['Data']+'T00:00:00')))).forEach(r => {
     const wl = getWeekLabel(r['Data'], r['Mês ano']);
     vendByWeek[wl] = (vendByWeek[wl] || 0) + r['Total de Vendas'];
   });
@@ -2898,6 +3016,154 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
       <tbody>${rows}</tbody>
     </table>
     </div>`;
+}
+
+// ============================================================
+// VENDAS DIÁRIAS — barras R$ por dia; tooltip com R$ e peças
+// ============================================================
+function renderDailyChart(dataA, monthsA, weeksSelected) {
+  const canvas = document.getElementById('dailyChart'); if (!canvas) return;
+  const allWeeks = getWeeksForMonths(monthsA);
+  const weeks = weeksSelected.length ? allWeeks.filter(w => weeksSelected.includes(w.label)) : allWeeks;
+  let lastDataDay = ''; for (const r of ALL_DATA) { if (r['Data'] > lastDataDay) lastDataDay = r['Data']; }
+  const lastData = lastDataDay ? new Date(lastDataDay + 'T00:00:00') : null;
+  const key = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+
+  // Agrega o período filtrado por data
+  const byDay = {};
+  dataA.forEach(r => {
+    const k = r['Data']; if (!k) return;
+    if (!byDay[k]) byDay[k] = {v:0, q:0};
+    byDay[k].v += r['Total de Vendas'] || 0;
+    byDay[k].q += r['Quantidade vendida'] || 0;
+  });
+
+  // Todos os dias do período (inclusive dias sem venda), até o último dia com dados
+  const seen = new Set(), days = [];
+  weeks.forEach(w => {
+    const end = lastData && lastData < w.end ? lastData : w.end;
+    for (let d = new Date(w.start); d <= end; d.setDate(d.getDate()+1)) {
+      const k = key(d); if (seen.has(k)) continue; seen.add(k);
+      days.push({k, date:new Date(d)});
+    }
+  });
+  days.sort((a,b) => a.date - b.date);
+
+  const DOW = ['dom','seg','ter','qua','qui','sex','sáb'];
+  const vendas = days.map(d => byDay[d.k] ? byDay[d.k].v : 0);
+  const pecas  = days.map(d => byDay[d.k] ? byDay[d.k].q : 0);
+  const labels = days.map(d => String(d.date.getDate()).padStart(2,'0') + '/' + String(d.date.getMonth()+1).padStart(2,'0'));
+  const isWknd = days.map(d => d.date.getDay() === 0 || d.date.getDay() === 6);
+  const total = vendas.reduce((a,b)=>a+b,0), totalQ = pecas.reduce((a,b)=>a+b,0);
+  const avg = days.length ? total / days.length : 0;
+
+  const isSel = days.map(d => periodFilter.days.length ? periodFilter.days.includes(d.k) : (periodFilter.dows.length ? periodFilter.dows.includes(d.date.getDay()) : false));
+  const anySel = periodActive();
+
+  const title = document.getElementById('dailyChartTitle');
+  if (title) title.innerHTML = '📅 Vendas Diárias <span style="font-size:10px;font-weight:400;color:var(--gray-400)">' +
+    days.length + (days.length===1?' dia':' dias') + ' · média ' + fmtR(avg) + '/dia (linha tracejada) · fim de semana com ponto vazado · clique num dia para filtrar</span>' +
+    (anySel ? '<button class="week-clear-btn" onclick="clearPeriodFilter()">Filtrando: ' + periodLabelTxt() + ' ✕</button>' : '');
+
+  const selBand = {
+    id: 'dailySelBand',
+    beforeDatasetsDraw(chart){
+      if (!anySel) return;
+      const {ctx, chartArea, scales:{x}} = chart;
+      const step = days.length > 1 ? (x.getPixelForValue(1) - x.getPixelForValue(0)) : (chartArea.right - chartArea.left);
+      ctx.save(); ctx.fillStyle = 'rgba(59,130,246,.12)';
+      isSel.forEach((sel, i) => { if (!sel) return; const cx = x.getPixelForValue(i);
+        const l = Math.max(chartArea.left, cx - step/2), r = Math.min(chartArea.right, cx + step/2);
+        ctx.fillRect(l, chartArea.top, r - l, chartArea.bottom - chartArea.top); });
+      ctx.restore();
+    }
+  };
+
+  const avgLine = {
+    id: 'dailyAvgLine',
+    afterDatasetsDraw(chart){
+      if (!avg) return;
+      const {ctx, chartArea, scales:{y}} = chart; const yy = y.getPixelForValue(avg);
+      ctx.save(); ctx.strokeStyle = 'rgba(251,191,36,.75)'; ctx.setLineDash([5,4]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(chartArea.left, yy); ctx.lineTo(chartArea.right, yy); ctx.stroke(); ctx.restore();
+    }
+  };
+
+  renderDowTable(days, vendas, pecas);
+  if (dailyChart) dailyChart.destroy();
+  dailyChart = new Chart(canvas.getContext('2d'), {
+    type: 'line',
+    data: { labels, datasets: [{
+      label: 'Vendas (R$)', data: vendas,
+      borderColor: '#3b82f6', borderWidth: 2.5, cubicInterpolationMode: 'monotone', fill: true,
+      backgroundColor: ctx => {
+        const {chart} = ctx, a = chart.chartArea; if (!a) return 'rgba(59,130,246,.12)';
+        const g = chart.ctx.createLinearGradient(0, a.top, 0, a.bottom);
+        g.addColorStop(0, 'rgba(59,130,246,.28)'); g.addColorStop(1, 'rgba(59,130,246,0)'); return g;
+      },
+      pointRadius: isSel.map(sel => sel ? 7 : (days.length > 45 ? 2 : 4)), pointHoverRadius: 8, pointBorderWidth: 2,
+      pointBorderColor: isSel.map(sel => sel ? '#1d4ed8' : (anySel ? 'rgba(59,130,246,.45)' : '#3b82f6')),
+      pointBackgroundColor: days.map((d, i) => isSel[i] ? '#1d4ed8' : (isWknd[i] ? '#ffffff' : (anySel ? 'rgba(59,130,246,.45)' : '#3b82f6'))),
+      pointHoverBackgroundColor: '#1d4ed8'
+    }]},
+    plugins: [selBand, avgLine],
+    options: {
+      responsive: true,
+      interaction: {mode:'index', intersect:false},
+      onHover: (evt, els) => { evt.native && (evt.native.target.style.cursor = els.length ? 'pointer' : 'default'); },
+      onClick: (evt) => {
+        const els = dailyChart.getElementsAtEventForMode(evt, 'index', {intersect:false}, true);
+        if (!els.length) return; const d = days[els[0].index]; if (!d) return;
+        setTimeout(() => selectDayFromChart(d.k), 0);
+      },
+      plugins: {
+        legend: {display:false},
+        tooltip: {callbacks: {
+          title: items => { const d = days[items[0].dataIndex]; return labels[items[0].dataIndex] + ' (' + DOW[d.date.getDay()] + ')'; },
+          label: item => 'Vendas: ' + fmtR(vendas[item.dataIndex]),
+          afterLabel: item => {
+            const i = item.dataIndex, q = pecas[i], v = vendas[i];
+            const out = ['Peças: ' + fmtN(q)];
+            if (q) out.push('TM: ' + fmtR(v / q));
+            if (avg && v) { const p = (v/avg - 1) * 100; out.push((p>0?'+':'') + p.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1}) + '% vs média/dia'); }
+            return out;
+          },
+          footer: items => { const d = days[items[0].dataIndex]; return (periodFilter.days.length===1 && periodFilter.days[0]===d.k) ? 'Clique para ver todos os dias' : 'Clique para filtrar este dia'; }
+        }}
+      },
+      scales: {
+        x: {grid:{display:false}, ticks:{font:{size:10}, maxRotation:0, autoSkip:true, autoSkipPadding:6}},
+        y: {beginAtZero:true, grace:'8%', ticks:{callback:v=>'R$'+v.toLocaleString('pt-BR'), font:{size:10}}, grid:{color:'rgba(255,255,255,.06)'}}
+      }
+    }
+  });
+}
+
+function renderDowTable(days, vendas, pecas) {
+  const el = document.getElementById('tblDiaSemana'); if (!el) return;
+  const NAMES = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+  const ORDER = [1,2,3,4,5,6,0];
+  const agg = {}; ORDER.forEach(d => agg[d] = {v:0, q:0, n:0});
+  days.forEach((d, i) => { const w = d.date.getDay(); agg[w].v += vendas[i]; agg[w].q += pecas[i]; agg[w].n++; });
+  const total = vendas.reduce((a,b)=>a+b,0), totalQ = pecas.reduce((a,b)=>a+b,0);
+  const avgOf = d => agg[d].n ? agg[d].v / agg[d].n : 0;
+  const maxA = Math.max(0, ...ORDER.map(avgOf));
+  const pct = v => total ? (v/total*100).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1}) + '%' : '—';
+  const ttl = document.getElementById('dowTableTitle');
+  if (ttl) ttl.innerHTML = '🗓️ Por dia da semana <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(destaque pela média/dia · clique para filtrar)</span>' +
+    (periodFilter.dows.length ? '<button class="week-clear-btn" onclick="clearPeriodFilter()">Limpar ✕</button>' : '');
+  const selDow = periodFilter.dows.length ? periodFilter.dows : (periodFilter.days.length ? [...new Set(periodFilter.days.map(dowOf))] : []);
+  const rows = ORDER.filter(d => agg[d].n).map(d => {
+    const a = agg[d], m = avgOf(d), best = m === maxA && maxA > 0, sel = selDow.includes(d);
+    return `<tr class="dow-row ${best?'dow-best':''} ${sel?'dow-sel':''} ${selDow.length&&!sel?'dow-dim':''}" onclick="selectDowFromTable(${d})" title="${a.n} ${a.n===1?'ocorrência':'ocorrências'} no período · ${pct(a.v)} do total · ${periodFilter.dows.length===1&&periodFilter.dows[0]===d?'clique para limpar':'clique para filtrar'}">
+      <td>${NAMES[d]} <span class="dow-n">(${a.n}×)</span><div class="dow-bar" style="width:${maxA?(m/maxA*100).toFixed(1):0}%"></div></td>
+      <td class="r">${fmtR(a.v)}</td><td class="r">${fmtN(a.q)}</td><td class="r">${fmtR(m)}</td></tr>`;
+  }).join('');
+  el.innerHTML = days.length ? `<table>
+    <thead><tr><th>Dia</th><th class="r">Vendas</th><th class="r">Peças</th><th class="r">Méd./dia</th></tr></thead>
+    <tbody>${rows}</tbody>
+    <tfoot><tr><td>Total</td><td class="r">${fmtR(total)}</td><td class="r">${fmtN(totalQ)}</td><td class="r">${fmtR(days.length ? total/days.length : 0)}</td></tr></tfoot>
+  </table>` : '<div style="font-size:11px;color:var(--gray-400)">Sem dados no período.</div>';
 }
 
 function weekChartHint(){
