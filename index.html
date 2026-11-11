@@ -8,7 +8,7 @@
 <title>Performance de vendas marca Dellamed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -36,7 +36,7 @@
   .header-left{display:flex;align-items:center;gap:12px;}
   .header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
   .last-update{font-size:12px;color:var(--blue-300);white-space:nowrap;}
-  .last-update span{color:white;font-weight:600;font-family:'DM Mono',monospace;}
+  .last-update span{color:white;font-weight:600;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;}
   #fileInput{display:none;}
   .btn-upload{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:white;padding:7px 14px;border-radius:7px;cursor:pointer;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;transition:all .15s;font-family:inherit;}
   .btn-upload:hover{background:rgba(255,255,255,.2);}
@@ -84,13 +84,13 @@
   .cat-kpi-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
   .cat-kpi-card{background:var(--surface);border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px 14px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:4px;}
   .cat-kpi-name{font-size:11px;font-weight:700;color:var(--gray-600);display:flex;align-items:center;gap:5px;}
-  .cat-kpi-val{font-size:13px;font-weight:700;color:var(--gray-900);font-family:'DM Mono',monospace;}
+  .cat-kpi-val{font-size:13px;font-weight:700;color:var(--gray-900);font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;}
   .cat-kpi-deltas{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px;}
   .cat-kpi-tag{font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;display:inline-flex;align-items:center;gap:2px;}
   .cat-kpi-tag.mom{background:rgba(139,184,232,.10);color:#8bb8e8;}
   .cat-kpi-tag.wow{background:rgba(34,224,122,.08);color:#4ade80;}
   .kpi-label{font-size:11px;font-weight:600;color:var(--gray-500);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;}
-  .kpi-value{font-size:24px;font-weight:700;color:var(--gray-900);line-height:1.2;font-family:'DM Mono',monospace;}
+  .kpi-value{font-size:24px;font-weight:700;color:var(--gray-900);line-height:1.2;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;}
   .kpi-compare{font-size:11px;color:var(--gray-400);margin-top:4px;}
   .kpi-compare .up{color:var(--green);font-weight:600;}
   .kpi-compare .down{color:var(--red);font-weight:600;}
@@ -105,7 +105,7 @@
   .cat-card:hover .cat-icon{background:rgba(139,184,232,.18);border-color:var(--blue-400);}
   .cat-card.active .cat-icon{background:var(--blue-500);color:#fff;border-color:var(--blue-500);}
   .cat-name{font-size:11px;font-weight:600;color:var(--gray-700);margin-bottom:6px;line-height:1.3;}
-  .cat-val{font-size:14px;font-weight:700;color:var(--blue-300);font-family:'DM Mono',monospace;}
+  .cat-val{font-size:14px;font-weight:700;color:var(--blue-300);font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;}
   .cat-qty{font-size:11px;color:var(--gray-500);margin-top:2px;}
   .cat-deltas{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;}
   .cat-delta{font-size:9px;font-weight:700;padding:2px 5px;border-radius:3px;letter-spacing:.03em;}
@@ -117,7 +117,7 @@
   /* CHART */
   .chart-card{background:var(--surface);border:1px solid var(--gray-200);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);margin-bottom:20px;}
   .chart-card canvas{max-height:280px;}
-  .daily-grid{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:24px;align-items:start;}
+  .daily-grid{display:grid;grid-template-columns:minmax(0,1fr) 480px;gap:24px;align-items:start;}
   .daily-grid .table-card-title{flex-wrap:wrap;row-gap:6px;}
   .daily-grid .table-card-title > span{flex:1 1 220px;}
   .daily-grid .week-clear-btn{white-space:nowrap;margin-left:0;}
@@ -125,14 +125,14 @@
   .daily-dow-wrap td,.daily-dow-wrap th{padding:7px 6px;}
   .daily-dow-wrap tr.dow-best td{font-weight:700;}
   .daily-dow-wrap tr.dow-row{cursor:pointer;transition:background .12s,opacity .12s;}
-  .daily-dow-wrap tr.dow-row:hover td{background:rgba(59,130,246,.08);}
+  .daily-dow-wrap tr.dow-row:hover td{background:rgba(54,176,201,.08);}
   .daily-dow-wrap tr.dow-sel td{background:rgba(59,130,246,.16)!important;}
   .daily-dow-wrap tr.dow-sel td:first-child{box-shadow:inset 3px 0 0 #3b82f6;}
   .daily-dow-wrap tr.dow-dim{opacity:.5;}
   .daily-dow-wrap .dow-n{font-size:10px;color:var(--gray-400);font-weight:400;}
-  .daily-dow-wrap .dow-bar{height:4px;border-radius:2px;background:rgba(59,130,246,.75);margin-top:4px;}
+  .daily-dow-wrap .dow-bar{height:4px;border-radius:2px;background:rgba(54,176,201,.75);margin-top:4px;}
   .daily-dow-wrap tfoot td{border-top:2px solid var(--gray-200);font-weight:700;font-size:11px;}
-  .daily-dow-wrap tfoot td.r{text-align:right;font-family:'DM Mono',monospace;white-space:nowrap;}
+  .daily-dow-wrap tfoot td.r{text-align:right;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;}
   .daily-dow-wrap tbody td.r{white-space:nowrap;}
   @media(max-width:1100px){.daily-grid{grid-template-columns:1fr;}.daily-dow-wrap{border-left:none;padding-left:0;border-top:1px solid var(--gray-200);padding-top:16px;}}
 
@@ -144,7 +144,7 @@
   .monthly-chart-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:0;}
   .monthly-chart-panel{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:9px;padding:14px 14px 10px;min-width:0;}
   .monthly-avg{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--gray-500);white-space:nowrap;}
-  .monthly-avg b{color:#fff;font-size:13px;font-family:'DM Mono',monospace;margin-left:4px;}
+  .monthly-avg b{color:#fff;font-size:13px;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;margin-left:4px;}
   .monthly-avg:empty{display:none;}
   @media(max-width:900px){.monthly-chart-title{flex-wrap:wrap;}.monthly-avg{margin-left:0;white-space:normal;}}
   .monthly-chart-title{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gray-600);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
@@ -181,7 +181,7 @@
   tbody tr:nth-child(even){background:var(--gray-50);}
   tbody tr:hover{background:var(--gray-100);}
   tbody td{padding:7px 8px;font-size:12px;color:var(--gray-700);}
-  tbody td.r{text-align:right;font-family:'DM Mono',monospace;font-size:11px;}
+  tbody td.r{text-align:right;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;font-size:11px;}
   .rank-num{font-size:10px;font-weight:700;color:var(--gray-400);width:20px;display:inline-block;}
   .badge{display:inline-block;font-size:9px;font-weight:800;padding:2px 5px;border-radius:3px;letter-spacing:.04em;vertical-align:middle;margin-left:4px;}
   .badge-new{background:rgba(251,191,36,.16);color:#fcd34d;}
@@ -231,7 +231,7 @@
   .tm-kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
   .tm-kpi-card{background:var(--surface);border:1px solid var(--gray-200);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-sm);}
   .tm-kpi-label{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gray-500);margin-bottom:4px;}
-  .tm-kpi-value{font-size:26px;font-weight:700;color:var(--blue-400);font-family:'DM Mono',monospace;}
+  .tm-kpi-value{font-size:26px;font-weight:700;color:var(--blue-400);font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;}
   .tm-kpi-sub{font-size:11px;color:var(--gray-400);margin-top:3px;}
   .tm-chart-card{background:var(--surface);border:1px solid var(--gray-200);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);margin-bottom:20px;}
   .tm-chart-card canvas{max-height:300px;}
@@ -250,13 +250,13 @@
   .load-logo{width:44px;height:44px;background:var(--blue-500);border-radius:10px;display:flex;align-items:center;
     justify-content:center;font-weight:700;font-size:22px;color:#fff;margin:0 auto 14px;}
   .load-title{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
-  .load-status{font-size:12.5px;color:var(--gray-500);margin-bottom:16px;min-height:18px;font-family:'DM Mono',monospace;}
+  .load-status{font-size:12.5px;color:var(--gray-500);margin-bottom:16px;min-height:18px;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;}
   .load-bar-wrap{height:10px;background:var(--gray-200);border-radius:6px;overflow:hidden;margin-bottom:8px;}
   .load-bar{height:100%;width:0%;border-radius:6px;background:linear-gradient(90deg,var(--blue-600),var(--blue-400));
     transition:width .25s ease;}
   .load-bar.indeterminate{width:40%;animation:loadSlide 1s ease-in-out infinite;}
   @keyframes loadSlide{0%{margin-left:-40%}100%{margin-left:100%}}
-  .load-pct{font-size:11px;color:var(--gray-400);font-family:'DM Mono',monospace;margin-bottom:4px;}
+  .load-pct{font-size:11px;color:var(--gray-400);font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;margin-bottom:4px;}
   .load-meta{font-size:11px;color:var(--gray-400);margin-top:10px;line-height:1.5;}
   .load-months{font-size:12px;color:var(--gray-600);margin-top:12px;line-height:1.5;text-align:left;}
   .load-months b{color:var(--gray-900);}
@@ -266,7 +266,7 @@
   .load-sheets li{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--gray-500);}
   .load-sheets li .dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--gray-300);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
   .load-sheets li .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .load-sheets li .ct{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--gray-400);}
+  .load-sheets li .ct{font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;font-size:10.5px;color:var(--gray-400);}
   .load-sheets li.reading{color:var(--gray-900);}
   .load-sheets li.reading .dot{border-color:var(--blue-400);border-top-color:transparent;animation:spin .8s linear infinite;}
   .load-sheets li.ok{color:var(--gray-700);}
@@ -289,7 +289,7 @@
   .pin-sub{font-size:12.5px;color:var(--blue-300);margin-bottom:28px;}
   .pin-boxes{display:flex;gap:9px;justify-content:center;margin-bottom:16px;}
   .pin-box{width:44px;height:54px;border-radius:9px;border:1.5px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);
-    color:#fff;font-size:22px;font-weight:700;text-align:center;font-family:'DM Mono',monospace;outline:none;
+    color:#fff;font-size:22px;font-weight:700;text-align:center;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;outline:none;
     transition:border-color .15s,background .15s;}
   .pin-box:focus{border-color:var(--blue-400);background:rgba(139,184,232,.12);}
   .pin-card.pin-error .pin-box{border-color:var(--red);animation:pinShake .35s;}
@@ -298,7 +298,7 @@
   .pin-bar-wrap{height:8px;background:rgba(255,255,255,.1);border-radius:5px;overflow:hidden;display:none;}
   .pin-bar-wrap.show{display:block;}
   .pin-bar{height:100%;width:0%;border-radius:5px;background:linear-gradient(90deg,var(--blue-600),var(--cyan));transition:width .9s cubic-bezier(.4,0,.2,1);}
-  .pin-loading-txt{font-size:11px;color:var(--blue-300);margin-top:10px;font-family:'DM Mono',monospace;display:none;}
+  .pin-loading-txt{font-size:11px;color:var(--blue-300);margin-top:10px;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;display:none;}
   .pin-loading-txt.show{display:block;}
   .data-state:empty{display:none;}
   .q-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-bottom:20px;}
@@ -309,11 +309,11 @@
   .q-name{font-size:15px;font-weight:700;color:var(--gray-900);}
   .q-months{font-size:11px;color:var(--gray-400);}
   .q-badge{font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:rgba(251,191,36,.15);color:#fbbf24;margin-left:6px;}
-  .q-val{font-size:22px;font-weight:700;color:var(--gray-900);font-family:'DM Mono',monospace;line-height:1.2;}
+  .q-val{font-size:22px;font-weight:700;color:var(--gray-900);font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;line-height:1.2;}
   .q-qoq{font-size:11px;color:var(--gray-400);margin-top:3px;min-height:15px;}
   .q-sub{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid var(--gray-100);}
   .q-sub div{font-size:10px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:.04em;}
-  .q-sub b{display:block;font-size:13px;color:var(--gray-800);font-family:'DM Mono',monospace;text-transform:none;letter-spacing:0;margin-top:2px;}
+  .q-sub b{display:block;font-size:13px;color:var(--gray-800);font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;text-transform:none;letter-spacing:0;margin-top:2px;}
   .q-sub small{font-size:10px;text-transform:none;letter-spacing:0;}
   .q-chart-wrap{position:relative;height:300px;}
   .q-chart-wrap.tall{height:290px;}
@@ -324,7 +324,7 @@
   .q-seg button.active{background:var(--blue-600);color:#fff;}
   .q-table-wrap{overflow-x:auto;}
   .q-table td{padding:9px 8px;font-size:12px;vertical-align:top;}
-  .q-table td.r{text-align:right;font-family:'DM Mono',monospace;white-space:nowrap;}
+  .q-table td.r{text-align:right;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;}
   .q-table td small{display:block;font-size:10px;margin-top:2px;}
   .q-table tr.q-total td{font-weight:700;border-top:2px solid var(--gray-200);background:var(--surface-2);}
   .q-table td.cat{font-weight:600;color:var(--gray-800);}
@@ -545,6 +545,121 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
 .fc-more:focus-visible,.fc-reset:focus-visible{outline:2px solid var(--blue-400);outline-offset:2px}
 .fc-reset{font:inherit;font-size:11.5px;font-weight:600;padding:5px 12px;border-radius:8px;border:1px solid var(--gray-200);background:transparent;color:var(--gray-700);cursor:pointer;margin-left:auto}
 .fc-reset[hidden]{display:none}
+
+/* ================================================================
+   IDENTIDADE VISUAL DELLAMED
+   Navy #0F3C6E (dominante) · Azul #36B0C9 · Verde-água #3BBFAD · Coral #EA6852 · Montserrat
+   ================================================================ */
+:root{
+  --brand-navy:#0F3C6E;--brand-cyan:#36B0C9;--brand-teal:#3BBFAD;--brand-coral:#EA6852;
+  --green:#3BBFAD;--red:#EA6852;--cyan:#36B0C9;
+  --blue-800:#0F3C6E;
+}
+html[data-theme="light"]{
+  --blue-800:#0F3C6E;--blue-700:#164a85;--blue-600:#1d5794;--blue-500:#0F3C6E;--blue-400:#0F3C6E;--blue-300:#0F3C6E;
+  --blue-100:rgba(15,60,110,.09);--blue-50:rgba(15,60,110,.045);
+  --gray-900:#0F2B4C;--gray-800:#16375c;--gray-700:#2c4766;--gray-600:#4d6684;--gray-500:#687e98;--gray-400:#8b9cb1;
+  --gray-300:#d3dce7;--gray-200:#e2e8f0;--gray-100:#edf1f6;--gray-50:#f6f8fb;
+  --green:#12806E;--red:#C8432D;--cyan:#1f8fa8;
+  --page:#f0f3f7;--surface:#ffffff;--surface-2:#f6f8fb;
+}
+body{-webkit-font-smoothing:antialiased;}
+/* títulos de seção com marcador da marca no lugar dos emojis */
+.table-card-title,.monthly-chart-title,.tm-section-title{color:var(--gray-900);letter-spacing:.01em;}
+.table-card-title::before,.monthly-chart-title::before,.tm-section-title::before{content:'';flex:none;width:4px;height:16px;border-radius:2px;background:linear-gradient(180deg,var(--brand-cyan),var(--brand-teal));display:inline-block;margin-right:2px;vertical-align:-2px;}
+.table-card-title{font-size:14px;}
+.table-card-title span[style*="font-size:10px"]{font-size:11.5px!important;}
+.section-title{color:var(--blue-800);}
+html:not([data-theme="light"]) .section-title{color:var(--gray-600);}
+/* KPIs */
+.kpi-card{border-left:none;border-top:3px solid var(--brand-navy);}
+html:not([data-theme="light"]) .kpi-card{border-top-color:var(--brand-cyan);}
+.kpi-label{font-size:11.5px;}
+.kpi-value{font-size:26px;letter-spacing:-.01em;}
+.kpi-compare{font-size:12px;}
+html[data-theme="light"] .kpi-value,html[data-theme="light"] .cat-val{color:var(--brand-navy);}
+/* categorias */
+html[data-theme="light"] .cat-icon{background:rgba(54,176,201,.10);border-color:rgba(54,176,201,.35);color:var(--brand-navy);}
+html[data-theme="light"] .cat-card.active{border-color:var(--brand-navy);background:rgba(15,60,110,.04);}
+html[data-theme="light"] .cat-card.active .cat-icon{background:var(--brand-navy);border-color:var(--brand-navy);color:#fff;}
+html[data-theme="light"] .cat-delta.up,html[data-theme="light"] .badge-up{background:rgba(59,191,173,.16);color:#0d6b5c;}
+html[data-theme="light"] .cat-delta.dn,html[data-theme="light"] .badge-down{background:rgba(234,104,82,.14);color:#a8361f;}
+html:not([data-theme="light"]) .cat-delta.up,html:not([data-theme="light"]) .badge-up{background:rgba(59,191,173,.18);color:#5fd6c6;}
+html:not([data-theme="light"]) .cat-delta.dn,html:not([data-theme="light"]) .badge-down{background:rgba(234,104,82,.18);color:#f39a89;}
+html[data-theme="light"] .cat-kpi-tag.mom{background:rgba(15,60,110,.07);color:var(--brand-navy);}
+/* tabelas — fonte maior */
+thead th{font-size:11.5px;padding:9px 10px;color:var(--gray-500);letter-spacing:.06em;}
+tbody td{font-size:13.5px;padding:10px 10px;color:var(--gray-700);}
+tbody td.r{font-size:13.5px;}
+.rank-num{font-size:12px;width:24px;}
+.delta-up,.delta-down{font-size:13px;font-weight:700;}
+.delta-neu{font-size:13px;}
+.empty-state{font-size:13px;}
+#tblVendedores th,#tblModelos th,#tblVendedores td,#tblModelos td{padding-left:10px;padding-right:10px;}
+#tblModelos td:first-child,#tblVendedores td:first-child{max-width:none;}
+.daily-dow-wrap td,.daily-dow-wrap th{padding:9px 8px;}
+.daily-dow-wrap tfoot td{font-size:13.5px;}
+html[data-theme="light"] tbody tr:nth-child(even){background:#f8fafc;}
+html[data-theme="light"] tbody tr:hover{background:rgba(54,176,201,.07);}
+/* botões/chips de filtro ativo */
+html[data-theme="light"] .week-clear-btn{color:var(--brand-navy);background:rgba(54,176,201,.10);border-color:rgba(54,176,201,.45);}
+html[data-theme="light"] .week-clear-btn:hover{background:var(--brand-navy);border-color:var(--brand-navy);color:#fff;}
+/* menu lateral / cabeçalho — navy oficial */
+html[data-theme="light"] .side-nav .tab-btn.active{background:var(--brand-navy);box-shadow:0 2px 10px rgba(15,60,110,.25);}
+html[data-theme="light"] .side-nav .tab-btn:hover{background:rgba(15,60,110,.06);}
+html[data-theme="light"] .theme-switch .ts-btn.active{background:var(--brand-navy);}
+html[data-theme="light"] .header-title{color:var(--brand-navy);}
+html[data-theme="light"] .period-tag{background:var(--brand-navy);}
+html[data-theme="light"] .period-tag.b{background:var(--brand-coral);}
+/* dia da semana */
+.daily-dow-wrap .dow-bar{background:rgba(46,123,214,.85);}
+html:not([data-theme="light"]) .daily-dow-wrap .dow-bar{background:rgba(46,123,214,.9);}
+.daily-dow-wrap tr.dow-row:hover td{background:rgba(54,176,201,.08);}
+.daily-dow-wrap tr.dow-sel td{background:rgba(54,176,201,.16)!important;}
+.daily-dow-wrap tr.dow-sel td:first-child{box-shadow:inset 3px 0 0 var(--brand-cyan);}
+
+  .daily-dow-wrap td:first-child{white-space:nowrap;}
+/* divisórias discretas em todas as tabelas (no lugar das listras) */
+tbody tr,html[data-theme="light"] tbody tr{border-bottom:none;}
+tbody tr:nth-child(even),html[data-theme="light"] tbody tr:nth-child(even){background:transparent;}
+tbody td{border-bottom:1px solid rgba(15,60,110,.07);}
+html:not([data-theme="light"]) tbody td{border-bottom-color:rgba(255,255,255,.06);}
+tbody tr:last-child td{border-bottom-color:transparent;}
+thead th{border-bottom:1px solid rgba(15,60,110,.14);}
+html:not([data-theme="light"]) thead th{border-bottom-color:rgba(255,255,255,.12);}
+.vend-table tbody td{border-bottom:1px solid rgba(15,60,110,.07);}
+html:not([data-theme="light"]) .vend-table tbody td{border-bottom-color:rgba(255,255,255,.06);}
+/* divisórias verticais discretas */
+tbody td+td,thead th+th{border-left:1px solid rgba(15,60,110,.07);}
+tfoot td+td{border-left:1px solid rgba(15,60,110,.07);}
+html:not([data-theme="light"]) tbody td+td,html:not([data-theme="light"]) thead th+th,html:not([data-theme="light"]) tfoot td+td{border-left-color:rgba(255,255,255,.06);}
+/* linhas clicáveis (Itens/Produtos e Vendedores) */
+tr.row-click{cursor:pointer;}
+tr.row-sel td{background:rgba(46,123,214,.10)!important;}
+tr.row-sel td:first-child{box-shadow:inset 3px 0 0 rgba(46,123,214,.9);}
+tr.row-dim td{opacity:.55;}
+tr.row-dim:hover td{opacity:.85;}
+/* ===== tabela VENDEDORES (padrão ranking com participação e tendência) ===== */
+.vend-table td{vertical-align:middle;}
+.vend-table tbody tr{background:transparent!important;}
+.vend-table tbody tr:hover{background:rgba(54,176,201,.06)!important;}
+.vend-table tbody td{padding:12px 10px;border-bottom:1px solid var(--gray-200);}
+.vend-name{font-weight:700;font-size:13.5px;color:var(--gray-900);text-transform:uppercase;letter-spacing:.01em;}
+html[data-theme="light"] .vend-name{color:var(--brand-navy);}
+.vend-sub{font-size:12px;color:var(--gray-500);margin-top:2px;}
+.vend-share{min-width:150px;}
+.vend-share-bar{height:8px;border-radius:4px;background:rgba(46,123,214,.85);min-width:4px;}
+html:not([data-theme="light"]) .vend-share-bar{background:rgba(46,123,214,.9);}
+.vend-share-txt{font-size:12px;color:var(--gray-500);margin-top:4px;white-space:nowrap;}
+.vend-delta{font-weight:700;font-size:13px;white-space:nowrap;}
+.vend-delta.up{color:var(--green);} .vend-delta.down{color:var(--red);} .vend-delta.neu{color:var(--gray-400);font-weight:400;}
+.vend-delta i{font-style:normal;font-size:10px;margin-right:3px;}
+.vend-spark{width:96px;height:28px;display:block;margin-left:auto;}
+.vend-spark polyline{fill:none;stroke:var(--brand-navy);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;}
+html:not([data-theme="light"]) .vend-spark polyline{stroke:var(--blue-300);}
+.vend-spark circle{fill:var(--brand-coral);}
+.vend-table td.c{text-align:right;}
+.vend-table th:first-child{width:28%;}
 </style>
 </head>
 <body style="">
@@ -701,7 +816,7 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
         <button type="button" class="ts-btn active" data-mode="light" onclick="setPerfTheme('light')" aria-label="Tema claro"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg></button>
       </div>
       <div class="data-state" id="dataState" title="Meses anteriores ficam congelados. Se o arquivo trouxer de novo um mês anterior, esse mês é recarregado com os dados do arquivo.">Último mês: <b>nov/26</b></div>
-      <div class="last-update" id="lastUpdate" data-saved="2026-11-10T19:42:28.139Z">Última atualização: <span>10 Nov 2026 — 16:42</span></div>
+      <div class="last-update" id="lastUpdate" data-saved="2026-11-11T14:11:00.287Z">Última atualização: <span>11 Nov 2026 — 11:11</span></div>
       <input type="file" id="fileInput" accept=".xlsx,.xls">
       <button class="btn-upload btn-icon" onclick="document.getElementById('fileInput').click()" title="Atualizar Dados" aria-label="Atualizar Dados" style="">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -731,13 +846,13 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
         Filtros
       </div>
       <div class="filter-grid" style="grid-template-columns:repeat(6,1fr)">
-        <div class="filter-group"><div class="filter-label">MÊS REFERÊNCIA <span class="period-tag">A</span></div>
+        <div class="filter-group"><div class="filter-label">MÊS REFERÊNCIA</div>
           <div class="multi-select-container" id="msMonthA"><div class="multi-select-btn" onclick="toggleDropdown('msMonthA')" title="2026-11-01">novembro</div><div class="multi-dropdown" id="dropdown-msMonthA"></div></div></div>
-        <div class="filter-group"><div class="filter-label">MÊS COMPARATIVO <span class="period-tag b">B</span></div>
+        <div class="filter-group"><div class="filter-label">MÊS COMPARATIVO</div>
           <div class="multi-select-container" id="msMonthB"><div class="multi-select-btn" onclick="toggleDropdown('msMonthB')" title="">Nenhum</div><div class="multi-dropdown" id="dropdown-msMonthB"></div></div></div>
-        <div class="filter-group"><div class="filter-label">SEMANA REFERÊNCIA <span class="period-tag">C</span></div>
+        <div class="filter-group"><div class="filter-label">SEMANA REFERÊNCIA</div>
           <div class="multi-select-container" id="msWeek"><div class="multi-select-btn" onclick="toggleDropdown('msWeek')" title="">Todas as semanas</div><div class="multi-dropdown" id="dropdown-msWeek"></div></div></div>
-        <div class="filter-group"><div class="filter-label">COMPARATIVO SEMANA <span class="period-tag b">D</span></div>
+        <div class="filter-group"><div class="filter-label">COMPARATIVO SEMANA</div>
           <div class="multi-select-container" id="msWeekB"><div class="multi-select-btn" onclick="toggleDropdown('msWeekB')" title="">Nenhuma</div><div class="multi-dropdown" id="dropdown-msWeekB"></div></div></div>
         <div class="filter-group"><div class="filter-label">Vendedor</div>
           <div class="multi-select-container" id="msVendedor"><div class="multi-select-btn" onclick="toggleDropdown('msVendedor')" title="">Todos</div><div class="multi-dropdown" id="dropdown-msVendedor"></div></div></div>
@@ -806,7 +921,7 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
     <div class="kpi-grid" id="kpiGrid"></div>
 
     <!-- RESUMO EXECUTIVO POR VENDEDOR (só com vendedor filtrado) -->
-    <div class="vend-summary" id="vendSummary"></div>
+    <div class="vend-summary collapsed" id="vendSummary"></div>
 
     <!-- INSIGHTS -->
     <div class="insight-strip" id="insightStrip"><div class="insight-lead"><div class="insight-lead-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.3L19 10l-5.1 1.7L12 17l-1.9-5.3L5 10l5.1-1.7z"></path><path d="M5 19l.6 1.7L7 21l-1.4.3L5 23l-.6-1.7L3 21l1.4-.3z"></path></svg></div><div class="insight-lead-label">Destaques<br>do Período</div></div><div class="insight-cards"><div class="insight-card"><div class="insight-ico red"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg></div><div class="insight-txt"><b>Retração de Receita</b><p>Receita de R$ 3.750.059,07, -5,3% vs o mês anterior.</p></div></div><div class="insight-card"><div class="insight-ico green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div><div class="insight-txt"><b>Ticket Médio em Alta</b><p>Ticket médio de R$ 364,90 (+1,9% vs o mês anterior).</p></div></div><div class="insight-card"><div class="insight-ico amber"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 118 2.83"></path><path d="M22 12A10 10 0 0012 2v10z"></path></svg></div><div class="insight-txt"><b>Categoria em Destaque</b><p>Mobilidade representa 80,7% da receita do período.</p></div></div><div class="insight-card"><div class="insight-ico red"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div><div class="insight-txt"><b>Atenção</b><p>Receita -5,3% frente o mês anterior. Vale investigar o que puxou a queda.</p></div></div></div></div>
@@ -817,7 +932,7 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
 
     <!-- CHART -->
     <div class="chart-card">
-      <div class="table-card-title" id="chartTitle">📊 Performance Semanal <span style="font-size:10px;font-weight:400;color:var(--gray-400)">% vs semana anterior e média de vendas/dia (dias efetivos de cada semana) sobre as barras · clique numa semana para filtrar</span></div>
+      <div class="table-card-title" id="chartTitle">Performance Semanal <span style="font-size:10px;font-weight:400;color:var(--gray-400)">% vs semana anterior e média de vendas/dia (dias efetivos de cada semana) sobre as barras · clique numa semana para filtrar</span></div>
       <canvas id="weekChart"></canvas>
       <div id="weekCompTable" style="margin-top: 16px; display: none;"></div>
     </div>
@@ -826,25 +941,25 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
     <div class="chart-card">
       <div class="daily-grid">
         <div class="daily-chart-wrap">
-          <div class="table-card-title" id="dailyChartTitle">📅 Vendas Diárias <span style="font-size:10px;font-weight:400;color:var(--gray-400)">8 dias · média R$ 468.757,38/dia (linha tracejada) · fim de semana com ponto vazado · clique num dia para filtrar</span></div>
+          <div class="table-card-title" id="dailyChartTitle">Vendas Diárias <span style="font-size:10px;font-weight:400;color:var(--gray-400)">8 dias · média R$ 468.757,38/dia (linha tracejada) · fim de semana com ponto vazado · clique num dia para filtrar</span></div>
           <canvas id="dailyChart"></canvas>
         </div>
         <div class="daily-dow-wrap">
-          <div class="table-card-title" id="dowTableTitle">🗓️ Por dia da semana <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(destaque pela média/dia · clique para filtrar)</span></div>
+          <div class="table-card-title" id="dowTableTitle">Por dia da semana <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(destaque pela média/dia · clique para filtrar)</span></div>
           <div id="tblDiaSemana"></div>
         </div>
       </div>
     </div>
 
-    <!-- TOP ITENS + TOP VENDEDORES -->
-    <div class="tables-grid">
-      <div class="table-card"><div class="table-card-title">🏆 TOP ITENS</div><div id="tblModelos" style="max-height: 360px; overflow-y: auto;"></div></div>
-      <div class="table-card"><div class="table-card-title">👤 Maiores Vendedores</div><div id="tblVendedores" style="max-height: 360px; overflow-y: auto;"></div></div>
-    </div>
+    <!-- ITENS/PRODUTOS -->
+    <div class="table-card" style="margin-bottom:20px"><div class="table-card-title" id="itensTableTitle">Itens/Produtos <span style="font-size:10px;font-weight:400;color:var(--gray-400)">clique numa linha para filtrar o painel</span></div><div id="tblModelos" style="max-height: 474px; overflow-y: auto;"></div></div>
+
+    <!-- VENDEDORES -->
+    <div class="table-card" style="margin-bottom:20px"><div class="table-card-title" id="vendTableTitle">Vendedores <span style="font-size:10px;font-weight:400;color:var(--gray-400)">participação no faturamento do período · tendência diária com o último dia em destaque</span> <span style="font-size:10px;font-weight:400;color:var(--gray-400)">clique numa linha para filtrar o painel</span></div><div id="tblVendedores" style="max-height: 682px; overflow-y: auto;"></div></div>
 
     <!-- VENDA ITENS (unified growth + gap) -->
     <div class="table-card" style="margin-bottom:20px">
-      <div class="table-card-title" id="itemGrowthTitle">📊 Venda Itens <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(MoM — mês anterior)</span></div>
+      <div class="table-card-title" id="itemGrowthTitle">Venda Itens <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(MoM — mês anterior)</span></div>
       <div id="tblVendaItens"></div>
     </div>
 
@@ -860,22 +975,22 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
     <div class="chart-card monthly-performance-card">
       <div class="monthly-performance-head">
         <div>
-          <div class="table-card-title" style="margin-bottom:3px">📅 Performance Mensal</div>
+          <div class="table-card-title" style="margin-bottom:3px">Performance Mensal</div>
           <div style="font-size:11px;color:var(--gray-400)">Vendas, peças e ticket médio, com o MoM calculado diretamente em cada barra</div>
         </div>
         <div class="monthly-performance-note" id="monthlyPerformanceNote">10 meses exibidos. O MoM de cada barra compara com o mês imediatamente anterior.</div>
       </div>
       <div class="monthly-chart-grid">
         <div class="monthly-chart-panel">
-          <div class="monthly-chart-title">💰 Total de Vendas Mensal<span class="monthly-avg" id="monthlySalesAvg">Média mensal<b>R$ 13.929.033,75</b> <span style="font-weight:400;color:var(--gray-400)">(R$ 139,3 mi ÷ 10 meses)</span></span></div>
+          <div class="monthly-chart-title">Total de Vendas Mensal<span class="monthly-avg" id="monthlySalesAvg">Média mensal<b>R$ 13.929.033,75</b> <span style="font-weight:400;color:var(--gray-400)">(R$ 139,3 mi ÷ 10 meses)</span></span></div>
           <div class="monthly-chart-wrap"><canvas id="monthlySalesChart"></canvas></div>
         </div>
         <div class="monthly-chart-panel">
-          <div class="monthly-chart-title">📦 Quantidade de Peças</div>
+          <div class="monthly-chart-title">Quantidade de Peças</div>
           <div class="monthly-chart-wrap"><canvas id="monthlyQtyChart"></canvas></div>
         </div>
         <div class="monthly-chart-panel">
-          <div class="monthly-chart-title">🎫 Ticket Médio</div>
+          <div class="monthly-chart-title">Ticket Médio</div>
           <div class="monthly-chart-wrap"><canvas id="monthlyTicketChart"></canvas></div>
         </div>
         <div class="monthly-chart-panel">
@@ -960,7 +1075,7 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
       <div class="q-sub"><div>Peças<b>40.642</b><small><span class="delta-down">-71,2%</span></small></div><div>Ticket médio<b>R$ 366,57</b><small><span class="delta-up">+11,4%</span></small></div></div>
     </div></div>
     <div class="chart-card">
-      <div class="table-card-title">📊 Vendas por quarter <span style="font-size:10px;font-weight:400;color:var(--gray-400)">% sobre as barras vs quarter anterior</span></div>
+      <div class="table-card-title">Vendas por quarter <span style="font-size:10px;font-weight:400;color:var(--gray-400)">% sobre as barras vs quarter anterior</span></div>
       <div class="q-chart-wrap"><canvas id="qTotalChart"></canvas></div>
     </div>
     <div class="section-title" style="margin-top:22px">Quarter por categoria</div>
@@ -977,7 +1092,7 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
       <div class="q-note" id="qNote">% abaixo de cada valor: variação contra o quarter anterior. Participação calculada sobre as vendas (R$).<br>* Quarter parcial (Q4 2026: 1 de 3 meses). A comparação com um quarter completo tende a mostrar queda.</div>
     </div>
     <div class="chart-card" style="margin-top:20px">
-      <div class="table-card-title" id="qCatChartTitle">📊 Variação de vendas · Q4 2026 vs Q3 2026 por categoria</div>
+      <div class="table-card-title" id="qCatChartTitle">Variação de vendas · Q4 2026 vs Q3 2026 por categoria</div>
       <div class="q-chart-wrap tall"><canvas id="qCatChart"></canvas></div>
     </div>
   </div><!-- /tab-quarter -->
@@ -988,7 +1103,7 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
     <div class="q-cards" id="fcKpis"></div>
     <div class="chart-card">
       <div class="q-table-head" style="margin-bottom:8px">
-        <div class="table-card-title" style="margin:0" id="fcChartTitle">📈 Venda acumulada em novembro/2026</div>
+        <div class="table-card-title" style="margin:0" id="fcChartTitle">Venda acumulada em novembro/2026</div>
         <button type="button" class="fc-reset" id="fcReset" hidden="" onclick="fcSelect('t')">Voltar ao total</button>
       </div>
       <div class="fc-legend"><span><i class="fc-lg-real" style="border-color: rgb(0, 47, 99);"></i>Realizado</span><span><i class="fc-lg-proj" style="border-top-style: dashed; border-color: rgb(31, 102, 179);"></i>Projeção</span><span><i class="fc-lg-prev" style="border-color: rgb(154, 168, 187);"></i><span id="fcLegPrev">outubro/2026</span></span></div>
@@ -1018,7 +1133,7 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
     <!-- TM CHART: linha TM + barras Peças por dia -->
     <div class="tm-chart-card">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-        <div class="tm-section-title" style="margin:0">📅 Ticket Médio e Peças por Dia do Mês</div>
+        <div class="tm-section-title" style="margin:0">Ticket Médio e Peças por Dia do Mês</div>
         <button id="tmDayClearBtn" onclick="clearTMDaySelection()" style="display:none;border:1px solid var(--gray-300);background:var(--surface-2);color:var(--gray-600);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;font-family:inherit">✕ Limpar seleção</button>
       </div>
       <canvas id="tmDayChart"></canvas>
@@ -1027,14 +1142,14 @@ html[data-theme="light"] .theme-switch .ts-btn.active{background:#002f63;color:#
     <!-- DISTRIBUIÇÃO POR FAIXA -->
     <div class="tm-chart-card">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-        <div class="tm-section-title" style="margin:0">📊 Distribuição por Faixa de Preço</div>
+        <div class="tm-section-title" style="margin:0">Distribuição por Faixa de Preço</div>
         <button id="tmRangeClearBtn" onclick="clearTMRangeSelection()" style="display:none;border:1px solid var(--gray-300);background:var(--surface-2);color:var(--gray-600);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;font-family:inherit">✕ Limpar seleção</button>
       </div>
       <canvas id="tmRangeChart"></canvas>
     </div>
     <!-- TOP ITENS POR TM -->
     <div class="tm-chart-card" style="margin-bottom:20px">
-      <div class="tm-section-title">🏆 Top Itens por Ticket Médio</div>
+      <div class="tm-section-title">Top Itens por Ticket Médio</div>
       <div id="tmTopItems" style="max-height:420px;overflow-y:auto;"></div>
     </div>
     <!-- FAIXA DETAIL PANEL -->
@@ -1069,6 +1184,21 @@ let CURRENT_ROWS = [];
 let CURRENT_MONTH = '';
 let weekChart = null;
 let dailyChart = null;
+// Cores da marca para gráficos (navy no tema claro, azul #36B0C9 no escuro)
+function isLightTheme(){ return document.documentElement.getAttribute('data-theme')==='light'; }
+function bRGBA(a){ return 'rgba(' + (isLightTheme() ? '15,60,110' : '54,176,201') + ',' + a + ')'; }
+function bHex(){ return isLightTheme() ? '#0F3C6E' : '#36B0C9'; }
+function bHexStrong(){ return isLightTheme() ? '#0a2a50' : '#a6dfea'; }
+function cyanA(a){ return 'rgba(54,176,201,' + a + ')'; }
+// Padrão visual dos gráficos = gráfico "Ticket Médio e Peças por Dia do Mês"
+const PAT_AMBER = '#fbbf24', PAT_PT_BORDER = '#0f1c36', PAT_TEAL = '#3BBFAD';
+// Azul das barras (translúcido com contorno)
+function blueA(a){ return 'rgba(46,123,214,' + a + ')'; }
+function patBar(ex){ return Object.assign({ backgroundColor: blueA(.28), borderColor: blueA(.75), borderWidth: 1, hoverBackgroundColor: blueA(.45) }, ex || {}); }
+function patLine(color, ex){ return Object.assign({ type:'line', borderColor: color, borderWidth: 2.5, tension: .35, pointRadius: 4, pointHoverRadius: 6,
+  pointBackgroundColor: color, pointBorderColor: PAT_PT_BORDER, pointBorderWidth: 2, backgroundColor: 'transparent' }, ex || {}); }
+function bPos(){ return isLightTheme() ? '#12806E' : '#3BBFAD'; }
+function bNeg(){ return isLightTheme() ? '#C8432D' : '#EA6852'; }
 // Filtro de período vindo dos gráficos Vendas Diárias / Por dia da semana (mutuamente exclusivos)
 const periodFilter = {days:[], dows:[]};
 const DOW_NAMES = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
@@ -1101,10 +1231,35 @@ function buildPeriodCompDates(visKeys){
   }
   periodCompDates = [];
 }
-function applyPeriodComp(arr, vends){
+function applyPeriodComp(arr, vends, items){
   if (!periodActive()) return arr;
   const set = new Set(periodCompDates);
-  return filterData(ALL_DATA,[],[],vends,filterState.cat,filterState.item).filter(r=>set.has(r['Data']));
+  return filterData(ALL_DATA,[],[],vends,filterState.cat,items||filterState.item).filter(r=>set.has(r['Data']));
+}
+// Clique numa linha de Itens/Produtos ou Vendedores → filtra o painel por ela (clicar de novo limpa)
+function selectFromTable(kind, value){
+  const id = kind==='item' ? 'msItem' : 'msVendedor';
+  const state = kind==='item' ? filterState.item : filterState.vendedor;
+  const only = value===null || (state.length===1 && state[0]===value);
+  state.length = 0; if (!only) state.push(value);
+  const dd = document.getElementById('dropdown-'+id);
+  if (dd) {
+    const opts = [...dd.querySelectorAll('input[type=checkbox]')].map(cb => { cb.checked = state.includes(cb.value); return {value:cb.value, label:(cb.nextSibling&&cb.nextSibling.textContent)||cb.value}; });
+    updateBtnLabel(id, state, opts);
+  }
+  applyFilters();
+}
+function tableFilterHint(kind){
+  const state = kind==='item' ? filterState.item : filterState.vendedor;
+  if (!state.length) return '<span style="font-size:10px;font-weight:400;color:var(--gray-400)">clique numa linha para filtrar o painel</span>';
+  const txt = state.length===1 ? state[0] : state.length + (kind==='item' ? ' itens' : ' vendedores');
+  return '<button class="week-clear-btn" onclick="selectFromTable(\''+kind+'\', null)">Filtrando: '+insEsc(txt)+' ✕</button>';
+}
+function wireTableClicks(elId, kind){
+  const el = document.getElementById(elId); if (!el) return;
+  el.onclick = e => { const tr = e.target.closest && e.target.closest('tr[data-k]'); if (tr) selectFromTable(kind, tr.dataset.k); };
+  const sel = el.querySelector('tr.row-sel');
+  if (sel) { const top = sel.getBoundingClientRect().top - el.getBoundingClientRect().top + el.scrollTop; if (top > el.clientHeight - 60) el.scrollTop = top - 60; }
 }
 function periodLabelTxt(){
   if (periodFilter.days.length) return periodFilter.days.map(k=>k.slice(8,10)+'/'+k.slice(5,7)).join(', ');
@@ -1182,7 +1337,7 @@ const ensureChart = async () => {
   if(C && !C.__darkDefaults){
     C.defaults.color='#9fb0d0';
     C.defaults.borderColor='rgba(255,255,255,.08)';
-    if(C.defaults.font) C.defaults.font.family="'DM Sans',sans-serif";
+    if(C.defaults.font) C.defaults.font.family="'Montserrat',sans-serif";
     C.__darkDefaults=true;
   }
   return C;
@@ -2400,8 +2555,20 @@ function applyFilters(){
   renderCatCards(dataA, kpiComp, kpiLabel);
   renderWeekChart(dataA,monthsA,weeksSelected,chartCompData,chartCompLabel,weeksB);
   renderDailyChart(dataAFull,monthsA,weeksSelected);
-  renderTopItens(dataA,dataB,momData,wowData,weeksSelected.length>0);
-  renderTopVendedores(dataA,momData,wowData,weeksSelected.length>0);
+  const tblSet=(vends,items)=>{
+    const A=applyPeriodA(filterData(ALL_DATA,monthsA,weeksSelected,vends,filterState.cat,items));
+    const mom=applyPeriodComp(getMomDataEquivalentDays(monthsA,vends,filterState.cat,items),vends,items);
+    let wow=[];
+    if(weeksSelected.length>0){const pw=getPrevWeekLabels(weeksSelected); wow=pw.length?filterData(ALL_DATA,monthsA,pw,vends,filterState.cat,items):[];}
+    if(periodActive()) wow=applyPeriodComp(wow,vends,items);
+    return {A,mom,wow};
+  };
+  const iSet=filterState.item.length?tblSet(filterState.vendedor,[]):{A:dataA,mom:momData,wow:wowData};
+  const vSet=filterState.vendedor.length?tblSet([],filterState.item):{A:dataA,mom:momData,wow:wowData};
+  renderTopItens(iSet.A,dataB,iSet.mom,iSet.wow,weeksSelected.length>0);
+  // tendência de cada vendedor: período completo em exibição, sem o filtro de vendedor e sem o filtro de dia
+  window._vendSparkData=filterData(ALL_DATA,monthsA,weeksSelected,[],filterState.cat,filterState.item);
+  renderTopVendedores(vSet.A,vSet.mom,vSet.wow,weeksSelected.length>0);
   renderItemGrowth(dataA,growthPrevData,growthPrevLabel,[]);
 }
 
@@ -2625,7 +2792,7 @@ function deltaHtml(pct, label){
   const cl=pct>0?'delta-up':'delta-down';
   const sign=pct>0?'+':'';
   const tag=label?' '+label:'';
-  return `<span class="${cl}">${sign}${pct.toFixed(1)}%${tag}</span>`;
+  return `<span class="${cl}">${sign}${pct.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})}%${tag}</span>`;
 }
 
 // ============================================================
@@ -2643,7 +2810,7 @@ function makeSortable(containerId) {
   ths.forEach((th, colIdx) => {
     // Only make numeric columns sortable (skip first text col and delta cols)
     const text = th.textContent.trim();
-    if (!text || text === 'Δ' || text === '') return;
+    if (!text || text === 'Δ' || text === '' || th.dataset.nosort) return;
 
     th.style.cursor = 'pointer';
     th.style.userSelect = 'none';
@@ -2897,7 +3064,7 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
         let y = Math.max(chartArea.top + (info.perDay ? 36 : 19), el.y - 5);
         if (info.perDay) y = pill('méd./dia (' + info.days + (info.days===1?'d':'d') + '): ' + fmtR(info.avgPerDay), el.x, y, '500 9px ' + fam, '#a9b8d4', 'rgba(8,24,52,.88)') - 2;
         const txt = info.pct === null ? '— sem semana anterior' : (info.pct > 0 ? '+' : '') + info.pct.toLocaleString('pt-BR', {minimumFractionDigits:1, maximumFractionDigits:1}) + '%';
-        pill(txt, el.x, y, '700 11px ' + fam, info.pct === null ? '#9ca3af' : (info.pct >= 0 ? '#22e07a' : '#f87171'), 'rgba(8,24,52,.88)');
+        pill(txt, el.x, y, '700 11px ' + fam, info.pct === null ? '#9ca3af' : (info.pct >= 0 ? '#3BBFAD' : '#F08A77'), 'rgba(15,40,74,.98)');
       });
       ctx.restore();
     }
@@ -2908,15 +3075,15 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
   if (hasComp) {
     // Comparing: show only vendas bars A + B side by side, clean
     datasets = [
-      {type:'bar', label:`Vendas ${shortLbl}`, data:[...compVendas], backgroundColor:'rgba(148,163,184,.7)', yAxisID:'y', barPercentage:.8, categoryPercentage:.75},
-      {type:'bar', label:'Vendas A (R$)',       data:vendasA,        backgroundColor:vendasA.map((_,i)=>filterState.week.includes(displayWeeks[i].label)&&displayWeeks.length>1?'rgba(139,184,232,.95)':'rgba(59,130,246,.85)'), yAxisID:'y', barPercentage:.8, categoryPercentage:.75, _isA:true},
+      {type:'bar', label:`Vendas ${shortLbl}`, data:[...compVendas], backgroundColor:'rgba(148,163,184,.22)', borderColor:'rgba(148,163,184,.65)', borderWidth:1, yAxisID:'y', barPercentage:.8, categoryPercentage:.75},
+      {type:'bar', label:'Vendas A (R$)',       data:vendasA,        backgroundColor:vendasA.map((_,i)=>filterState.week.includes(displayWeeks[i].label)&&displayWeeks.length>1?blueA(.75):blueA(.28)), borderColor:blueA(.75), borderWidth:1, yAxisID:'y', barPercentage:.8, categoryPercentage:.75, _isA:true},
     ];
   } else {
     // Sem comparativo: exibe vendas (barras) + peças + TM (linhas)
     datasets = [
-      {type:'bar',  label:'Vendas (R$)', data:vendasA, backgroundColor:'rgba(59,130,246,.78)', hoverBackgroundColor:'rgba(139,184,232,.95)', yAxisID:'y',  barPercentage:.7, _isA:true},
-      {type:'line', label:'Peças',       data:qtyA,    borderColor:'#22e07a', backgroundColor:'transparent', tension:.35, yAxisID:'y2', pointRadius:4, pointBackgroundColor:'#22e07a'},
-      {type:'line', label:'TM (R$)',     data:tmA,     borderColor:'#fbbf24', backgroundColor:'transparent', tension:.35, yAxisID:'y3', pointRadius:4, pointBackgroundColor:'#fbbf24', borderDash:[5,3]},
+      {type:'bar',  label:'Vendas (R$)', data:vendasA, ...patBar(), yAxisID:'y',  barPercentage:.7, _isA:true},
+      patLine(PAT_TEAL,  {label:'Peças',   data:qtyA, yAxisID:'y2'}),
+      patLine(PAT_AMBER, {label:'TM (R$)', data:tmA,  yAxisID:'y3'}),
     ];
   }
 
@@ -2960,11 +3127,11 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
 
   if (!hasComp) {
     compTableEl.style.display = 'none';
-    if (chartTitle) chartTitle.innerHTML = '📊 Performance Semanal ' + weekChartHint();
+    if (chartTitle) chartTitle.innerHTML = 'Performance Semanal ' + weekChartHint();
     return;
   }
 
-  if (chartTitle) chartTitle.innerHTML = `📊 Performance Semanal <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(${compLabel || 'comparativo'})</span> ` + weekChartHint();
+  if (chartTitle) chartTitle.innerHTML = `Performance Semanal <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(${compLabel || 'comparativo'})</span> ` + weekChartHint();
 
   // Build rows: one per display week
   const rows = displayWeeks.map((w, i) => {
@@ -2977,9 +3144,9 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
     const semLabel = w.label.replace(' (', '<br><span style="font-size:10px;color:var(--gray-500)">(').replace('–','–')+'</span>';
     return `<tr style="border-bottom:1px solid var(--gray-100);">
       <td style="padding:10px 12px;font-size:11px;font-weight:600;color:var(--gray-800);">${semLabel}</td>
-      <td class="r" style="padding:10px 8px;background:rgba(59,130,246,.05);">${fmtR(vA)}</td>
-      <td class="r" style="padding:10px 8px;background:rgba(59,130,246,.05);">${fmtR(vB)}</td>
-      <td class="r" style="padding:10px 8px;background:rgba(59,130,246,.05);">${deltaHtml(dV)}</td>
+      <td class="r" style="padding:10px 8px;background:${bRGBA(.05)};">${fmtR(vA)}</td>
+      <td class="r" style="padding:10px 8px;background:${bRGBA(.05)};">${fmtR(vB)}</td>
+      <td class="r" style="padding:10px 8px;background:${bRGBA(.05)};">${deltaHtml(dV)}</td>
       <td class="r" style="padding:10px 8px;background:rgba(34,224,122,.045);">${fmtN(qA)}</td>
       <td class="r" style="padding:10px 8px;background:rgba(34,224,122,.045);">${fmtN(qB)}</td>
       <td class="r" style="padding:10px 8px;background:rgba(34,224,122,.045);">${deltaHtml(dQ)}</td>
@@ -2996,15 +3163,15 @@ function renderWeekChart(dataA, monthsA, weeksSelected, compData, compLabel, wee
       <thead>
         <tr style="border-bottom:2px solid var(--gray-200);">
           <th style="text-align:left;padding:10px 12px;font-weight:700;color:var(--gray-700);">Semana</th>
-          <th class="r" colspan="3" style="padding:10px 12px;background:var(--blue-50);font-weight:700;color:var(--blue-300);border-radius:6px 6px 0 0;">💰 Total de Vendas</th>
-          <th class="r" colspan="3" style="padding:10px 12px;background:rgba(34,224,122,.08);font-weight:700;color:#4ade80;border-radius:6px 6px 0 0;">📦 Peças</th>
-          <th class="r" colspan="3" style="padding:10px 12px;background:rgba(251,191,36,.13);font-weight:700;color:#fcd34d;border-radius:6px 6px 0 0;">🎫 Ticket Médio</th>
+          <th class="r" colspan="3" style="padding:10px 12px;background:var(--blue-50);font-weight:700;color:var(--blue-300);border-radius:6px 6px 0 0;">Total de Vendas</th>
+          <th class="r" colspan="3" style="padding:10px 12px;background:rgba(34,224,122,.08);font-weight:700;color:#4ade80;border-radius:6px 6px 0 0;">Peças</th>
+          <th class="r" colspan="3" style="padding:10px 12px;background:rgba(251,191,36,.13);font-weight:700;color:#fcd34d;border-radius:6px 6px 0 0;">Ticket Médio</th>
         </tr>
         <tr style="font-size:10px;color:var(--gray-500);border-bottom:1px solid var(--gray-200);">
           <th style="padding:6px 12px;"></th>
-          <th class="r" style="padding:6px 8px;background:rgba(59,130,246,.08);">A</th>
-          <th class="r" style="padding:6px 8px;background:rgba(59,130,246,.08);">${shortLbl}</th>
-          <th class="r" style="padding:6px 8px;background:rgba(59,130,246,.08);">Δ</th>
+          <th class="r" style="padding:6px 8px;background:${bRGBA(.08)};">A</th>
+          <th class="r" style="padding:6px 8px;background:${bRGBA(.08)};">${shortLbl}</th>
+          <th class="r" style="padding:6px 8px;background:${bRGBA(.08)};">Δ</th>
           <th class="r" style="padding:6px 8px;background:rgba(34,224,122,.08);">A</th>
           <th class="r" style="padding:6px 8px;background:rgba(34,224,122,.08);">${shortLbl}</th>
           <th class="r" style="padding:6px 8px;background:rgba(34,224,122,.08);">Δ</th>
@@ -3061,7 +3228,7 @@ function renderDailyChart(dataA, monthsA, weeksSelected) {
   const anySel = periodActive();
 
   const title = document.getElementById('dailyChartTitle');
-  if (title) title.innerHTML = '📅 Vendas Diárias <span style="font-size:10px;font-weight:400;color:var(--gray-400)">' +
+  if (title) title.innerHTML = 'Vendas Diárias <span style="font-size:10px;font-weight:400;color:var(--gray-400)">' +
     days.length + (days.length===1?' dia':' dias') + ' · média ' + fmtR(avg) + '/dia (linha tracejada) · fim de semana com ponto vazado · clique num dia para filtrar</span>' +
     (anySel ? '<button class="week-clear-btn" onclick="clearPeriodFilter()">Filtrando: ' + periodLabelTxt() + ' ✕</button>' : '');
 
@@ -3071,7 +3238,7 @@ function renderDailyChart(dataA, monthsA, weeksSelected) {
       if (!anySel) return;
       const {ctx, chartArea, scales:{x}} = chart;
       const step = days.length > 1 ? (x.getPixelForValue(1) - x.getPixelForValue(0)) : (chartArea.right - chartArea.left);
-      ctx.save(); ctx.fillStyle = 'rgba(59,130,246,.12)';
+      ctx.save(); ctx.fillStyle = blueA(.08);
       isSel.forEach((sel, i) => { if (!sel) return; const cx = x.getPixelForValue(i);
         const l = Math.max(chartArea.left, cx - step/2), r = Math.min(chartArea.right, cx + step/2);
         ctx.fillRect(l, chartArea.top, r - l, chartArea.bottom - chartArea.top); });
@@ -3084,27 +3251,24 @@ function renderDailyChart(dataA, monthsA, weeksSelected) {
     afterDatasetsDraw(chart){
       if (!avg) return;
       const {ctx, chartArea, scales:{y}} = chart; const yy = y.getPixelForValue(avg);
-      ctx.save(); ctx.strokeStyle = 'rgba(251,191,36,.75)'; ctx.setLineDash([5,4]); ctx.lineWidth = 1;
+      ctx.save(); ctx.strokeStyle = bRGBA(.55); ctx.setLineDash([5,4]); ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(chartArea.left, yy); ctx.lineTo(chartArea.right, yy); ctx.stroke(); ctx.restore();
     }
   };
 
   renderDowTable(days, vendas, pecas);
+  window._dailyCtx = { keys: days.map(d => d.k), data: dataA };
   if (dailyChart) dailyChart.destroy();
   dailyChart = new Chart(canvas.getContext('2d'), {
     type: 'line',
     data: { labels, datasets: [{
       label: 'Vendas (R$)', data: vendas,
-      borderColor: '#3b82f6', borderWidth: 2.5, cubicInterpolationMode: 'monotone', fill: true,
-      backgroundColor: ctx => {
-        const {chart} = ctx, a = chart.chartArea; if (!a) return 'rgba(59,130,246,.12)';
-        const g = chart.ctx.createLinearGradient(0, a.top, 0, a.bottom);
-        g.addColorStop(0, 'rgba(59,130,246,.28)'); g.addColorStop(1, 'rgba(59,130,246,0)'); return g;
-      },
-      pointRadius: isSel.map(sel => sel ? 7 : (days.length > 45 ? 2 : 4)), pointHoverRadius: 8, pointBorderWidth: 2,
-      pointBorderColor: isSel.map(sel => sel ? '#1d4ed8' : (anySel ? 'rgba(59,130,246,.45)' : '#3b82f6')),
-      pointBackgroundColor: days.map((d, i) => isSel[i] ? '#1d4ed8' : (isWknd[i] ? '#ffffff' : (anySel ? 'rgba(59,130,246,.45)' : '#3b82f6'))),
-      pointHoverBackgroundColor: '#1d4ed8'
+      borderColor: PAT_AMBER, borderWidth: 2.5, cubicInterpolationMode: 'monotone', fill: true,
+      backgroundColor: 'rgba(251,191,36,.08)',
+      pointRadius: isSel.map(sel => sel ? 7 : (days.length > 45 ? 2 : 4)), pointHoverRadius: 7, pointBorderWidth: 2,
+      pointBorderColor: isSel.map(sel => sel ? PAT_PT_BORDER : (anySel ? 'rgba(15,28,54,.35)' : PAT_PT_BORDER)),
+      pointBackgroundColor: days.map((d, i) => isSel[i] ? '#f59e0b' : (isWknd[i] ? '#ffffff' : (anySel ? 'rgba(251,191,36,.45)' : PAT_AMBER))),
+      pointHoverBackgroundColor: '#f59e0b'
     }]},
     plugins: [selBand, avgLine],
     options: {
@@ -3150,7 +3314,7 @@ function renderDowTable(days, vendas, pecas) {
   const maxA = Math.max(0, ...ORDER.map(avgOf));
   const pct = v => total ? (v/total*100).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1}) + '%' : '—';
   const ttl = document.getElementById('dowTableTitle');
-  if (ttl) ttl.innerHTML = '🗓️ Por dia da semana <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(destaque pela média/dia · clique para filtrar)</span>' +
+  if (ttl) ttl.innerHTML = 'Por dia da semana <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(destaque pela média/dia · clique para filtrar)</span>' +
     (periodFilter.dows.length ? '<button class="week-clear-btn" onclick="clearPeriodFilter()">Limpar ✕</button>' : '');
   const selDow = periodFilter.dows.length ? periodFilter.dows : (periodFilter.days.length ? [...new Set(periodFilter.days.map(dowOf))] : []);
   const rows = ORDER.filter(d => agg[d].n).map(d => {
@@ -3327,7 +3491,7 @@ function renderMonthlyPerformance(){
           y = Math.max(chartArea.top + 8, Math.min(chartArea.bottom - 8 - totalHeight, y));
           lines.forEach((line, lineIndex) => {
             const item = typeof line === 'string' ? {text:line} : line;
-            ctx.font = `${item.weight || 600} ${item.size || fontSize}px DM Sans`;
+            ctx.font = `${item.weight || 600} ${item.size || fontSize}px Montserrat, sans-serif`;
             ctx.fillStyle = (window.__perfLabelColor?window.__perfLabelColor(item.color || '#c4d0e8'):(item.color || '#c4d0e8'));
             ctx.fillText(item.text, element.x, y + lineIndex * lineGap);
           });
@@ -3341,7 +3505,7 @@ function renderMonthlyPerformance(){
     {text:valueText,color:'#ffffff',weight:800,size:14},
     {
       text:`MoM ${pctText(momValue)}`,
-      color:momValue === null || momValue === undefined ? '#9ca3af' : (momValue >= 0 ? '#22e07a' : '#dc2626'),
+      color:momValue === null || momValue === undefined ? '#9ca3af' : (momValue >= 0 ? bPos() : bNeg()),
       weight:700,
       size:12
     }
@@ -3417,7 +3581,7 @@ function renderMonthlyPerformance(){
 
   buildChart(
     'monthlySalesChart',
-    [{label:'Vendas',data:rows.map(r=>r.vendas),backgroundColor:'rgba(59,130,246,.82)',borderRadius:6,maxBarThickness:92,barPercentage:.88,categoryPercentage:.9}],
+    [{label:'Vendas',data:rows.map(r=>r.vendas),...patBar(),maxBarThickness:92,barPercentage:.88,categoryPercentage:.9}],
     (v,dataset,index) => barLabel(compactMoney(v), rows[index].momVendas),
     v => compactMoney(v),
     v => fmtR(v),
@@ -3426,7 +3590,7 @@ function renderMonthlyPerformance(){
 
   buildChart(
     'monthlyQtyChart',
-    [{label:'Peças',data:rows.map(r=>r.qty),backgroundColor:'rgba(34,224,122,.78)',borderRadius:6,maxBarThickness:92,barPercentage:.88,categoryPercentage:.9}],
+    [{label:'Peças',data:rows.map(r=>r.qty),...patBar(),maxBarThickness:92,barPercentage:.88,categoryPercentage:.9}],
     (v,dataset,index) => barLabel(compactQty(v), rows[index].momQty),
     v => compactQty(v),
     v => `${fmtN(v)} peças`
@@ -3434,7 +3598,7 @@ function renderMonthlyPerformance(){
 
   buildChart(
     'monthlyTicketChart',
-    [{label:'Ticket Médio',data:rows.map(r=>r.ticket),backgroundColor:'rgba(251,191,36,.78)',borderRadius:6,maxBarThickness:92,barPercentage:.88,categoryPercentage:.9}],
+    [{label:'Ticket Médio',data:rows.map(r=>r.ticket),...patBar(),maxBarThickness:92,barPercentage:.88,categoryPercentage:.9}],
     (v,dataset,index) => barLabel('R$ ' + v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0}), rows[index].momTicket),
     v => 'R$ ' + v.toLocaleString('pt-BR',{maximumFractionDigits:0}),
     v => fmtR(v)
@@ -3495,7 +3659,14 @@ function fitRows(id,n){
   const top=el.getBoundingClientRect().top;
   const nth=rows[n-1].getBoundingClientRect().bottom - top;      // fim da 10ª linha
   const peek=rows[n].getBoundingClientRect();
-  if(nth<=0){ el.style.maxHeight='360px'; return; }               // fallback (container oculto)
+  if(nth<=0){                                                      // container ainda oculto (carregando/aba inativa)
+    el.style.maxHeight='360px';
+    if(window.ResizeObserver && !el._fitRO){
+      el._fitRO=new ResizeObserver(()=>{ if(el.getBoundingClientRect().height>0){ el._fitRO.disconnect(); el._fitRO=null; fitRows(id,n); } });
+      el._fitRO.observe(el);
+    }
+    return;
+  }
   const extra=Math.round((peek.bottom-peek.top)*0.5);             // metade da 11ª "espiando"
   el.style.maxHeight=(Math.ceil(nth)+extra)+'px';
 }
@@ -3517,44 +3688,79 @@ function renderTopItens(dataA,dataB,momData,wowData,hasWeek){
       const tv=Object.entries(v.vendedores).sort((a,b)=>b[1]-a[1])[0];
       const tvLbl=tv?tv[0]:'';
       const rankEl=(i+1)<=10?`<span class="rank-num">${i+1}</span>`:`<span style="display:inline-block;min-width:22px;color:var(--gray-400);font-size:11px;margin-right:4px">${i+1}</span>`;
-      return `<tr><td>${rankEl}${k}</td><td class="r">${fmtR(v.vendas)}</td><td class="r">${fmtN(v.qty)}</td><td class="r">${fmtR(tm(v.vendas,v.qty))}</td><td class="r">${deltaHtml(dVal)}</td><td style="font-size:11px;color:var(--gray-500)">${tvLbl}</td></tr>`;
+      const sel=filterState.item.includes(k);
+      return `<tr data-k="${insEsc(k)}" class="row-click${sel?' row-sel':''}${filterState.item.length&&!sel?' row-dim':''}"><td>${rankEl}${k}</td><td class="r">${fmtR(v.vendas)}</td><td class="r">${fmtN(v.qty)}</td><td class="r">${fmtR(tm(v.vendas,v.qty))}</td><td class="r">${deltaHtml(dVal)}</td><td style="font-size:12.5px;color:var(--gray-500)">${tvLbl}</td></tr>`;
     }).join('')}</tbody></table>`;
   makeSortable('tblModelos');
   fitRows('tblModelos',10);
+  const tI=document.getElementById('itensTableTitle'); if(tI) tI.innerHTML='Itens/Produtos '+tableFilterHint('item');
+  wireTableClicks('tblModelos','item');
 }
 
 // ============================================================
 // TOP 10 VENDEDORES
 // ============================================================
 function renderTopVendedores(dataA,momData,wowData,hasWeek){
+  const el=document.getElementById('tblVendedores');
+  if(!el) return;
   const byKey=data=>{const m={};(data||[]).forEach(r=>{const v=r['Vendedor'];if(!m[v])m[v]={vendas:0,qty:0};m[v].vendas+=r['Total de Vendas'];m[v].qty+=r['Quantidade vendida'];});return m;};
   const byVend={};
   dataA.forEach(r=>{const v=r['Vendedor'];if(!byVend[v])byVend[v]={vendas:0,qty:0,items:{}};byVend[v].vendas+=r['Total de Vendas'];byVend[v].qty+=r['Quantidade vendida'];const itm=r['Item'];const it=byVend[v].items[itm]||(byVend[v].items[itm]={v:0,q:0});it.v+=r['Total de Vendas'];it.q+=r['Quantidade vendida'];});
   const mapMoM=byKey(momData),mapWoW=byKey(wowData);
   const allVend=Object.entries(byVend).sort((a,b)=>b[1].vendas-a[1].vendas);
-  // When week filter active: show WoW only. When no week: show MoM only.
-  const deltaThLabelV = hasWeek ? 'WoW' : 'MoM';
-
-  const mkRow=(v,d,rank)=>{
-    const ti=Object.entries(d.items).sort((a,b)=>b[1].v-a[1].v||b[1].q-a[1].q)[0];
-    const tiShare=ti&&d.vendas?ti[1].v/d.vendas*100:0;
-    const mom=mapMoM[v]?delta(d.vendas,mapMoM[v].vendas):null;
-    const wow=hasWeek&&mapWoW[v]?delta(d.vendas,mapWoW[v].vendas):null;
-    const deltaVal = hasWeek ? wow : mom;
-    const rankEl=rank<=10?`<span class="rank-num">${rank}</span>`:`<span style="display:inline-block;min-width:22px;color:var(--gray-400);font-size:11px;margin-right:4px">${rank}</span>`;
-    return `<tr><td>${rankEl}${v}</td><td class="r">${fmtR(d.vendas)}</td><td class="r">${fmtN(d.qty)}</td><td class="r">${fmtR(tm(d.vendas,d.qty))}</td><td class="r">${deltaHtml(deltaVal)}</td><td style="font-size:11px;color:var(--gray-500)" title="${ti?insEsc(ti[0])+' — '+fmtR(ti[1].v)+' ('+tiShare.toLocaleString('pt-BR',{maximumFractionDigits:1})+'% das vendas) · '+fmtN(ti[1].q)+' pçs':''}">${ti?ti[0]:''}</td></tr>`;
-  };
-
-  const el=document.getElementById('tblVendedores');
-  if(!el) return;
+  // Regra mantida: com filtro de semana → WoW; sem semana → MoM (dias equivalentes)
+  const cmpLbl = (typeof periodFilter!=='undefined' && periodFilter.days.length) ? 'vs. D-7'
+               : (typeof periodFilter!=='undefined' && periodFilter.dows.length) ? 'vs. dias equiv.'
+               : (hasWeek ? 'vs. semana ant.' : 'vs. mês ant.');
+  const ttl=document.getElementById('vendTableTitle');
+  if(ttl) ttl.innerHTML='Vendedores <span style="font-size:10px;font-weight:400;color:var(--gray-400)">participação no faturamento do período · tendência diária com o último dia em destaque</span> '+tableFilterHint('vendedor');
   if(!allVend.length){ el.innerHTML='<div class="empty-state">Sem dados</div>'; return; }
 
-  // Single table, all vendors, scroll container wraps everything
-  const thead=`<thead><tr><th>Vendedor</th><th class="r">Vendas</th><th class="r">Pçs</th><th class="r">TM</th><th class="r">${deltaThLabelV}</th><th>Top Item</th></tr></thead>`;
-  const tbody=allVend.map(([v,d],i)=>mkRow(v,d,i+1)).join('');
-  el.innerHTML=`<table>${thead}<tbody>${tbody}</tbody></table>`;
+  const total=allVend.reduce((a,[,d])=>a+d.vendas,0);
+  const maxShare=allVend.length&&total?allVend[0][1].vendas/total:0;
+  const pct1=v=>v.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
+  const fmtR0=v=>'R$ '+Math.round(v).toLocaleString('pt-BR');
+
+  // série diária por vendedor (tendência) — dias do período em exibição
+  const ctx=window._dailyCtx||{keys:[],data:[]};
+  const keyIdx={}; ctx.keys.forEach((k,i)=>keyIdx[k]=i);
+  const series={};
+  (window._vendSparkData||ctx.data||[]).forEach(r=>{const i=keyIdx[r['Data']]; if(i===undefined) return; const v=r['Vendedor']; (series[v]||(series[v]=new Array(ctx.keys.length).fill(0)))[i]+=r['Total de Vendas'];});
+  const spark=v=>{
+    const s=series[v]; if(!s||s.length<2) return '';
+    const W=96,H=28,P=3, mn=Math.min(...s), mx=Math.max(...s), rg=(mx-mn)||1;
+    const pts=s.map((y,i)=>[P+i*(W-2*P)/(s.length-1), H-P-(y-mn)/rg*(H-2*P)]);
+    const last=pts[pts.length-1];
+    return `<svg class="vend-spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}"/><circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="2.6"/></svg>`;
+  };
+
+  const rows=allVend.map(([v,d])=>{
+    const share=total?d.vendas/total:0;
+    const nItens=Object.values(d.items).filter(x=>x.q>0||x.v>0).length;
+    const ti=Object.entries(d.items).sort((a,b)=>b[1].v-a[1].v||b[1].q-a[1].q)[0];
+    const tiTip=ti?'Item mais vendido: '+insEsc(ti[0])+' — '+fmtR(ti[1].v)+' · '+fmtN(ti[1].q)+' pçs':'';
+    const mom=mapMoM[v]?delta(d.vendas,mapMoM[v].vendas):null;
+    const wow=hasWeek&&mapWoW[v]?delta(d.vendas,mapWoW[v].vendas):null;
+    const dv=hasWeek?wow:mom;
+    const dHtml=dv===null?'<span class="vend-delta neu">—</span>'
+      :`<span class="vend-delta ${dv>=0?'up':'down'}"><i>${dv>=0?'▲':'▼'}</i>${dv>0?'+':''}${pct1(dv)}%</span>`;
+    const sel=filterState.vendedor.includes(v);
+    return `<tr data-k="${insEsc(v)}" class="row-click${sel?' row-sel':''}${filterState.vendedor.length&&!sel?' row-dim':''}">
+      <td title="${tiTip}"><div class="vend-name">${insEsc(v)}</div><div class="vend-sub">${nItens} ${nItens===1?'item':'itens'}</div></td>
+      <td class="vend-share"><div class="vend-share-bar" style="width:${maxShare?(share/maxShare*100).toFixed(1):0}%;max-width:140px"></div><div class="vend-share-txt">${pct1(share*100)}% do faturamento</div></td>
+      <td class="r">${fmtR0(d.vendas)}</td>
+      <td class="r">${fmtN(d.qty)}</td>
+      <td class="r">${fmtR(tm(d.vendas,d.qty))}</td>
+      <td class="r">${dHtml}</td>
+      <td class="c">${spark(v)}</td>
+    </tr>`;
+  }).join('');
+  el.innerHTML=`<table class="vend-table"><thead><tr>
+      <th>Vendedor</th><th>Participação</th><th class="r">Faturamento</th><th class="r">Peças</th><th class="r">Ticket médio</th><th class="r">${cmpLbl}</th><th class="r" data-nosort="1">Tendência</th>
+    </tr></thead><tbody>${rows}</tbody></table>`;
   makeSortable('tblVendedores');
   fitRows('tblVendedores',10);
+  wireTableClicks('tblVendedores','vendedor');
 }
 
 // ============================================================
@@ -3563,7 +3769,7 @@ function renderTopVendedores(dataA,momData,wowData,hasWeek){
 function renderItemGrowth(dataA,compData,compLabel,_unused){
   const titleEl=document.getElementById('itemGrowthTitle');
   const suffix=compLabel?` <span style="font-size:10px;font-weight:400;color:var(--gray-400)">(${compLabel})</span>`:'';
-  if(titleEl) titleEl.innerHTML=`📊 Venda Itens${suffix}`;
+  if(titleEl) titleEl.innerHTML=`Venda Itens${suffix}`;
 
   const el=document.getElementById('tblVendaItens');
   if(!el) return;
@@ -3585,7 +3791,7 @@ function renderItemGrowth(dataA,compData,compLabel,_unused){
   const mkRow=(r,i)=>{
     const cl=r.pct!=null&&r.pct>0?'growth-row-up':'growth-row-down';
     return `<tr class="${cl}">
-      <td><span style="display:inline-block;min-width:26px;font-size:10px;font-weight:700;color:var(--gray-400);margin-right:2px">${i}</span><span style="font-size:11px">${r.k}</span></td>
+      <td><span style="display:inline-block;min-width:30px;font-size:12px;font-weight:700;color:var(--gray-400);margin-right:2px">${i}</span><span>${r.k}</span></td>
       <td class="r">${fmtR(r.a)}</td>
       <td class="r">${fmtN(r.qa)}</td>
       <td class="r">${fmtR(r.b)}</td>
@@ -3638,7 +3844,7 @@ function switchTab(tab) {
 const qFilterState = {year:[], vend:[], item:[]};
 let qFiltersBuilt = false, qMetric = 'vendas', qTotalChart = null, qCatChart = null;
 const Q_MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
-const Q_COLORS = ['#1f66b3','#3b82f6','#8bb8e8','#22d3ee','#6366f1','#a78bfa','#f472b6','#fbbf24'];
+const Q_COLORS = ['#1f66b3',bHex(),'#8bb8e8','#22d3ee','#6366f1','#a78bfa','#f472b6','#fbbf24'];
 function quarterOf(month){ const y=month.slice(0,4), m=+month.slice(5,7); return y+'-Q'+(Math.floor((m-1)/3)+1); }
 function quarterLabel(qk, withYear){ const [y,q]=qk.split('-'); return withYear?q+' '+y:q; }
 function quarterMonths(qk){ const [y,q]=qk.split('-Q'); const s=(+q-1)*3; return [0,1,2].map(i=>y+'-'+String(s+i+1).padStart(2,'0')+'-01'); }
@@ -3730,13 +3936,13 @@ function renderQuarterTab(){
       meta.data.forEach((el,i)=>{ const p=getPct(di,i); if(p===null||p===undefined||!isFinite(p)) return;
         const t=pctTxt(p); ctx.font='700 10.5px '+fam; const w=ctx.measureText(t).width+10, h=16, y=Math.max(chartArea.top+h,el.y-4);
         ctx.fillStyle='rgba(8,24,52,.88)'; ctx.beginPath(); ctx.roundRect?ctx.roundRect(el.x-w/2,y-h,w,h,5):ctx.rect(el.x-w/2,y-h,w,h); ctx.fill();
-        ctx.fillStyle=p>=0?'#22e07a':'#f87171'; ctx.fillText(t,el.x,y-3); });
+        ctx.fillStyle=p>=0?bPos():bNeg(); ctx.fillText(t,el.x,y-3); });
     }); ctx.restore(); }});
   if(qTotalChart) qTotalChart.destroy();
   qTotalChart=new Chart(document.getElementById('qTotalChart'),{
     type:'bar',
     data:{labels:chartQs.map(qk=>quarterLabel(qk,true)+(coverage(qk).state==='partial'?' *':'')),
-      datasets:[{label:'Vendas (R$)',data:totVals,backgroundColor:chartQs.map(qk=>qk===lastQ?'rgba(139,184,232,.9)':'rgba(59,130,246,.85)'),borderRadius:6,maxBarThickness:110}]},
+      datasets:[{label:'Vendas (R$)',data:totVals,backgroundColor:chartQs.map(qk=>qk===lastQ?blueA(.5):blueA(.28)),borderColor:blueA(.75),borderWidth:1,maxBarThickness:110}]},
     plugins:[pillPlugin((di,i)=>totPct[i])],
     options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:6}},
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+fmtR(c.raw),afterLabel:c=>{const q=chartQs[c.dataIndex];const o=Q[q];return o?['Peças: '+fmtN(o.qty),'Ticket médio: '+fmtR(val(o,'tm'))]:'';}}}},
@@ -3766,15 +3972,15 @@ function renderQuarterTab(){
 
   // 4) Variação do último quarter vs anterior, por categoria (legível mesmo com Mobilidade dominando o volume)
   const varRows=lastQ?catList.map(c=>[c,qoq(lastQ,qMetric,k=>QC[k+'|'+c])]).filter(x=>x[1]!==null).sort((a,b)=>b[1]-a[1]):[];
-  document.getElementById('qCatChartTitle').textContent='📊 Variação de '+mLabel.toLowerCase()+(lastQ?' · '+quarterLabel(lastQ,true)+' vs '+quarterLabel(prevQuarter(lastQ),true):'')+' por categoria';
+  document.getElementById('qCatChartTitle').textContent='Variação de '+mLabel.toLowerCase()+(lastQ?' · '+quarterLabel(lastQ,true)+' vs '+quarterLabel(prevQuarter(lastQ),true):'')+' por categoria';
   const tot=lastQ?qoq(lastQ,qMetric,k=>Q[k]):null;
   if(qCatChart) qCatChart.destroy();
   qCatChart=new Chart(document.getElementById('qCatChart'),{
     type:'bar',
-    data:{labels:varRows.map(x=>x[0]),datasets:[{label:'Variação',data:varRows.map(x=>x[1]),backgroundColor:varRows.map(x=>x[1]>=0?'rgba(34,224,122,.75)':'rgba(248,113,113,.8)'),borderRadius:4,maxBarThickness:26}]},
+    data:{labels:varRows.map(x=>x[0]),datasets:[{label:'Variação',data:varRows.map(x=>x[1]),backgroundColor:varRows.map(x=>x[1]>=0?'rgba(59,191,173,.22)':'rgba(234,104,82,.2)'),borderColor:varRows.map(x=>x[1]>=0?'rgba(59,191,173,.85)':'rgba(234,104,82,.85)'),borderWidth:1,maxBarThickness:26}]},
     plugins:[{id:'qVarLbl',afterDatasetsDraw(chart){const {ctx}=chart;const fam=(Chart.defaults.font&&Chart.defaults.font.family)||'sans-serif';ctx.save();ctx.font='700 11px '+fam;ctx.textBaseline='middle';
-      chart.getDatasetMeta(0).data.forEach((el,i)=>{const v=varRows[i][1];ctx.fillStyle=v>=0?'#22e07a':'#f87171';ctx.textAlign=v>=0?'left':'right';ctx.fillText(pctTxt(v),el.x+(v>=0?6:-6),el.y);});ctx.restore();}},
-      {id:'qVarTot',afterDraw(chart){ if(tot===null) return; const {ctx,chartArea,scales}=chart; const x=scales.x.getPixelForValue(tot); ctx.save(); ctx.strokeStyle='rgba(139,184,232,.8)'; ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(x,chartArea.top); ctx.lineTo(x,chartArea.bottom); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle='#8bb8e8'; ctx.font='600 10px '+((Chart.defaults.font&&Chart.defaults.font.family)||'sans-serif'); ctx.textAlign='center'; ctx.fillText('Total '+pctTxt(tot),x,chartArea.top-6); ctx.restore(); }}],
+      chart.getDatasetMeta(0).data.forEach((el,i)=>{const v=varRows[i][1];ctx.fillStyle=v>=0?bPos():bNeg();ctx.textAlign=v>=0?'left':'right';ctx.fillText(pctTxt(v),el.x+(v>=0?6:-6),el.y);});ctx.restore();}},
+      {id:'qVarTot',afterDraw(chart){ if(tot===null) return; const {ctx,chartArea,scales}=chart; const x=scales.x.getPixelForValue(tot); ctx.save(); ctx.strokeStyle=cyanA(.8); ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(x,chartArea.top); ctx.lineTo(x,chartArea.bottom); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle='#8bb8e8'; ctx.font='600 10px '+((Chart.defaults.font&&Chart.defaults.font.family)||'sans-serif'); ctx.textAlign='center'; ctx.fillText('Total '+pctTxt(tot),x,chartArea.top-6); ctx.restore(); }}],
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{left:8,right:60,top:16}},
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{const cat=varRows[c.dataIndex][0];const a=val(QC[lastQ+'|'+cat],qMetric),b=val(QC[prevQuarter(lastQ)+'|'+cat],qMetric);return [' '+pctTxt(c.raw),' '+quarterLabel(lastQ,true)+': '+fmtM(a),' '+quarterLabel(prevQuarter(lastQ),true)+': '+fmtM(b)];}}}},
       scales:{x:{grace:'15%',ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(255,255,255,.06)'}},y:{grid:{display:false},ticks:{font:{size:11.5}}}}}
@@ -3882,14 +4088,14 @@ function renderTMTab() {
   window._tmDays    = days;
   window._tmByDay   = byDay;
 
-  const dayBgDefault = days.map(() => 'rgba(59,130,246,.18)');
+  const dayBgDefault = days.map(() => blueA(.28));
 
   if (tmDayChart) tmDayChart.destroy();
   tmDayChart = new Chart(document.getElementById('tmDayChart').getContext('2d'), {
     data: {
       labels: days.map(d => `Dia ${d}`),
       datasets: [
-        { type:'bar',  label:'Peças Vendidas', data:qtyByDay, backgroundColor:[...dayBgDefault], borderColor:'rgba(59,130,246,.4)', borderWidth:1, yAxisID:'y2', order:2 },
+        { type:'bar',  label:'Peças Vendidas', data:qtyByDay, backgroundColor:[...dayBgDefault], borderColor:blueA(.75), borderWidth:1, yAxisID:'y2', order:2 },
         { type:'line', label:'Ticket Médio (R$)', data:tmByDay, borderColor:'#fbbf24', backgroundColor:'rgba(251,191,36,.08)', tension:.35, yAxisID:'y', order:1, pointRadius:4, pointBackgroundColor:days.map(()=>'#fbbf24'), pointBorderColor:'#0f1c36', pointBorderWidth:2, fill:true }
       ]
     },
@@ -3902,7 +4108,7 @@ function renderTMTab() {
         showTMDayDetail(idx);
         // Highlight selected bar
         tmDayChart.data.datasets[0].backgroundColor = days.map((_,i) =>
-          i === idx ? 'rgba(59,130,246,.85)' : 'rgba(59,130,246,.1)');
+          i === idx ? blueA(.85) : blueA(.12));
         // Highlight selected point
         tmDayChart.data.datasets[1].pointBackgroundColor = days.map((_,i) =>
           i === idx ? '#b45309' : '#fbbf24');
@@ -3950,8 +4156,8 @@ function renderTMTab() {
     data:{
       labels: faixaLabels,
       datasets:[
-        {label:'Vendas (R$)', data:faixaVendas, backgroundColor: faixaLabels.map(()=>'rgba(59,130,246,.72)'), borderColor:'rgba(59,130,246,.9)', borderWidth:1, yAxisID:'y', order:2},
-        {label:'Peças',       data:faixaQty,    backgroundColor:'rgba(34,224,122,.65)', yAxisID:'y2', order:1, type:'line', tension:.3, pointRadius:5, pointBackgroundColor:'#22e07a', pointBorderColor:'#0f1c36', pointBorderWidth:2}
+        {label:'Vendas (R$)', data:faixaVendas, backgroundColor: faixaLabels.map(()=>blueA(.28)), borderColor:blueA(.75), borderWidth:1, yAxisID:'y', order:2},
+        {label:'Peças',       data:faixaQty,    backgroundColor:'transparent', borderColor:PAT_TEAL, borderWidth:2.5, yAxisID:'y2', order:1, type:'line', tension:.35, pointRadius:4, pointBackgroundColor:PAT_TEAL, pointBorderColor:'#0f1c36', pointBorderWidth:2}
       ]
     },
     options:{
@@ -3963,7 +4169,7 @@ function renderTMTab() {
         showFaixaDetail(idx);
         // Highlight selected bar
         tmRangeChart.data.datasets[0].backgroundColor = faixaLabels.map((_,i) =>
-          i === idx ? 'rgba(59,130,246,.95)' : 'rgba(59,130,246,.28)');
+          i === idx ? blueA(.85) : blueA(.12));
         tmRangeChart.update();
         const btn = document.getElementById('tmRangeClearBtn');
         if (btn) btn.style.display = 'block';
@@ -4035,13 +4241,13 @@ function renderTMTab() {
         const vendTM    = topVend && topVend[1].q ? topVend[1].v/topVend[1].q : 0;
         return `<tr style="border-bottom:1px solid var(--gray-100)">
           <td style="padding:6px 8px"><span class="rank-num">${i+1}</span>${r.item}</td>
-          <td class="r" style="padding:6px 8px;font-family:'DM Mono',monospace;color:var(--amber)">${fmtR(r.tm)}</td>
+          <td class="r" style="padding:6px 8px;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;color:var(--amber)">${fmtR(r.tm)}</td>
           <td class="r" style="padding:6px 8px">${deltaHtml(dTM)}</td>
           <td class="r" style="padding:6px 8px">${fmtN(r.q)}</td>
           <td class="r" style="padding:6px 8px">${fmtR(r.v)}</td>
           <td style="padding:6px 8px;font-size:10px;color:var(--gray-700);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${vendName}</td>
           <td class="r" style="padding:6px 8px">${fmtR(vendVendas)}</td>
-          <td class="r" style="padding:6px 8px;font-family:'DM Mono',monospace;color:var(--amber)">${fmtR(vendTM)}</td>
+          <td class="r" style="padding:6px 8px;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;color:var(--amber)">${fmtR(vendTM)}</td>
         </tr>`;
       }).join('')}</tbody>
     </table>`;
@@ -4055,7 +4261,7 @@ function renderTMTab() {
 function clearTMDaySelection() {
   if (!tmDayChart) return;
   const n = window._tmDays ? window._tmDays.length : 0;
-  tmDayChart.data.datasets[0].backgroundColor = Array(n).fill('rgba(59,130,246,.18)');
+  tmDayChart.data.datasets[0].backgroundColor = Array(n).fill(blueA(.28));
   tmDayChart.data.datasets[1].pointBackgroundColor = Array(n).fill('#fbbf24');
   tmDayChart.data.datasets[1].pointRadius = Array(n).fill(4);
   tmDayChart.update();
@@ -4068,7 +4274,7 @@ function clearTMDaySelection() {
 function clearTMRangeSelection() {
   if (!tmRangeChart) return;
   const n = window._tmFaixas ? window._tmFaixas.length : 0;
-  tmRangeChart.data.datasets[0].backgroundColor = Array(n).fill('rgba(59,130,246,.72)');
+  tmRangeChart.data.datasets[0].backgroundColor = Array(n).fill(blueA(.28));
   tmRangeChart.update();
   const el = document.getElementById('tmFaixaDetail');
   if (el) el.style.display = 'none';
@@ -4139,7 +4345,7 @@ function showTMDayDetail(idx) {
   el.innerHTML = `
     <div class="tm-chart-card" style="border-left:4px solid #d97706">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-        <div class="tm-section-title" style="margin:0">📅 Dia ${day} do Mês</div>
+        <div class="tm-section-title" style="margin:0">Dia ${day} do Mês</div>
         <div style="display:flex;gap:16px;font-size:12px;flex-wrap:wrap">
           <span><strong>TM:</strong> ${fmtR(tmVal)}</span>
           <span><strong>Peças:</strong> ${fmtN(d.q)}</span>
@@ -4158,7 +4364,7 @@ function showTMDayDetail(idx) {
           </tr></thead>
           <tbody>${items.map((r,i) => `<tr style="border-bottom:1px solid var(--gray-100)">
             <td style="padding:6px 8px"><span class="rank-num">${i+1}</span>${r.item}</td>
-            <td class="r" style="padding:6px 8px;font-family:'DM Mono',monospace;color:var(--amber)">${fmtR(r.tm)}</td>
+            <td class="r" style="padding:6px 8px;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;color:var(--amber)">${fmtR(r.tm)}</td>
             <td class="r" style="padding:6px 8px">${deltaHtml(r.dTM)}</td>
             <td class="r" style="padding:6px 8px">${fmtN(r.q)}</td>
             <td class="r" style="padding:6px 8px">${fmtR(r.v)}</td>
@@ -4218,7 +4424,7 @@ function showFaixaDetail(idx) {
           </tr></thead>
           <tbody>${items.map((r,i) => `<tr style="border-bottom:1px solid var(--gray-100)">
             <td style="padding:6px 8px"><span class="rank-num">${i+1}</span>${r.item}</td>
-            <td class="r" style="padding:6px 8px;font-family:'DM Mono',monospace;color:var(--amber)">${fmtR(r.tm)}</td>
+            <td class="r" style="padding:6px 8px;font-family:'Montserrat',sans-serif;font-variant-numeric:tabular-nums;color:var(--amber)">${fmtR(r.tm)}</td>
             <td class="r" style="padding:6px 8px">${fmtN(r.q)}</td>
             <td class="r" style="padding:6px 8px">${fmtR(r.v)}</td>
           </tr>`).join('')}</tbody>
@@ -4413,12 +4619,12 @@ function fcKpis(o){
 function fcDraw(o){
   if(typeof Chart==='undefined'||!document.getElementById('fcChart')) return;
   const X=fcCtx, L=fcIsLight();
-  const col={real:L?'#002f63':'#eaf1fb',proj:L?'#1f66b3':'#8bb8e8',prev:L?'#9aa8bb':'#61759c',grid:L?'rgba(15,30,51,.08)':'rgba(255,255,255,.06)',tick:L?'#475569':'#9fb0d0'};
+  const col={real:'#fbbf24',proj:'#f59e0b',prev:L?'rgba(15,60,110,.35)':'rgba(54,176,201,.45)',grid:L?'rgba(15,30,51,.08)':'rgba(255,255,255,.06)',tick:L?'#475569':'#9fb0d0'};
   document.querySelector('#tab-forecast .fc-lg-real').style.borderColor=col.real;
   document.querySelector('#tab-forecast .fc-lg-proj').style.borderColor=col.proj;
   document.querySelector('#tab-forecast .fc-lg-prev').style.borderColor=col.prev;
   document.getElementById('fcLegPrev').textContent=X.prevM?mesLongo(X.prevM):'Mês anterior';
-  document.getElementById('fcChartTitle').textContent='📈 Venda acumulada em '+mesLongo(X.m)+(o.k==='t'?'':' · '+o.label);
+  document.getElementById('fcChartTitle').textContent='Venda acumulada em '+mesLongo(X.m)+(o.k==='t'?'':' · '+o.label);
   const ds=fcMonthDates(X.m), len=Math.max(ds.length,X.prevM?fcMonthDates(X.prevM).length:0);
   const labels=Array.from({length:len},(_,i)=>String(i+1).padStart(2,'0'));
   const real=Array(len).fill(null), proj=Array(len).fill(null), prevC=Array(len).fill(null);
@@ -4433,8 +4639,8 @@ function fcDraw(o){
   fcChart=new Chart(document.getElementById('fcChart'),{type:'line',
     data:{labels,datasets:[
       {label:X.prevM?mesLongo(X.prevM):'Mês anterior',data:prevC,borderColor:col.prev,borderWidth:2,pointRadius:0,tension:.25},
-      {label:'Projeção',data:proj,borderColor:col.proj,borderDash:[6,5],borderWidth:2.5,pointRadius:c=>c.dataIndex===ds.length-1?4:0,pointBackgroundColor:col.proj,tension:.25},
-      {label:'Realizado',data:real,borderColor:col.real,borderWidth:3,pointRadius:c=>c.dataIndex===X.D-1?4:0,pointBackgroundColor:col.real,tension:.25}
+      {label:'Projeção',data:proj,borderColor:col.proj,borderDash:[6,5],borderWidth:2.5,pointRadius:c=>c.dataIndex===ds.length-1?5:0,pointBackgroundColor:col.proj,pointBorderColor:'#0f1c36',pointBorderWidth:2,tension:.35},
+      {label:'Realizado',data:real,borderColor:col.real,borderWidth:2.5,pointRadius:c=>c.dataIndex===X.D-1?5:0,pointBackgroundColor:col.real,pointBorderColor:'#0f1c36',pointBorderWidth:2,tension:.35,fill:'origin',backgroundColor:'rgba(251,191,36,.08)'}
     ]},
     options:{responsive:true,maintainAspectRatio:false,animation:matchMedia('(prefers-reduced-motion: reduce)').matches?false:{duration:300},
       interaction:{mode:'index',intersect:false},
